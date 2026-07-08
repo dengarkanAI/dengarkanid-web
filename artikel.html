@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DengarInsight Articles - dengarkan.id</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body style="background-color: #F8FAFC;">
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo-dengarkan-listening-tools.png" alt="dengarkan.id" class="logo-img">
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#feature">Feature</a>
+                <div class="nav-dropdown-wrapper active-nav-parent">
+                    <a href="#" class="has-dropdown" id="dropdown-toggle">DengarInsight <i
+                            class="ph ph-caret-down"></i></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="artikel.html" class="dropdown-item-simple">Artikel</a>
+                        <a href="glosari.html" class="dropdown-item-simple">Glosari</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="nav-auth">
+                <a href="#" class="btn-secondary">Sign In</a>
+                <a href="#" class="btn-primary">Start For Free</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="glosari-hero" style="padding: 140px 24px 60px;">
+        <div class="glosari-hero-inner">
+            <div class="glosari-eyebrow"><span class="dot"></span> Our Insights</div>
+            <h1>DengarInsight <span class="highlight">Articles</span></h1>
+            <p>Temukan panduan praktis, riset pasar terbaru, dan analisis mendalam untuk memahami pelanggan Anda lebih baik.</p>
+        </div>
+    </section>
+
+    <main style="padding-bottom: 80px;">
+        <div class="container">
+            <!-- Category Filters -->
+            <div class="filter-container-new">
+                <button class="filter-chip-new active" data-category="all">Semua Artikel</button>
+                <button class="filter-chip-new" data-category="design">Desain</button>
+                <button class="filter-chip-new" data-category="tech">Teknologi</button>
+                <button class="filter-chip-new" data-category="business">Bisnis</button>
+                <button class="filter-chip-new" data-category="insight">Insight</button>
+            </div>
+
+            <!-- Featured Post (Medium style overlay/split card) -->
+            <a href="detail-artikel.html" class="featured-article-card" data-category="design">
+                <div class="featured-img-side">
+                    <img src="https://placehold.co/800x600/312e81/ffffff?text=Usability+Testing" alt="Usability Testing">
+                </div>
+                <div class="featured-content-side">
+                    <span class="category-tag">Desain</span>
+                    <h2>Step by step to conduct usability testing</h2>
+                    <p>Membantu tim pengembang memahami kendala nyata pengguna secara sistematis melalui metode riset kegunaan terstruktur.</p>
+                    <div class="author-row" style="margin-top: auto;">
+                        <img src="assets/headshot-3.jpg" alt="Andrea William" class="author-avatar">
+                        <div class="author-meta">
+                            <span class="author-name">Andrea William</span>
+                            <span class="author-date">May 21, 2026 &bull; 6 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Articles Grid -->
+            <div class="blog-grid-new" id="articles-grid">
+                <!-- Card 1 -->
+                <div class="blog-card-new vertical" data-category="design" style="cursor: pointer;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/1e1b4b/ffffff?text=Minimal+Workspace" alt="Minimal Workspace">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Desain</span>
+                        <h3>Minimal workspace for inspirations</h3>
+                        <span class="author-inline">Lilian James &bull; May 18, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="blog-card-new vertical" data-category="insight" style="cursor: pointer;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/4c1d95/ffffff?text=Morning+Routine" alt="Morning Routine">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Insight</span>
+                        <h3>Morning routine to boost your mood</h3>
+                        <span class="author-inline">Garry Styles &bull; May 14, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="blog-card-new vertical" data-category="business" style="cursor: pointer;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/064e3b/ffffff?text=Portfolio+Analytics" alt="Portfolio Analytics">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Bisnis</span>
+                        <h3>Analyze holdings of your portfolio</h3>
+                        <span class="author-inline">Alex Rivers &bull; May 10, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="blog-card-new vertical" data-category="tech" style="cursor: pointer;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/0f172a/ffffff?text=Developer+Coding" alt="Designer Coding">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Teknologi</span>
+                        <h3>Should UI designers learn how to code?</h3>
+                        <span class="author-inline">Sandra Bullock &bull; Apr 28, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="blog-card-new vertical" data-category="insight" style="cursor: pointer;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/581c87/ffffff?text=Social+Listening" alt="Social Listening">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Insight</span>
+                        <h3>How social listening turns brand conversations into strategy</h3>
+                        <span class="author-inline">Andrea William &bull; Apr 20, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="blog-card-new vertical" data-category="business" style="cursor: pointer;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/7c2d12/ffffff?text=Campaign+Metrics" alt="Campaign Metrics">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Bisnis</span>
+                        <h3>Measuring social media campaign performance index</h3>
+                        <span class="author-inline">Sarah Jenkins &bull; Apr 12, 2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Box -->
+            <div class="contact-form-card" style="margin-top: 80px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; padding: 48px 32px;">
+                <h3 style="font-size: 24px; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">Dapatkan insight langsung ke email Anda</h3>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto;">
+                    Daftar buletin kami untuk menerima strategi bisnis digital terkurasi dan tips data analisis gratis setiap minggu.
+                </p>
+                <form onsubmit="event.preventDefault(); alert('Terima kasih telah mendaftar!');" style="display: flex; gap: 12px; max-width: 500px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
+                    <input type="email" placeholder="Masukkan alamat email Anda" required style="flex: 1; min-width: 240px; padding: 14px 18px; border-radius: 100px; border: 1px solid #E2E8F0; font-size: 14px;">
+                    <button type="submit" class="btn-primary" style="padding: 14px 28px; border-radius: 100px; font-size: 14px; font-weight: 600; cursor: pointer;">Berlangganan &rarr;</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-new">
+        <div class="footer-cta-row">
+            <div class="container footer-cta-row-inner">
+                <div class="footer-cta-left">
+                    <h2>Are You Interested<br>With Vistore?</h2>
+                    <a href="index.html#contact" class="btn-contact-sales">Contact Sales &nbsp;&rarr;</a>
+                </div>
+
+                <div class="footer-cta-links">
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="#">Security</a>
+                        <a href="#">Brand Guidelines</a>
+                        <a href="#">Careers</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Career</h4>
+                        <a href="#">Jobs</a>
+                        <a href="#">New</a>
+                        <a href="#">Hiring</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Legal Information</h4>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-middle-row">
+            <div class="container footer-middle-inner">
+                <div class="footer-logo-box">
+                    <img src="https://placehold.co/120x30/transparent/1a1a1a?text=Vistore." alt="Vistore Logo"
+                        class="footer-logo-placeholder">
+                </div>
+                <div class="footer-nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#feature">About Us</a>
+                    <a href="index.html#testimonials">Reviews</a>
+                </div>
+                <div class="footer-social-box">
+                    <a href="#" class="social-circle"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-x-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-linkedin-logo"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-row">
+            <div class="container footer-bottom-inner-new">
+                <p class="copyright-text">&copy; Vistore by Sans Brothers</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-watermark-new">
+            DENGARKAN
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scrolled Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Navbar Dropdown Toggle for Mobile / Touch
+        const dropdownToggle = document.getElementById('dropdown-toggle');
+        const dropdownWrapper = dropdownToggle ? dropdownToggle.closest('.nav-dropdown-wrapper') : null;
+        if (dropdownToggle && dropdownWrapper) {
+            dropdownToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                dropdownWrapper.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!dropdownWrapper.contains(e.target)) {
+                    dropdownWrapper.classList.remove('active');
+                }
+            });
+        }
+
+        // Category filtering logic & session sync
+        document.addEventListener('DOMContentLoaded', () => {
+            // Google One Tap / Session Sync logic
+            const navAuth = document.querySelector('.nav-auth');
+            function updateNavbarWithUser(name) {
+                if (!navAuth) return;
+                navAuth.innerHTML = `
+                    <div class="user-dropdown-wrapper">
+                        <div class="user-profile-trigger" id="user-menu-trigger">
+                            <img src="assets/headshot-2.jpg" alt="User Profile">
+                            <span>Halo, ${name}!</span>
+                            <i class="ph ph-caret-down"></i>
+                        </div>
+                        <div class="user-dropdown-menu">
+                            <a href="index.html?show_dashboard=true" class="user-dropdown-item" id="dashboard-link"><i class="ph ph-layout"></i> Go to Dashboard</a>
+                            <a href="#" class="user-dropdown-item" id="logout-btn"><i class="ph ph-sign-out"></i> Keluar</a>
+                        </div>
+                    </div>
+                `;
+
+                // Add dropdown toggle handler
+                const trigger = document.getElementById('user-menu-trigger');
+                const wrapper = trigger ? trigger.closest('.user-dropdown-wrapper') : null;
+                if (trigger && wrapper) {
+                    trigger.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        wrapper.classList.toggle('active');
+                    });
+                    
+                    document.addEventListener('click', () => {
+                        wrapper.classList.remove('active');
+                    });
+                }
+
+                // Add logout handler
+                const logoutBtn = document.getElementById('logout-btn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        localStorage.removeItem('dengarkan_lead');
+                        location.reload(); // Reload to reset header state
+                    });
+                }
+            }
+
+            const savedLead = localStorage.getItem('dengarkan_lead');
+            if (savedLead) {
+                const data = JSON.parse(savedLead);
+                updateNavbarWithUser(data.name);
+            }
+
+            // Category Filtering
+            const filterChips = document.querySelectorAll('.filter-chip-new');
+            const featuredCard = document.querySelector('.featured-article-card');
+            const gridCards = document.querySelectorAll('#articles-grid .blog-card-new');
+
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    // Update active chip state
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+
+                    const category = chip.getAttribute('data-category');
+
+                    // Filter Featured Card
+                    if (featuredCard) {
+                        if (category === 'all' || featuredCard.getAttribute('data-category') === category) {
+                            featuredCard.style.display = 'flex';
+                        } else {
+                            featuredCard.style.display = 'none';
+                        }
+                    }
+
+                    // Filter Grid Cards
+                    gridCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

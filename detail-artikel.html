@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step by Step to Conduct Usability Testing - DengarInsight</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body style="background-color: #FFFFFF;">
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo-dengarkan-listening-tools.png" alt="dengarkan.id" class="logo-img">
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#feature">Feature</a>
+                <div class="nav-dropdown-wrapper active-nav-parent">
+                    <a href="#" class="has-dropdown" id="dropdown-toggle">DengarInsight <i
+                            class="ph ph-caret-down"></i></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="artikel.html" class="dropdown-item-simple">Artikel</a>
+                        <a href="glosari.html" class="dropdown-item-simple">Glosari</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="nav-auth">
+                <a href="#" class="btn-secondary">Sign In</a>
+                <a href="#" class="btn-primary">Start For Free</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Hero Header -->
+    <section class="article-hero-header" style="padding-top: 130px;">
+        <div class="article-detail-container">
+            <div class="article-category">Desain</div>
+            <h1 class="article-title-main">Step by step to conduct usability testing</h1>
+            
+            <!-- Author info row (Medium style) -->
+            <div class="author-info-row">
+                <div class="author-info-left">
+                    <img src="assets/headshot-3.jpg" alt="Andrea William" class="author-avatar-img">
+                    <div>
+                        <span class="author-name-text">Andrea William</span>
+                        <span class="article-meta-text">May 21, 2026 &bull; 6 min read</span>
+                    </div>
+                </div>
+                <div class="author-info-right">
+                    <button class="action-icon-btn" id="clap-btn-top">
+                        <i class="ph ph-hands-clapping"></i>
+                        <span id="clap-count-top">24</span>
+                    </button>
+                    <button class="action-icon-btn" id="bookmark-btn-top">
+                        <i class="ph ph-bookmark-simple" id="bookmark-icon-top"></i>
+                    </button>
+                    <button class="action-icon-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Tautan artikel berhasil disalin!');">
+                        <i class="ph ph-share-network"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Hero Image (Large, Medium-style container) -->
+    <div class="article-full-image">
+        <img src="https://placehold.co/1200x600/312e81/ffffff?text=Usability+Testing+Session" alt="Usability Testing Session">
+        <div class="article-image-caption">Gambar 1: Sesi pengujian kegunaan bersama responden pengguna untuk memvalidasi alur antarmuka baru.</div>
+    </div>
+
+    <!-- Article Body Container -->
+    <section style="background-color: #FFFFFF; padding-bottom: 80px;">
+        <div class="article-detail-container">
+            <div class="article-body-medium">
+                <p>
+                    Usability testing (pengujian kegunaan) adalah langkah krusial dalam siklus pengembangan produk digital. Tanpa melakukan pengujian langsung dengan pengguna nyata, kita seringkali membangun asumsi palsu mengenai bagaimana orang berinteraksi dengan antarmuka yang kita buat.
+                </p>
+                <p>
+                    Dalam panduan ini, kita akan membahas alur langkah-demi-langkah yang terstruktur untuk mempersiapkan, melaksanakan, dan mengevaluasi sesi usability testing yang sukses dan menghasilkan data riset yang dapat langsung ditindaklanjuti.
+                </p>
+
+                <h2>1. Menentukan Tujuan Riset yang Jelas</h2>
+                <p>
+                    Sebelum Anda mengundang partisipan, Anda harus tahu persis apa yang ingin Anda validasi. Apakah Anda ingin menguji efisiensi alur pendaftaran baru? Ataukah Anda ingin melihat apakah pengguna dapat menemukan fitur pencarian dengan mudah?
+                </p>
+                <p>
+                    Tujuan yang terdefinisi dengan baik akan membantu Anda menyusun skenario tugas (*tasks*) yang fokus dan menghindari bias selama pengujian.
+                </p>
+
+                <div class="blockquote-medium">
+                    "Desain yang baik adalah desain yang tidak membutuhkan penjelasan. Usability testing membantu Anda menemukan di bagian mana desain Anda masih perlu menjelaskan dirinya sendiri."
+                </div>
+
+                <h2>2. Menyusun Skenario Tugas (Scenario and Tasks)</h2>
+                <p>
+                    Saat melakukan pengujian, jangan langsung menyuruh pengguna untuk mengklik tombol tertentu. Alih-alih berkata *"Klik tombol keranjang"*, berikan mereka skenario kontekstual seperti:
+                </p>
+                <p style="font-style: italic; padding-left: 16px; border-left: 2px solid #E2E8F0; color: #475569;">
+                    "Bayangkan Anda sedang mencari kado ulang tahun untuk teman Anda, dan Anda ingin membeli teh melati seharga Rp50.000. Tunjukkan bagaimana Anda akan menyelesaikan proses pembelian produk tersebut sampai halaman pembayaran."
+                </p>
+
+                <h2>3. Memilih Partisipan yang Tepat</h2>
+                <p>
+                    Partisipan yang Anda pilih harus mewakili target audiens produk Anda. Untuk tes kegunaan kualitatif umum, melakukan pengujian dengan **5 hingga 8 partisipan** biasanya sudah cukup untuk mengungkap lebih dari 85% masalah kegunaan utama pada sistem Anda.
+                </p>
+
+                <h3>Mengapa hanya 5 partisipan?</h3>
+                <p>
+                    Riset legendaris dari Jakob Nielsen menunjukkan bahwa penambahan partisipan setelah orang ke-5 memberikan hasil temuan masalah yang cenderung berulang (*diminishing returns*). Fokuslah pada kedalaman observasi perilaku, bukan sekadar jumlah angka.
+                </p>
+            </div>
+            
+            <!-- Bottom Interaction Row -->
+            <div class="author-info-row" style="margin-top: 60px; margin-bottom: 0;">
+                <div class="author-info-left">
+                    <button class="action-icon-btn" id="clap-btn-bottom">
+                        <i class="ph ph-hands-clapping"></i>
+                        <span id="clap-count-bottom">24</span>
+                    </button>
+                </div>
+                <div class="author-info-right">
+                    <button class="action-icon-btn" id="bookmark-btn-bottom">
+                        <i class="ph ph-bookmark-simple" id="bookmark-icon-bottom"></i>
+                    </button>
+                    <a href="https://twitter.com" target="_blank" class="action-icon-btn"><i class="ph ph-twitter-logo"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="action-icon-btn"><i class="ph ph-linkedin-logo"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Articles Footer Section -->
+    <section class="article-detail-footer">
+        <div class="container">
+            <h3 class="recommended-title">Baca Artikel DengarInsight Lainnya</h3>
+            
+            <div class="recommended-grid">
+                <!-- Card 1 -->
+                <div class="blog-card-new vertical" style="cursor: pointer; background: #FFFFFF;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/1e1b4b/ffffff?text=Minimal+Workspace" alt="Minimal Workspace">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Desain</span>
+                        <h3>Minimal workspace for inspirations</h3>
+                        <span class="author-inline">Lilian James &bull; May 18, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="blog-card-new vertical" style="cursor: pointer; background: #FFFFFF;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/0f172a/ffffff?text=Developer+Coding" alt="Designer Coding">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Teknologi</span>
+                        <h3>Should UI designers learn how to code?</h3>
+                        <span class="author-inline">Sandra Bullock &bull; Apr 28, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="blog-card-new vertical" style="cursor: pointer; background: #FFFFFF;" onclick="location.href='detail-artikel.html'">
+                    <div class="card-img-top">
+                        <img src="https://placehold.co/400x300/581c87/ffffff?text=Social+Listening" alt="Social Listening">
+                    </div>
+                    <div class="card-content-bottom">
+                        <span style="font-size: 11px; font-weight: 700; color: #4F46E5; text-transform: uppercase; margin-bottom: 6px; display: block;">Insight</span>
+                        <h3>How social listening turns brand conversations into strategy</h3>
+                        <span class="author-inline">Andrea William &bull; Apr 20, 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-new">
+        <div class="footer-cta-row">
+            <div class="container footer-cta-row-inner">
+                <div class="footer-cta-left">
+                    <h2>Are You Interested<br>With Vistore?</h2>
+                    <a href="index.html#contact" class="btn-contact-sales">Contact Sales &nbsp;&rarr;</a>
+                </div>
+
+                <div class="footer-cta-links">
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="#">Security</a>
+                        <a href="#">Brand Guidelines</a>
+                        <a href="#">Careers</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Career</h4>
+                        <a href="#">Jobs</a>
+                        <a href="#">New</a>
+                        <a href="#">Hiring</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Legal Information</h4>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-middle-row">
+            <div class="container footer-middle-inner">
+                <div class="footer-logo-box">
+                    <img src="https://placehold.co/120x30/transparent/1a1a1a?text=Vistore." alt="Vistore Logo"
+                        class="footer-logo-placeholder">
+                </div>
+                <div class="footer-nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#feature">About Us</a>
+                    <a href="index.html#testimonials">Reviews</a>
+                </div>
+                <div class="footer-social-box">
+                    <a href="#" class="social-circle"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-x-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-linkedin-logo"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-row">
+            <div class="container footer-bottom-inner-new">
+                <p class="copyright-text">&copy; Vistore by Sans Brothers</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-watermark-new">
+            DENGARKAN
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scrolled Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Navbar Dropdown Toggle for Mobile / Touch
+        const dropdownToggle = document.getElementById('dropdown-toggle');
+        const dropdownWrapper = dropdownToggle ? dropdownToggle.closest('.nav-dropdown-wrapper') : null;
+        if (dropdownToggle && dropdownWrapper) {
+            dropdownToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                dropdownWrapper.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!dropdownWrapper.contains(e.target)) {
+                    dropdownWrapper.classList.remove('active');
+                }
+            });
+        }
+
+        // Medium Interactions: Claps and Bookmarks
+        document.addEventListener('DOMContentLoaded', () => {
+            // Google One Tap / Session Sync logic
+            const navAuth = document.querySelector('.nav-auth');
+            function updateNavbarWithUser(name) {
+                if (!navAuth) return;
+                navAuth.innerHTML = `
+                    <div class="user-dropdown-wrapper">
+                        <div class="user-profile-trigger" id="user-menu-trigger">
+                            <img src="assets/headshot-2.jpg" alt="User Profile">
+                            <span>Halo, ${name}!</span>
+                            <i class="ph ph-caret-down"></i>
+                        </div>
+                        <div class="user-dropdown-menu">
+                            <a href="index.html?show_dashboard=true" class="user-dropdown-item" id="dashboard-link"><i class="ph ph-layout"></i> Go to Dashboard</a>
+                            <a href="#" class="user-dropdown-item" id="logout-btn"><i class="ph ph-sign-out"></i> Keluar</a>
+                        </div>
+                    </div>
+                `;
+
+                // Add dropdown toggle handler
+                const trigger = document.getElementById('user-menu-trigger');
+                const wrapper = trigger ? trigger.closest('.user-dropdown-wrapper') : null;
+                if (trigger && wrapper) {
+                    trigger.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        wrapper.classList.toggle('active');
+                    });
+                    
+                    document.addEventListener('click', () => {
+                        wrapper.classList.remove('active');
+                    });
+                }
+
+                // Add logout handler
+                const logoutBtn = document.getElementById('logout-btn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        localStorage.removeItem('dengarkan_lead');
+                        location.reload(); // Reload to reset header state
+                    });
+                }
+            }
+
+            const savedLead = localStorage.getItem('dengarkan_lead');
+            if (savedLead) {
+                const data = JSON.parse(savedLead);
+                updateNavbarWithUser(data.name);
+            }
+
+            // Medium Interactions: Claps and Bookmarks
+            let claps = 24;
+            let bookmarked = false;
+
+            const clapBtnTop = document.getElementById('clap-btn-top');
+            const clapBtnBottom = document.getElementById('clap-btn-bottom');
+            const clapCountTop = document.getElementById('clap-count-top');
+            const clapCountBottom = document.getElementById('clap-count-bottom');
+
+            const bookmarkBtnTop = document.getElementById('bookmark-btn-top');
+            const bookmarkBtnBottom = document.getElementById('bookmark-btn-bottom');
+            const bookmarkIconTop = document.getElementById('bookmark-icon-top');
+            const bookmarkIconBottom = document.getElementById('bookmark-icon-bottom');
+
+            // Clap click handler
+            function performClap() {
+                claps++;
+                if (clapCountTop) clapCountTop.innerText = claps;
+                if (clapCountBottom) clapCountBottom.innerText = claps;
+
+                // Add clap feedback classes
+                if (clapBtnTop) clapBtnTop.classList.add('clapped');
+                if (clapBtnBottom) clapBtnBottom.classList.add('clapped');
+            }
+
+            if (clapBtnTop) clapBtnTop.addEventListener('click', performClap);
+            if (clapBtnBottom) clapBtnBottom.addEventListener('click', performClap);
+
+            // Bookmark toggle handler
+            function toggleBookmark() {
+                bookmarked = !bookmarked;
+                if (bookmarked) {
+                    if (bookmarkIconTop) bookmarkIconTop.className = 'ph-fill ph-bookmark-simple';
+                    if (bookmarkIconBottom) bookmarkIconBottom.className = 'ph-fill ph-bookmark-simple';
+                    if (bookmarkBtnTop) bookmarkBtnTop.style.color = '#4F46E5';
+                    if (bookmarkBtnBottom) bookmarkBtnBottom.style.color = '#4F46E5';
+                } else {
+                    if (bookmarkIconTop) bookmarkIconTop.className = 'ph ph-bookmark-simple';
+                    if (bookmarkIconBottom) bookmarkIconBottom.className = 'ph ph-bookmark-simple';
+                    if (bookmarkBtnTop) bookmarkBtnTop.style.color = '';
+                    if (bookmarkBtnBottom) bookmarkBtnBottom.style.color = '';
+                }
+            }
+
+            if (bookmarkBtnTop) bookmarkBtnTop.addEventListener('click', toggleBookmark);
+            if (bookmarkBtnBottom) bookmarkBtnBottom.addEventListener('click', toggleBookmark);
+        });
+    </script>
+</body>
+
+</html>

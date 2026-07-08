@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads Dashboard - dengarkan.id</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body { background: #f3f4f6; margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Admin Navbar */
+        .admin-nav { background: white; border-bottom: 1px solid #e5e7eb; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+        .admin-nav .logo img { height: 24px; }
+        .admin-user { display: flex; align-items: center; gap: 16px; }
+        .user-info { text-align: right; }
+        .user-name { font-size: 14px; font-weight: 600; color: #111827; }
+        .user-role { font-size: 12px; color: #6b7280; }
+        .btn-logout { background: #fee2e2; color: #dc2626; border: none; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .btn-logout:hover { background: #fecaca; }
+        
+        /* Dashboard Content */
+        .dashboard-container { max-width: 1200px; margin: 0 auto; padding: 40px 32px; flex: 1; width: 100%; box-sizing: border-box; }
+        
+        .header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; }
+        .page-title h1 { font-size: 28px; font-weight: 700; color: #111827; margin: 0 0 8px; letter-spacing: -0.5px; }
+        .page-title p { font-size: 15px; color: #6b7280; margin: 0; }
+        .header-actions { display: flex; gap: 12px; }
+        .btn-action { background: white; border: 1px solid #d1d5db; color: #374151; padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .btn-action:hover { background: #f9fafb; border-color: #9ca3af; }
+        .btn-primary { background: #111827; color: white; border: none; }
+        .btn-primary:hover { background: #000; border: none; }
+
+        /* Stats Cards */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+        .stat-card { background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .stat-title { font-size: 13px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .stat-value { font-size: 36px; font-weight: 800; color: #111827; line-height: 1; }
+        .stat-trend { font-size: 13px; font-weight: 500; margin-top: 8px; color: #10b981; display: flex; align-items: center; gap: 4px; }
+
+        /* Data Table */
+        .table-card { background: white; border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); overflow: hidden; }
+        .table-header { padding: 20px 24px; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; background: #f9fafb; }
+        .search-box { position: relative; width: 300px; }
+        .search-box i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9ca3af; }
+        .search-box input { width: 100%; padding: 10px 12px 10px 36px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 13px; font-family: 'Inter'; outline: none; transition: all 0.2s; box-sizing: border-box; }
+        .search-box input:focus { border-color: #0f62fe; box-shadow: 0 0 0 3px rgba(15, 98, 254, 0.1); }
+        
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { background: white; padding: 16px 24px; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e5e7eb; }
+        td { padding: 16px 24px; font-size: 14px; color: #374151; border-bottom: 1px solid #e5e7eb; vertical-align: middle; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #f9fafb; }
+        
+        .user-cell { display: flex; align-items: center; gap: 12px; }
+        .avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #F9DBFF, #AAECFF); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #111827; }
+        .user-details strong { display: block; font-weight: 600; color: #111827; }
+        .user-details span { font-size: 13px; color: #6b7280; }
+        
+        .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 600; }
+        .badge-source { background: #e0e7ff; color: #4338ca; }
+        .badge-new { background: #dcfce7; color: #166534; margin-left: 8px; font-size: 10px; }
+        
+        .date-cell { font-size: 13px; color: #6b7280; white-space: nowrap; }
+
+        .loading-state { text-align: center; padding: 60px 24px; color: #6b7280; }
+        .loading-state i { font-size: 32px; animation: spin 1s linear infinite; margin-bottom: 12px; }
+        .empty-state { display: none; text-align: center; padding: 60px 24px; color: #6b7280; }
+        .empty-state img { height: 120px; opacity: 0.5; margin-bottom: 20px; }
+        
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <!-- Admin Navbar -->
+    <nav class="admin-nav">
+        <div class="logo">
+            <img src="logo-dengarkan-listening-tools.png" alt="dengarkan.id">
+        </div>
+        <div class="admin-user">
+            <div class="user-info">
+                <div class="user-name" id="admin-name">Admin</div>
+                <div class="user-role">Super Administrator</div>
+            </div>
+            <button class="btn-logout" id="logout-btn">
+                <i class="ph ph-sign-out"></i> Keluar
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        
+        <div class="header-row">
+            <div class="page-title">
+                <h1>Leads Dashboard</h1>
+                <p>Kelola data pendaftaran (leads) yang masuk dari website.</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-action" id="refresh-btn"><i class="ph ph-arrows-clockwise"></i> Refresh</button>
+                <button class="btn-action btn-primary" id="export-btn"><i class="ph ph-download-simple"></i> Export CSV</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title"><i class="ph ph-users" style="color: #0F62FE;"></i> Total Leads</div>
+                <div class="stat-value" id="total-count">0</div>
+                <div class="stat-trend"><i class="ph ph-trend-up"></i> Seluruh waktu</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title"><i class="ph ph-buildings" style="color: #8B5CF6;"></i> Perusahaan Unik</div>
+                <div class="stat-value" id="company-count">0</div>
+                <div class="stat-trend"><i class="ph ph-trend-up"></i> Dari berbagai industri</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title"><i class="ph ph-calendar-check" style="color: #10B981;"></i> Lead Bulan Ini</div>
+                <div class="stat-value" id="month-count">0</div>
+                <div class="stat-trend"><i class="ph ph-trend-up"></i> Pertumbuhan aktif</div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <div class="search-box">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Cari nama, email, atau perusahaan...">
+                </div>
+                <div class="pagination-info" style="font-size: 13px; color: #6b7280; font-weight: 500;">
+                    Menampilkan <span id="display-count">0</span> leads
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="leads-table">
+                    <thead>
+                        <tr>
+                            <th>Profil</th>
+                            <th>Perusahaan & Jabatan</th>
+                            <th>Sumber</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Data injected via JS -->
+                    </tbody>
+                </table>
+                <div class="loading-state" id="loading">
+                    <i class="ph ph-spinner-gap"></i>
+                    <p>Memuat data leads...</p>
+                </div>
+                <div class="empty-state" id="empty-state">
+                    <h3>Belum ada data leads</h3>
+                    <p>Data akan muncul di sini setelah ada pendaftar dari website.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const API_URL = 'http://localhost:1337';
+        
+        // Security Check
+        const token = sessionStorage.getItem('jwt');
+        const userStr = sessionStorage.getItem('user');
+        
+        if (!token) {
+            window.location.href = 'admin-login.html';
+        } else if (userStr) {
+            try {
+                const user = JSON.parse(userStr);
+                document.getElementById('admin-name').textContent = user.username || user.email;
+            } catch(e) {}
+        }
+
+        // Logout
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            sessionStorage.removeItem('jwt');
+            sessionStorage.removeItem('user');
+            window.location.href = 'admin-login.html';
+        });
+
+        let allLeads = [];
+
+        async function fetchLeads() {
+            const tableBody = document.getElementById('table-body');
+            const loading = document.getElementById('loading');
+            const emptyState = document.getElementById('empty-state');
+            
+            tableBody.innerHTML = '';
+            loading.style.display = 'block';
+            emptyState.style.display = 'none';
+
+            try {
+                // Gunakan populate=* & sort untuk mengambil data Strapi v4
+                const res = await fetch(`${API_URL}/api/leads?sort=createdAt:desc`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (res.status === 401 || res.status === 403) {
+                    sessionStorage.removeItem('jwt');
+                    window.location.href = 'admin-login.html';
+                    return;
+                }
+
+                const json = await res.json();
+                // Strapi v4 returns data inside .data array
+                allLeads = json.data || [];
+                
+                renderTable(allLeads);
+                updateStats(allLeads);
+                
+            } catch (err) {
+                console.error('Failed to fetch leads:', err);
+                loading.style.display = 'none';
+                emptyState.style.display = 'block';
+                emptyState.innerHTML = `<p style="color:#dc2626">Gagal memuat data: ${err.message}. Pastikan Backend Strapi berjalan.</p>`;
+            }
+        }
+
+        function renderTable(data) {
+            const tableBody = document.getElementById('table-body');
+            const loading = document.getElementById('loading');
+            const emptyState = document.getElementById('empty-state');
+            
+            loading.style.display = 'none';
+            document.getElementById('display-count').textContent = data.length;
+
+            if (data.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            tableBody.innerHTML = data.map(item => {
+                // Strapi v4 wraps attributes
+                const lead = item.attributes || item; 
+                
+                const initial = lead.name ? lead.name.charAt(0).toUpperCase() : '?';
+                const date = new Date(lead.createdAt || new Date()).toLocaleDateString('id-ID', {
+                    day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                });
+                
+                // Check if created within last 24h
+                const isNew = (new Date() - new Date(lead.createdAt)) < (24 * 60 * 60 * 1000);
+
+                return `
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <div class="avatar">${initial}</div>
+                            <div class="user-details">
+                                <strong>${lead.name || '-'} ${isNew ? '<span class="badge badge-new">Baru</span>' : ''}</strong>
+                                <span>${lead.email || '-'}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="user-details">
+                            <strong>${lead.company || '-'}</strong>
+                            <span>${lead.jobTitle || '-'}</span>
+                        </div>
+                    </td>
+                    <td><span class="badge badge-source">${lead.source || 'Website'}</span></td>
+                    <td class="date-cell">${date}</td>
+                    <td>
+                        <a href="mailto:${lead.email}" class="btn-action" style="display:inline-flex; border:none; background:#f3f4f6; padding:6px 10px"><i class="ph ph-envelope-simple"></i> Email</a>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        }
+
+        function updateStats(data) {
+            document.getElementById('total-count').textContent = data.length;
+            
+            const companies = new Set();
+            let thisMonth = 0;
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+
+            data.forEach(item => {
+                const lead = item.attributes || item;
+                if(lead.company) companies.add(lead.company.toLowerCase().trim());
+                
+                const d = new Date(lead.createdAt);
+                if(d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
+                    thisMonth++;
+                }
+            });
+
+            document.getElementById('company-count').textContent = companies.size;
+            document.getElementById('month-count').textContent = thisMonth;
+        }
+
+        // Search Filter
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const q = e.target.value.toLowerCase();
+            const filtered = allLeads.filter(item => {
+                const lead = item.attributes || item;
+                return (
+                    (lead.name || '').toLowerCase().includes(q) ||
+                    (lead.email || '').toLowerCase().includes(q) ||
+                    (lead.company || '').toLowerCase().includes(q)
+                );
+            });
+            renderTable(filtered);
+        });
+
+        document.getElementById('refresh-btn').addEventListener('click', fetchLeads);
+
+        // Export to CSV
+        document.getElementById('export-btn').addEventListener('click', () => {
+            if(allLeads.length === 0) return alert('Tidak ada data untuk diexport');
+            
+            let csv = 'Name,Email,Company,Job Title,Source,Date\n';
+            allLeads.forEach(item => {
+                const lead = item.attributes || item;
+                const row = [
+                    `"${lead.name || ''}"`,
+                    `"${lead.email || ''}"`,
+                    `"${lead.company || ''}"`,
+                    `"${lead.jobTitle || ''}"`,
+                    `"${lead.source || 'Website'}"`,
+                    `"${new Date(lead.createdAt).toISOString()}"`
+                ].join(',');
+                csv += row + '\n';
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'leads_dengarkan.csv');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+        // Init
+        fetchLeads();
+    </script>
+</body>
+</html>

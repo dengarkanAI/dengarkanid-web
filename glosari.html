@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glosari Listening Tools - dengarkan.id</title>
+    <meta name="description" content="Kamus lengkap istilah dalam dunia social media listening, brand monitoring, dan digital analytics.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .glosari-hero{position:relative;padding:120px 24px 80px;overflow:hidden;background:linear-gradient(135deg,#f0f4ff 0%,#fdf4ff 50%,#f0fbff 100%)}
+        .glosari-hero::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(249,219,255,.5) 0%,transparent 70%);pointer-events:none}
+        .glosari-hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(170,236,255,.4) 0%,transparent 70%);pointer-events:none}
+        .glosari-hero-inner{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:2}
+        .glosari-eyebrow{display:inline-flex;align-items:center;gap:8px;background:white;border:1px solid rgba(0,0,0,.06);border-radius:100px;padding:6px 16px 6px 10px;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+        .glosari-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#F9DBFF,#AAECFF);flex-shrink:0}
+        .glosari-hero h1{font-size:56px;font-weight:800;line-height:1.1;letter-spacing:-1.5px;color:var(--text-main);margin-bottom:20px}
+        .glosari-hero h1 .highlight{background:linear-gradient(135deg,#8B5CF6 0%,#0F62FE 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .glosari-hero p{font-size:17px;color:var(--text-muted);line-height:1.7;max-width:560px;margin:0 auto 40px}
+        .glosari-stats{display:flex;align-items:center;justify-content:center;gap:40px;margin-top:16px}
+        .glosari-stat{display:flex;flex-direction:column;align-items:center;gap:2px}
+        .glosari-stat .num{font-size:22px;font-weight:800;color:var(--text-main)}
+        .glosari-stat .lbl{font-size:12px;color:var(--text-muted);font-weight:500}
+        .stat-div{width:1px;height:32px;background:var(--border-color)}
+        .glosari-search-section{background:white;border-bottom:1px solid var(--border-color);padding:16px 24px;position:sticky;top:70px;z-index:50;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+        .glosari-search-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+        .search-box{position:relative;flex:1;max-width:480px;min-width:200px}
+        .search-box i{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--text-muted);pointer-events:none}
+        .search-box input{width:100%;padding:12px 18px 12px 48px;border-radius:100px;border:1.5px solid var(--border-color);font-size:14px;font-family:var(--font-family);color:var(--text-main);background:var(--bg-main);outline:none;transition:all .2s ease}
+        .search-box input:focus{border-color:var(--primary-color);background:white;box-shadow:0 0 0 3px rgba(15,98,254,.08)}
+        .search-box input::placeholder{color:#9CA3AF}
+        .search-count{font-size:13px;color:var(--text-muted);font-weight:500;white-space:nowrap}
+        .search-count span{color:var(--primary-color);font-weight:700}
+        .alpha-nav{display:flex;align-items:center;gap:3px;flex-wrap:wrap}
+        .alpha-btn{width:28px;height:28px;border-radius:6px;border:none;background:transparent;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .15s ease;font-family:var(--font-family);display:flex;align-items:center;justify-content:center}
+        .alpha-btn:hover{background:var(--bg-main);color:var(--text-main)}
+        .alpha-btn.has-terms{color:var(--primary-color)}
+        .alpha-btn.active{background:linear-gradient(135deg,#F9DBFF,#AAECFF);color:var(--text-main)}
+        .alpha-btn:disabled{opacity:.3;cursor:default}
+        .glosari-body{max-width:var(--max-width);margin:0 auto;padding:60px 24px 100px;display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start}
+        .glosari-sidebar{position:sticky;top:160px}
+        .sidebar-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-muted);margin-bottom:12px}
+        .sidebar-category-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+        .sidebar-cat-btn{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:none;background:transparent;font-size:14px;font-weight:500;color:var(--text-muted);cursor:pointer;width:100%;text-align:left;font-family:var(--font-family);transition:all .15s ease}
+        .sidebar-cat-btn:hover{background:var(--bg-main);color:var(--text-main)}
+        .sidebar-cat-btn.active{background:linear-gradient(135deg,rgba(249,219,255,.4),rgba(170,236,255,.4));color:var(--text-main);font-weight:600}
+        .sidebar-cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+        .cat-count{margin-left:auto;font-size:12px;color:var(--text-muted);background:var(--bg-main);padding:2px 8px;border-radius:100px}
+        .sidebar-cat-btn.active .cat-count{background:white}
+        .glosari-terms{display:flex;flex-direction:column;gap:48px}
+        .letter-group{display:flex;flex-direction:column;gap:0}
+        .letter-anchor{display:flex;align-items:center;gap:16px;margin-bottom:20px;scroll-margin-top:160px}
+        .letter-badge{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#F9DBFF 0%,#AAECFF 100%);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--text-main);flex-shrink:0}
+        .letter-divider{flex:1;height:1px;background:var(--border-color)}
+        .letter-count{font-size:12px;color:var(--text-muted);font-weight:500}
+        .terms-grid{display:flex;flex-direction:column;gap:12px}
+        .term-card{background:white;border-radius:16px;border:1px solid var(--border-color);padding:24px 28px;transition:all .2s ease;position:relative;overflow:hidden}
+        .term-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#F9DBFF,#AAECFF);opacity:0;transition:opacity .2s ease}
+        .term-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.06);border-color:rgba(15,98,254,.15);transform:translateY(-1px)}
+        .term-card:hover::before{opacity:1}
+        .term-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:10px}
+        .term-name{font-size:17px;font-weight:700;color:var(--text-main);line-height:1.3}
+        .term-en{font-size:13px;font-weight:400;color:var(--text-muted);font-style:italic;margin-left:6px}
+        .term-badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;flex-shrink:0}
+        .badge-listening{background:rgba(139,92,246,.08);color:#7C3AED}
+        .badge-analytics{background:rgba(15,98,254,.08);color:#0F62FE}
+        .badge-sentiment{background:rgba(16,185,129,.08);color:#059669}
+        .badge-social{background:rgba(236,72,153,.08);color:#DB2777}
+        .badge-strategy{background:rgba(245,158,11,.08);color:#D97706}
+        .badge-metrics{background:rgba(239,68,68,.08);color:#DC2626}
+        .term-definition{font-size:14px;color:var(--text-muted);line-height:1.7}
+        .term-related{margin-top:14px;padding-top:14px;border-top:1px solid var(--border-color);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+        .related-label{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+        .related-tag{font-size:12px;font-weight:500;color:var(--primary-color);background:rgba(15,98,254,.06);padding:3px 10px;border-radius:100px;cursor:pointer;transition:background .15s}
+        .related-tag:hover{background:rgba(15,98,254,.12)}
+        .no-results{display:none;text-align:center;padding:80px 24px;color:var(--text-muted)}
+        .no-results i{font-size:48px;margin-bottom:16px;opacity:.3;display:block}
+        .no-results h3{font-size:20px;font-weight:600;margin-bottom:8px;color:var(--text-main)}
+        .glosari-cta-wrap{padding:0 24px 80px;max-width:var(--max-width);margin:0 auto}
+        .glosari-cta{background:linear-gradient(135deg,#1A1A1A 0%,#2D1B69 100%);border-radius:28px;padding:56px 48px;text-align:center;position:relative;overflow:hidden}
+        .glosari-cta::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(249,219,255,.15) 0%,transparent 70%)}
+        .glosari-cta::after{content:'';position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(170,236,255,.1) 0%,transparent 70%)}
+        .glosari-cta h2{font-size:36px;font-weight:800;color:white;margin-bottom:12px;position:relative;z-index:2}
+        .glosari-cta p{color:rgba(255,255,255,.6);font-size:16px;margin-bottom:32px;position:relative;z-index:2}
+        .glosari-cta-btns{display:flex;gap:12px;justify-content:center;position:relative;z-index:2}
+        .btn-white{background:white;color:#1A1A1A;padding:14px 28px;border-radius:100px;font-weight:700;font-size:15px;transition:all .2s ease;display:inline-flex;align-items:center;gap:8px}
+        .btn-white:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+        .btn-ghost-white{background:rgba(255,255,255,.1);color:white;padding:14px 28px;border-radius:100px;font-weight:600;font-size:15px;border:1px solid rgba(255,255,255,.2);transition:all .2s ease;display:inline-flex;align-items:center;gap:8px}
+        .btn-ghost-white:hover{background:rgba(255,255,255,.15)}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo-dengarkan-listening-tools.png" alt="dengarkan.id" class="logo-img">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#feature">Feature</a>
+                <div class="nav-dropdown-wrapper active-nav-parent">
+                    <a href="#" class="has-dropdown" id="dropdown-toggle">DengarInsight <i class="ph ph-caret-down"></i></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="artikel.html" class="dropdown-item-simple">Artikel</a>
+                        <a href="glosari.html" class="dropdown-item-simple" style="color:var(--primary-color)!important;font-weight:600">Glosari</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="nav-auth">
+                <a href="#" class="btn-secondary">Sign In</a>
+                <a href="#" class="btn-primary">Start For Free</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="glosari-hero">
+        <div class="glosari-hero-inner">
+            <div class="glosari-eyebrow"><span class="dot"></span> Kamus Istilah Digital</div>
+            <h1>Glosari <span class="highlight">Listening Tools</span></h1>
+            <p>Pahami setiap istilah dalam dunia social media listening, brand monitoring, dan digital analytics. Dari A sampai Z — semua ada di sini.</p>
+            <div class="glosari-stats">
+                <div class="glosari-stat"><span class="num" id="total-terms">50</span><span class="lbl">Istilah</span></div>
+                <div class="stat-div"></div>
+                <div class="glosari-stat"><span class="num">6</span><span class="lbl">Kategori</span></div>
+                <div class="stat-div"></div>
+                <div class="glosari-stat"><span class="num">EN/ID</span><span class="lbl">Dwibahasa</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search + Alpha Nav -->
+    <div class="glosari-search-section">
+        <div class="glosari-search-inner">
+            <div class="search-box">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Cari istilah: sentiment, reach, mention…">
+            </div>
+            <div class="search-count">Menampilkan <span id="count-display">50</span> istilah</div>
+            <div class="alpha-nav" id="alpha-nav"></div>
+        </div>
+    </div>
+
+    <!-- Body -->
+    <div class="glosari-body">
+        <!-- Sidebar -->
+        <aside class="glosari-sidebar">
+            <p class="sidebar-title">Kategori</p>
+            <ul class="sidebar-category-list">
+                <li><button class="sidebar-cat-btn active" data-cat="all"><span class="sidebar-cat-dot" style="background:linear-gradient(135deg,#F9DBFF,#AAECFF)"></span>Semua Istilah<span class="cat-count" id="count-all">50</span></button></li>
+                <li><button class="sidebar-cat-btn" data-cat="listening"><span class="sidebar-cat-dot" style="background:#8B5CF6"></span>Listening<span class="cat-count" id="count-listening">0</span></button></li>
+                <li><button class="sidebar-cat-btn" data-cat="analytics"><span class="sidebar-cat-dot" style="background:#0F62FE"></span>Analytics<span class="cat-count" id="count-analytics">0</span></button></li>
+                <li><button class="sidebar-cat-btn" data-cat="sentiment"><span class="sidebar-cat-dot" style="background:#10B981"></span>Sentiment<span class="cat-count" id="count-sentiment">0</span></button></li>
+                <li><button class="sidebar-cat-btn" data-cat="social"><span class="sidebar-cat-dot" style="background:#EC4899"></span>Social Media<span class="cat-count" id="count-social">0</span></button></li>
+                <li><button class="sidebar-cat-btn" data-cat="strategy"><span class="sidebar-cat-dot" style="background:#F59E0B"></span>Strategy<span class="cat-count" id="count-strategy">0</span></button></li>
+                <li><button class="sidebar-cat-btn" data-cat="metrics"><span class="sidebar-cat-dot" style="background:#EF4444"></span>Metrics<span class="cat-count" id="count-metrics">0</span></button></li>
+            </ul>
+        </aside>
+
+        <!-- Terms Container -->
+        <main class="glosari-terms" id="terms-container">
+            <div class="no-results" id="no-results">
+                <i class="ph ph-magnifying-glass-minus"></i>
+                <h3>Istilah tidak ditemukan</h3>
+                <p>Coba kata kunci yang berbeda atau pilih kategori lain.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- CTA -->
+    <div class="glosari-cta-wrap">
+        <div class="glosari-cta">
+            <h2>Siap Mulai Social Listening?</h2>
+            <p>Gunakan semua istilah ini langsung dalam platform dengarkan.id dan monitor brand Anda secara real-time.</p>
+            <div class="glosari-cta-btns">
+                <a href="#" class="btn-white"><i class="ph ph-rocket-launch"></i> Coba Gratis Sekarang</a>
+                <a href="artikel.html" class="btn-ghost-white"><i class="ph ph-article"></i> Baca Artikel</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-new">
+        <div class="footer-cta-row">
+            <div class="container footer-cta-row-inner">
+                <div class="footer-cta-left">
+                    <h2>Are You Interested<br>With dengarkan.id?</h2>
+                    <a href="index.html#contact" class="btn-contact-sales">Contact Sales &nbsp;&rarr;</a>
+                </div>
+                <div class="footer-cta-links">
+                    <div class="footer-col"><h4>Company</h4><a href="#">Security</a><a href="#">Brand Guidelines</a><a href="#">Careers</a></div>
+                    <div class="footer-col"><h4>Career</h4><a href="#">Jobs</a><a href="#">New</a><a href="#">Hiring</a></div>
+                    <div class="footer-col"><h4>Legal Information</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookies Policy</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-middle-row">
+            <div class="container footer-middle-inner">
+                <div class="footer-logo-box"><img src="logo-dengarkan-listening-tools.png" alt="dengarkan.id" style="height:24px;width:auto"></div>
+                <div class="footer-nav-links"><a href="index.html">Home</a><a href="artikel.html">Artikel</a><a href="glosari.html" class="active-nav">Glosari</a></div>
+                <div class="footer-social-box">
+                    <a href="#" class="social-circle"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-x-logo"></i></a>
+                    <a href="#" class="social-circle"><i class="ph ph-linkedin-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-row">
+            <div class="container footer-bottom-inner-new">
+                <p class="copyright-text">&copy; 2026 dengarkan.id &mdash; Social Listening Platform</p>
+                <div class="footer-bottom-links"><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a></div>
+            </div>
+        </div>
+        <div class="footer-watermark-new">DENGARKAN</div>
+    </footer>
+
+    <script>
+    const glossaryData = [
+        {l:'A',t:'Alert / Notifikasi',e:'Alert',c:'listening',d:'Pemberitahuan otomatis yang dikirimkan saat platform mendeteksi penyebutan merek, kata kunci, atau topik tertentu di berbagai saluran digital. Memungkinkan tim merespons dengan cepat.',r:['Mention','Keyword Tracking','Real-Time Monitoring']},
+        {l:'A',t:'Analisis Kompetitif',e:'Competitive Analysis',c:'strategy',d:'Proses membandingkan performa, penyebutan, dan persepsi merek Anda dengan kompetitor di media sosial dan kanal digital lainnya untuk menemukan peluang dan ancaman.',r:['Share of Voice','Benchmarking','Brand Intelligence']},
+        {l:'A',t:'Analisis Sentimen',e:'Sentiment Analysis',c:'sentiment',d:'Teknik AI/NLP yang mengklasifikasikan teks (komentar, ulasan, posting) menjadi kategori positif, negatif, atau netral untuk memahami opini publik terhadap merek.',r:['NLP','Tone of Voice','Brand Sentiment']},
+        {l:'A',t:'API (Application Programming Interface)',e:'API',c:'analytics',d:'Antarmuka yang memungkinkan platform listening tools mengambil data langsung dari platform media sosial seperti Twitter/X, Instagram, dan Facebook untuk dianalisis.',r:['Data Feed','Real-Time Monitoring']},
+        {l:'A',t:'Audiens',e:'Audience',c:'social',d:'Kelompok pengguna yang berinteraksi dengan atau mengikuti akun media sosial atau konten suatu merek. Analisis audiens membantu memahami demografi dan perilaku pelanggan.',r:['Segmentasi','Reach','Engagement']},
+        {l:'B',t:'Benchmarking',e:'Benchmarking',c:'strategy',d:'Proses menetapkan tolok ukur performa berdasarkan data historis atau data industri untuk mengevaluasi apakah strategi media sosial berjalan lebih baik atau lebih buruk dari ekspektasi.',r:['KPI','Share of Voice','Analisis Kompetitif']},
+        {l:'B',t:'Brand Ambassador',e:'Brand Ambassador',c:'strategy',d:'Individu yang secara konsisten merepresentasikan dan mempromosikan merek, baik secara formal (kontrak) maupun organik, melalui konten dan percakapan digital mereka.',r:['Influencer','User Generated Content']},
+        {l:'B',t:'Brand Intelligence',e:'Brand Intelligence',c:'listening',d:'Kumpulan data dan wawasan yang dikumpulkan tentang persepsi publik terhadap merek, yang digunakan untuk pengambilan keputusan strategis berbasis data.',r:['Analisis Kompetitif','Analisis Sentimen','Social Listening']},
+        {l:'B',t:'Brand Monitoring',e:'Brand Monitoring',c:'listening',d:'Proses berkelanjutan memantau penyebutan merek di semua kanal digital — media sosial, forum, berita, blog — untuk memahami bagaimana publik membicarakan merek Anda.',r:['Social Listening','Mention','Alert']},
+        {l:'B',t:'Brand Sentiment',e:'Brand Sentiment',c:'sentiment',d:'Gambaran keseluruhan perasaan atau opini publik terhadap suatu merek, diukur dari analisis sentimen pada semua penyebutan merek di berbagai platform digital.',r:['Analisis Sentimen','Net Promoter Score','Online Reputation']},
+        {l:'B',t:'Buzz',e:'Buzz',c:'social',d:'Jumlah dan volume percakapan yang sedang berlangsung di media sosial dan internet tentang merek, produk, kampanye, atau topik tertentu dalam periode waktu tertentu.',r:['Volume Mention','Tren Topik','Viral Content']},
+        {l:'C',t:'Channel',e:'Channel',c:'social',d:'Platform atau medium tempat konten dan percakapan terjadi, seperti Instagram, X (Twitter), TikTok, LinkedIn, YouTube, forum, atau berita online.',r:['Feed Sosial','API']},
+        {l:'C',t:'Conversation Analytics',e:'Conversation Analytics',c:'analytics',d:'Analisis mendalam terhadap percakapan yang terjadi di media sosial untuk menemukan pola, tren, dan topik yang paling relevan dengan merek atau industri.',r:['Social Listening','Tren Topik']},
+        {l:'C',t:'Crisis Management',e:'Crisis Management',c:'strategy',d:'Strategi dan tindakan yang dilakukan untuk mengidentifikasi, merespons, dan memitigasi krisis reputasi merek yang muncul di media sosial atau media online lainnya secara cepat.',r:['Alert','Brand Monitoring','Online Reputation']},
+        {l:'C',t:'Customer Experience (CX)',e:'Customer Experience',c:'strategy',d:'Keseluruhan persepsi dan perasaan pelanggan terhadap merek berdasarkan semua interaksi yang mereka miliki, dari pra-pembelian hingga layanan purna jual.',r:['Net Promoter Score','Voice of Customer','Brand Sentiment']},
+        {l:'D',t:'Dashboard',e:'Dashboard',c:'analytics',d:'Tampilan visual terpusat yang menampilkan metrik, grafik, dan data penting secara real-time, memungkinkan pengguna memantau performa merek dengan mudah dalam satu layar.',r:['KPI','Data Visualisasi','Reporting']},
+        {l:'D',t:'Data Visualisasi',e:'Data Visualization',c:'analytics',d:'Representasi grafis dari data — berupa grafik, diagram, word cloud, atau peta — untuk memudahkan pemahaman tren, pola, dan anomali dalam data listening.',r:['Dashboard','Reporting','Insight']},
+        {l:'D',t:'Deep Listening',e:'Deep Listening',c:'listening',d:'Pendekatan social listening yang lebih mendalam, melampaui penghitungan mention, untuk memahami konteks, emosi, dan motivasi di balik percakapan konsumen.',r:['Social Listening','Analisis Sentimen','Conversation Analytics']},
+        {l:'D',t:'Demografi Audiens',e:'Audience Demographics',c:'analytics',d:'Data karakteristik statistik dari audiens yang membicarakan merek Anda, mencakup usia, jenis kelamin, lokasi, bahasa, dan minat mereka.',r:['Audiens','Segmentasi','Profil Konsumen']},
+        {l:'E',t:'Earned Media',e:'Earned Media',c:'strategy',d:'Penyebutan, ulasan, atau liputan yang diperoleh organik tanpa biaya berbayar — melalui pemberitaan, share sukarela, atau word-of-mouth dari konsumen dan media.',r:['Paid Media','User Generated Content']},
+        {l:'E',t:'Engagement',e:'Engagement',c:'metrics',d:'Jumlah total interaksi (like, komentar, share, retweet, save) yang diterima suatu konten. Menunjukkan seberapa aktif audiens terlibat dengan konten merek.',r:['Engagement Rate','Reach','Impression']},
+        {l:'E',t:'Engagement Rate',e:'Engagement Rate',c:'metrics',d:'Persentase audiens yang berinteraksi dengan konten dibandingkan total reach atau follower. Rumus: (Total Engagement / Reach) × 100%. Indikator kualitas konten.',r:['Engagement','Reach','Follower']},
+        {l:'F',t:'Feed Sosial',e:'Social Feed',c:'social',d:'Aliran konten real-time dari platform media sosial yang dikumpulkan oleh platform listening untuk dianalisis, mencakup postingan, komentar, dan interaksi publik.',r:['API','Real-Time Monitoring']},
+        {l:'F',t:'Filter Konten',e:'Content Filter',c:'listening',d:'Fitur yang memungkinkan pengguna menyaring data berdasarkan kriteria seperti kata kunci, sentimen, platform, tanggal, atau lokasi untuk fokus pada insight yang relevan.',r:['Keyword Tracking','Mention']},
+        {l:'F',t:'Follower',e:'Follower',c:'metrics',d:'Pengguna yang memilih untuk mengikuti akun media sosial suatu merek dan menerima pembaruan konten. Jumlah follower sering digunakan sebagai indikator popularitas.',r:['Engagement Rate','Reach','Audiens']},
+        {l:'H',t:'Hashtag',e:'Hashtag',c:'social',d:'Kata atau frasa yang diawali simbol # yang digunakan untuk mengelompokkan konten bertema serupa di media sosial, memudahkan pencarian dan pemantauan topik tertentu.',r:['Keyword Tracking','Tren Topik']},
+        {l:'H',t:'Historical Data',e:'Historical Data',c:'analytics',d:'Data percakapan dan penyebutan dari masa lalu yang digunakan untuk analisis tren jangka panjang, benchmarking, dan pembandingan performa dari waktu ke waktu.',r:['Benchmarking','Reporting']},
+        {l:'I',t:'Impression',e:'Impression',c:'metrics',d:'Jumlah total berapa kali konten atau penyebutan merek ditampilkan kepada pengguna, terlepas dari apakah mereka benar-benar mengkliknya atau berinteraksi dengannya.',r:['Reach','Engagement']},
+        {l:'I',t:'Influencer',e:'Influencer',c:'social',d:'Individu dengan jumlah pengikut signifikan dan tingkat kepercayaan tinggi di media sosial, yang opini dan kontennya dapat mempengaruhi keputusan atau persepsi audiens terhadap merek.',r:['KOL','Reach','Engagement Rate']},
+        {l:'I',t:'Insight',e:'Insight',c:'analytics',d:'Pemahaman mendalam yang dapat ditindaklanjuti (actionable) dari analisis data, membantu merek membuat keputusan strategis berdasarkan bukti nyata dari percakapan konsumen.',r:['Data Visualisasi','Brand Intelligence']},
+        {l:'K',t:'Key Opinion Leader (KOL)',e:'Key Opinion Leader',c:'social',d:'Tokoh berpengaruh di bidang tertentu yang pendapatnya sangat dihargai komunitas — berbeda dari influencer umum karena biasanya berbasis keahlian spesifik.',r:['Influencer','Brand Ambassador','Reach']},
+        {l:'K',t:'Keyword Tracking',e:'Keyword Tracking',c:'listening',d:'Pemantauan kata kunci atau frasa spesifik di seluruh platform digital untuk melacak percakapan, tren, dan penyebutan yang relevan dengan merek atau industri.',r:['Mention','Filter Konten']},
+        {l:'K',t:'KPI (Key Performance Indicator)',e:'KPI',c:'metrics',d:'Metrik terukur yang digunakan untuk mengevaluasi keberhasilan strategi social media dan listening, seperti jumlah mention, engagement rate, share of voice, atau sentiment score.',r:['Benchmarking','Dashboard','Reporting']},
+        {l:'M',t:'Media Monitoring',e:'Media Monitoring',c:'listening',d:'Pemantauan sistematis terhadap pemberitaan di media online, media cetak digital, dan siaran berita untuk melacak penyebutan merek, produk, atau isu tertentu.',r:['Brand Monitoring','Social Listening','Alert']},
+        {l:'M',t:'Mention',e:'Mention',c:'listening',d:'Setiap penyebutan nama merek, produk, atau kata kunci terkait di media sosial, forum, berita, atau platform digital lainnya — baik yang menandai akun (@) maupun tidak.',r:['Brand Monitoring','Keyword Tracking','Volume Mention']},
+        {l:'N',t:'Net Promoter Score (NPS)',e:'Net Promoter Score',c:'metrics',d:'Skor yang mengukur seberapa besar kemungkinan pelanggan merekomendasikan merek kepada orang lain, dengan skala 0-10 dikategorikan menjadi promoter, pasif, atau detractor.',r:['Customer Experience','Brand Sentiment','Voice of Customer']},
+        {l:'N',t:'NLP (Natural Language Processing)',e:'Natural Language Processing',c:'analytics',d:'Cabang AI yang memungkinkan komputer memahami, menginterpretasikan, dan menghasilkan bahasa manusia. Teknologi utama di balik analisis sentimen dan kategorisasi teks otomatis.',r:['Analisis Sentimen']},
+        {l:'O',t:'Online Reputation',e:'Online Reputation',c:'sentiment',d:'Keseluruhan persepsi publik tentang merek yang terbentuk dari semua konten online, ulasan, penyebutan, dan interaksi yang berkaitan dengan merek tersebut di dunia digital.',r:['Brand Sentiment','Crisis Management','Brand Monitoring']},
+        {l:'O',t:'Organic Reach',e:'Organic Reach',c:'metrics',d:'Jumlah pengguna unik yang melihat konten merek secara alami tanpa promosi berbayar. Mencerminkan jangkauan konten berdasarkan algoritma platform dan interaksi pengguna.',r:['Reach','Engagement Rate']},
+        {l:'P',t:'Paid Media',e:'Paid Media',c:'strategy',d:'Konten atau penyebutan yang diperoleh melalui anggaran iklan berbayar, seperti sponsored post, display ads, atau kolaborasi berbayar dengan influencer.',r:['Earned Media','ROI']},
+        {l:'P',t:'Profil Konsumen',e:'Consumer Profile',c:'analytics',d:'Representasi terstruktur karakteristik, perilaku, dan preferensi segmen konsumen berdasarkan analisis data sosial dan interaksi digital mereka dengan merek.',r:['Demografi Audiens','Segmentasi','Insight']},
+        {l:'R',t:'Reach',e:'Reach',c:'metrics',d:'Jumlah total pengguna unik yang berpotensi melihat konten atau penyebutan merek. Berbeda dari impression karena menghitung individu, bukan jumlah tayang total.',r:['Impression','Organic Reach','Audiens']},
+        {l:'R',t:'Real-Time Monitoring',e:'Real-Time Monitoring',c:'listening',d:'Kemampuan platform listening untuk mengumpulkan dan menampilkan data percakapan secara langsung saat terjadi, memungkinkan respons cepat terhadap tren atau krisis.',r:['Alert','Brand Monitoring','Crisis Management']},
+        {l:'R',t:'Reporting',e:'Reporting',c:'analytics',d:'Penyusunan laporan terstruktur yang merangkum data dan insight dari aktivitas social listening dalam periode tertentu untuk dikomunikasikan kepada stakeholder atau manajemen.',r:['Dashboard','KPI','Data Visualisasi']},
+        {l:'R',t:'ROI (Return on Investment)',e:'Return on Investment',c:'metrics',d:'Rasio yang mengukur nilai yang diperoleh dari investasi dalam strategi atau platform tertentu dibandingkan biaya yang dikeluarkan, sering diukur dalam konteks kampanye digital.',r:['KPI','Paid Media','Benchmarking']},
+        {l:'S',t:'Segmentasi',e:'Segmentation',c:'analytics',d:'Proses membagi audiens atau data mention ke dalam kelompok berdasarkan karakteristik bersama seperti demografi, platform, sentimen, atau perilaku untuk analisis yang lebih presisi.',r:['Demografi Audiens','Filter Konten']},
+        {l:'S',t:'Share of Voice (SOV)',e:'Share of Voice',c:'metrics',d:'Persentase percakapan atau penyebutan yang dimiliki merek Anda dibandingkan total penyebutan di industri atau di antara kompetitor. Indikator posisi merek di pasar.',r:['Analisis Kompetitif','Benchmarking','Volume Mention']},
+        {l:'S',t:'Social Listening',e:'Social Listening',c:'listening',d:'Proses mengumpulkan, menganalisis, dan menginterpretasikan percakapan dan mention di media sosial tentang merek, kompetitor, dan industri untuk mendapatkan wawasan strategis yang actionable.',r:['Brand Monitoring','Media Monitoring','Insight']},
+        {l:'S',t:'Social Media Analytics',e:'Social Media Analytics',c:'analytics',d:'Analisis data dari platform media sosial untuk mengukur performa konten, memahami perilaku audiens, dan mengevaluasi efektivitas strategi digital secara menyeluruh.',r:['Dashboard','KPI','Engagement Rate']},
+        {l:'T',t:'Tone of Voice',e:'Tone of Voice',c:'sentiment',d:'Nada atau gaya bahasa yang digunakan dalam penyebutan — bisa formal/informal, sarkastik, antusias, atau kritis — yang dianalisis untuk memahami nuansa sentimen lebih dalam.',r:['Analisis Sentimen','NLP','Brand Sentiment']},
+        {l:'T',t:'Tren Topik',e:'Trending Topics',c:'social',d:'Topik, hashtag, atau percakapan yang sedang mendapatkan perhatian besar dan meningkat secara signifikan di platform media sosial dalam waktu singkat.',r:['Buzz','Hashtag','Real-Time Monitoring']},
+        {l:'U',t:'User Generated Content (UGC)',e:'User Generated Content',c:'social',d:'Konten yang dibuat dan dibagikan oleh konsumen atau pengguna tentang merek — berupa ulasan, foto, video, atau postingan — secara organik tanpa inisiasi langsung dari merek.',r:['Earned Media','Mention','Brand Ambassador']},
+        {l:'V',t:'Viral Content',e:'Viral Content',c:'social',d:'Konten yang menyebar dengan sangat cepat dan masif di internet karena banyak orang membagikannya, menghasilkan jangkauan yang jauh melampaui audiens awal konten tersebut.',r:['Buzz','Tren Topik','Share of Voice']},
+        {l:'V',t:'Voice of Customer (VoC)',e:'Voice of Customer',c:'strategy',d:'Proses menangkap harapan, preferensi, dan kebutuhan pelanggan melalui data social listening, survei, dan ulasan untuk menginformasikan pengembangan produk dan strategi merek.',r:['Customer Experience','Net Promoter Score','Insight']},
+        {l:'V',t:'Volume Mention',e:'Mention Volume',c:'metrics',d:'Jumlah total penyebutan merek dalam periode waktu tertentu di semua platform yang dipantau. Lonjakan volume dapat menandakan kampanye viral, krisis, atau momentum merek.',r:['Mention','Buzz','Share of Voice']},
+        {l:'W',t:'Word Cloud',e:'Word Cloud',c:'analytics',d:'Visualisasi kata-kata yang paling sering muncul dalam data percakapan, di mana ukuran kata proporsional dengan frekuensinya — berguna untuk mengidentifikasi tema dominan secara cepat.',r:['Data Visualisasi','Keyword Tracking']}
+    ];
+
+    const catLabelMap = {listening:'Listening',analytics:'Analytics',sentiment:'Sentiment',social:'Social',strategy:'Strategy',metrics:'Metrics'};
+    let activeCat = 'all';
+
+    // Alphabet nav
+    const usedLetters = [...new Set(glossaryData.map(d => d.l))];
+    const alphaNav = document.getElementById('alpha-nav');
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l => {
+        const btn = document.createElement('button');
+        btn.className = 'alpha-btn' + (usedLetters.includes(l) ? ' has-terms' : '');
+        btn.textContent = l;
+        btn.disabled = !usedLetters.includes(l);
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const target = document.getElementById('group-' + l);
+            if (target) target.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+        alphaNav.appendChild(btn);
+    });
+
+    function buildTerms(data) {
+        const container = document.getElementById('terms-container');
+        const noResults = document.getElementById('no-results');
+        container.querySelectorAll('.letter-group').forEach(g => g.remove());
+        document.getElementById('count-display').textContent = data.length;
+        if (data.length === 0) { noResults.style.display = 'block'; return; }
+        noResults.style.display = 'none';
+        const grouped = {};
+        data.forEach(item => { if (!grouped[item.l]) grouped[item.l] = []; grouped[item.l].push(item); });
+        Object.keys(grouped).sort().forEach(letter => {
+            const items = grouped[letter];
+            const group = document.createElement('div');
+            group.className = 'letter-group'; group.id = 'group-' + letter;
+            group.innerHTML = `
+                <div class="letter-anchor">
+                    <div class="letter-badge">${letter}</div>
+                    <div class="letter-divider"></div>
+                    <span class="letter-count">${items.length} istilah</span>
+                </div>
+                <div class="terms-grid">
+                    ${items.map(item => `
+                        <div class="term-card" data-cat="${item.c}">
+                            <div class="term-header">
+                                <div><span class="term-name">${item.t}</span><span class="term-en">${item.e}</span></div>
+                                <span class="term-badge badge-${item.c}">${catLabelMap[item.c]}</span>
+                            </div>
+                            <p class="term-definition">${item.d}</p>
+                            ${item.r && item.r.length ? `<div class="term-related"><span class="related-label">Lihat juga:</span>${item.r.map(r=>`<span class="related-tag">${r}</span>`).join('')}</div>` : ''}
+                        </div>`).join('')}
+                </div>`;
+            container.appendChild(group);
+        });
+    }
+
+    function updateCounts(data) {
+        ['all','listening','analytics','sentiment','social','strategy','metrics'].forEach(cat => {
+            const el = document.getElementById('count-' + cat);
+            if (el) el.textContent = cat === 'all' ? data.length : data.filter(d => d.c === cat).length;
+        });
+    }
+
+    function filterAndRender(q, cat) {
+        let filtered = glossaryData;
+        if (cat !== 'all') filtered = filtered.filter(d => d.c === cat);
+        if (q) filtered = filtered.filter(d => (d.t+d.e+d.d+(d.r||[]).join(' ')).toLowerCase().includes(q));
+        buildTerms(filtered);
+        updateCounts(filtered);
+    }
+
+    // Init
+    buildTerms(glossaryData);
+    updateCounts(glossaryData);
+    document.getElementById('total-terms').textContent = glossaryData.length;
+
+    // Search
+    document.getElementById('search-input').addEventListener('input', function() {
+        filterAndRender(this.value.toLowerCase().trim(), activeCat);
+    });
+
+    // Category filter
+    document.querySelectorAll('.sidebar-cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.sidebar-cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeCat = btn.getAttribute('data-cat');
+            filterAndRender(document.getElementById('search-input').value.toLowerCase().trim(), activeCat);
+        });
+    });
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+        document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Dropdown
+    const dropTog = document.getElementById('dropdown-toggle');
+    const dropWrap = dropTog && dropTog.closest('.nav-dropdown-wrapper');
+    if (dropTog && dropWrap) {
+        dropTog.addEventListener('click', e => { e.preventDefault(); dropWrap.classList.toggle('active'); });
+        document.addEventListener('click', e => { if (!dropWrap.contains(e.target)) dropWrap.classList.remove('active'); });
+    }
+
+    // Session sync
+    const savedLead = localStorage.getItem('dengarkan_lead');
+    if (savedLead) {
+        const data = JSON.parse(savedLead);
+        const navAuth = document.querySelector('.nav-auth');
+        if (navAuth) navAuth.innerHTML = `<div class="user-dropdown-wrapper"><div class="user-profile-trigger"><img src="assets/headshot-2.jpg" alt="User"><span>Halo, ${data.name}!</span><i class="ph ph-caret-down"></i></div><div class="user-dropdown-menu"><a href="index.html" class="user-dropdown-item"><i class="ph ph-layout"></i>Dashboard</a><a href="#" class="user-dropdown-item" onclick="localStorage.removeItem('dengarkan_lead');location.reload()"><i class="ph ph-sign-out"></i>Keluar</a></div></div>`;
+    }
+    </script>
+</body>
+</html>
