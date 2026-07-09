@@ -22,12 +22,15 @@
       "type": "string"
     },
     "authorAvatar": {
-      "type": "string"
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     },
     "date": {
       "type": "string"
     },
-    "image": {
+    "thumbnailImage": {
       "type": "media",
       "multiple": false,
       "required": false,
