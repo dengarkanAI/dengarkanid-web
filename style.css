@@ -133,18 +133,35 @@ h2 {
     top: 0;
     z-index: 100;
     background-color: #FFFFFF;
-    border-bottom: 1px solid transparent;
-    border-image: linear-gradient(to right, #DDF7FF 0%, #F9DBFF 50%, #AAECFF 100%) 1;
     padding: 20px 0;
     transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px; /* Slightly thicker divider */
+    background: linear-gradient(270deg, #DDF7FF, #F9DBFF, #AAECFF, #DDF7FF);
+    background-size: 300% 300%;
+    animation: gradientMove 4s ease infinite;
+    box-shadow: 0 0 12px rgba(170, 236, 255, 0.8), 0 0 4px rgba(249, 219, 255, 0.8);
+    opacity: 0.9;
+    transition: height 0.3s ease;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .navbar.scrolled {
     background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid transparent;
-    border-image: linear-gradient(to right, #DDF7FF 0%, #F9DBFF 50%, #AAECFF 100%) 1;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
     padding: 14px 0;
 }
