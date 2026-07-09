@@ -287,6 +287,7 @@ h2 {
 .hero-section {
     position: relative;
     padding: 20px 24px 24px;
+    background-color: #FFFFFF;
     overflow: hidden;
     height: calc(100dvh - 70px);
     display: flex;
@@ -512,7 +513,7 @@ h2 {
 /* Feature Section Full (Monitor Your Brand) */
 .feature-section-full {
     padding: 80px 0;
-    background-color: #FFFFFF;
+    background-color: #FAFAFA;
 }
 
 .feature-header-row {
@@ -596,7 +597,7 @@ h2 {
 /* Feature Section Boxed (View Performance Overview) */
 .feature-section-boxed {
     padding: 60px 0;
-    background-color: var(--bg-main); /* Light grey page background */
+    background-color: #FAFAFA; /* Light grey page background */
 }
 
 .feature-box-card {
@@ -1029,7 +1030,7 @@ h2 {
 /* FAQ */
 .faq-section-new {
     padding: 80px 0;
-    background-color: var(--bg-main);
+    background-color: #FAFAFA;
 }
 
 .faq-card-box {
@@ -1173,8 +1174,8 @@ h2 {
 
 /* Blog */
 .blog-section-new {
-    padding: 80px 0;
-    background-color: #FAFBFC;
+    padding: 80px 0 120px 0;
+    background-color: #FFFFFF;
 }
 
 .blog-grid-new {
