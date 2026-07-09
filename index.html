@@ -13,7 +13,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Lottie Web Player for JSON Animations -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
@@ -193,14 +193,16 @@
                         <h2 id="feature1-title">Monitor Your Brand in<br>Real Time</h2>
                     </div>
                     <div class="feature-header-right">
-                        <p id="feature1-desc">Track brand mentions, audience conversations, and emerging trends across digital channels as
+                        <p id="feature1-desc">Track brand mentions, audience conversations, and emerging trends across
+                            digital channels as
                             they happen.</p>
                         <a href="#" class="btn-primary">Free Trial</a>
                     </div>
                 </div>
 
                 <div class="feature-mockup-container">
-                    <img id="feature1-img" src="https://placehold.co/1200x670/ffffff/dddddd?text=Statistic+and+Charts+Mockup+Image+Placeholder"
+                    <img id="feature1-img"
+                        src="https://placehold.co/1200x670/ffffff/dddddd?text=Statistic+and+Charts+Mockup+Image+Placeholder"
                         alt="Monitor Your Brand Mockup" class="feature-large-mockup">
                 </div>
             </div>
@@ -212,7 +214,8 @@
                 <div class="feature-box-card">
                     <div class="feature-box-graphic">
                         <div class="feature-box-bg-grey">
-                            <img id="feature2-img" src="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder"
+                            <img id="feature2-img"
+                                src="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder"
                                 alt="Performance Statistics Mockup" class="feature-box-mockup-img">
                         </div>
                     </div>
@@ -221,7 +224,8 @@
                             <span class="bullet"></span> Feature Work
                         </div>
                         <h2 id="feature2-title">View Your Brand Performance<br>Overview</h2>
-                        <p id="feature2-desc">Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand
+                        <p id="feature2-desc">Access a centralized dashboard with key metrics, sentiment, engagement,
+                            and overall brand
                             performance.</p>
                         <a href="#" class="btn-primary">Free Trial</a>
                     </div>
@@ -240,7 +244,8 @@
                         <h2 id="feature3-title">In-Depth Analytics &<br>Reporting</h2>
                     </div>
                     <div class="feature-header-right">
-                        <p id="feature3-desc">Explore detailed analytics with customizable reports to measure performance and support
+                        <p id="feature3-desc">Explore detailed analytics with customizable reports to measure
+                            performance and support
                             strategic decisions.</p>
                     </div>
                 </div>
@@ -276,7 +281,8 @@
 
                     <!-- Right Side: Mockup Image Placeholder (Statistic Card) -->
                     <div class="feature-split-right-graphic">
-                        <img id="feature3-img" src="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder"
+                        <img id="feature3-img"
+                            src="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder"
                             alt="In-Depth Analytics Mockup" class="feature-box-mockup-img">
                     </div>
                 </div>
@@ -684,7 +690,7 @@
         <div class="footer-cta-row">
             <div class="container footer-cta-row-inner">
                 <div class="footer-cta-left">
-                    <h2>Are You Interested<br>With Vistore?</h2>
+                    <h2>Are You Interested<br>With Dengarkan?</h2>
                     <a href="#" class="btn-contact-sales">Contact Sales &nbsp;&rarr;</a>
                 </div>
 
@@ -734,7 +740,7 @@
 
         <div class="footer-bottom-row">
             <div class="container footer-bottom-inner-new">
-                <p class="copyright-text">&copy; Vistore by Sans Brothers</p>
+                <p class="copyright-text">&copy; Dengarkan all rights reserved</p>
                 <div class="footer-bottom-links">
                     <a href="#">Terms & Conditions</a>
                     <a href="#">Privacy Policy</a>
@@ -799,7 +805,8 @@
 
     <script>
         // --- Headless CMS Configuration (Strapi) ---
-        // Configure your Strapi API base URL here. By default it checks locally.
+        // Ganti URL di bawah ini dengan URL backend Strapi Anda setelah di-deploy (misal: 'https://backend.domain.com/api')
+        // Untuk tahap development lokal, biarkan menggunakan localhost:
         const STRAPI_API_URL = 'http://localhost:1337/api';
 
         window.addEventListener('scroll', () => {
@@ -864,16 +871,23 @@
         function getStrapiImageUrl(imageObj) {
             if (!imageObj) return '';
             let url = '';
-            
+
+            // Prefer optimized formats (large) to avoid huge 4MB transfers over tunnel
+            const getBestUrl = (imgData) => {
+                if (imgData.formats && imgData.formats.large) return imgData.formats.large.url;
+                if (imgData.formats && imgData.formats.medium) return imgData.formats.medium.url;
+                return imgData.url;
+            };
+
             // Strapi v5 flat format
             if (imageObj.url) {
-                url = imageObj.url;
-            } 
+                url = getBestUrl(imageObj);
+            }
             // Strapi v4 nested format
             else if (imageObj.data?.attributes?.url) {
-                url = imageObj.data.attributes.url;
+                url = getBestUrl(imageObj.data.attributes);
             } else if (imageObj.data?.url) {
-                url = imageObj.data.url;
+                url = getBestUrl(imageObj.data);
             }
 
             if (url && url.startsWith('/')) {
@@ -891,7 +905,7 @@
             const descEl = document.querySelector('.hero-floating-card p');
             if (titleEl && attrs.title) titleEl.innerHTML = attrs.title;
             if (descEl && attrs.description) descEl.innerHTML = attrs.description;
-            
+
             // Handle Hero Mockup Image dynamic binding
             const imgEl = document.querySelector('.dashboard-mockup img');
             if (imgEl) {
@@ -946,7 +960,7 @@
 
                 // Get media image URL if populated
                 let imgUrl = getStrapiImageUrl(attrs.thumbnailImage) || getStrapiImageUrl(attrs.image) || attrs.imageUrl || 'https://placehold.co/400x300';
-                
+
                 let avatarUrl = '';
                 if (typeof attrs.authorAvatar === 'string') {
                     avatarUrl = attrs.authorAvatar;
@@ -996,33 +1010,37 @@
             if (!STRAPI_API_URL) return;
             console.log('Connecting to Strapi headless CMS at:', STRAPI_API_URL);
 
+            const fetchOpts = {
+                headers: {}
+            };
+
             try {
                 // 1. Fetch Hero Content
-                const heroRes = await fetch(`${STRAPI_API_URL}/hero?populate=*`);
+                const heroRes = await fetch(`${STRAPI_API_URL}/hero?populate=*`, fetchOpts);
                 if (heroRes.ok) {
                     const data = await heroRes.json();
                     updateHero(data.data);
                 }
 
                 // 1.5 Fetch Homepage Sections Content (Section 2,3,4)
-                const homeRes = await fetch(`${STRAPI_API_URL}/homepage?populate=*`);
+                const homeRes = await fetch(`${STRAPI_API_URL}/homepage?populate=*`, fetchOpts);
                 if (homeRes.ok) {
                     const homeData = await homeRes.json();
                     if (homeData && homeData.data) {
                         const attrs = homeData.data.attributes || homeData.data;
-                        if(attrs.feature1Title) document.getElementById('feature1-title').innerHTML = attrs.feature1Title;
-                        if(attrs.feature1Desc) document.getElementById('feature1-desc').innerHTML = attrs.feature1Desc;
-                        if(attrs.feature2Title) document.getElementById('feature2-title').innerHTML = attrs.feature2Title;
-                        if(attrs.feature2Desc) document.getElementById('feature2-desc').innerHTML = attrs.feature2Desc;
-                        if(attrs.feature3Title) document.getElementById('feature3-title').innerHTML = attrs.feature3Title;
-                        if(attrs.feature3Desc) document.getElementById('feature3-desc').innerHTML = attrs.feature3Desc;
-                        
+                        if (attrs.feature1Title) document.getElementById('feature1-title').innerHTML = attrs.feature1Title;
+                        if (attrs.feature1Desc) document.getElementById('feature1-desc').innerHTML = attrs.feature1Desc;
+                        if (attrs.feature2Title) document.getElementById('feature2-title').innerHTML = attrs.feature2Title;
+                        if (attrs.feature2Desc) document.getElementById('feature2-desc').innerHTML = attrs.feature2Desc;
+                        if (attrs.feature3Title) document.getElementById('feature3-title').innerHTML = attrs.feature3Title;
+                        if (attrs.feature3Desc) document.getElementById('feature3-desc').innerHTML = attrs.feature3Desc;
+
                         const renderMedia = (mediaObj, elementId) => {
                             if (!mediaObj) return;
                             const mediaAttrs = mediaObj.data ? (mediaObj.data.attributes || mediaObj.data) : mediaObj;
-                            if (!mediaAttrs || !mediaAttrs.url) return;
-                            const url = 'http://localhost:1337' + mediaAttrs.url;
-                            
+                            // Get the full URL if it's relative
+                            const url = mediaAttrs.url.startsWith('http') ? mediaAttrs.url : STRAPI_API_URL.replace('/api', '') + mediaAttrs.url;
+
                             const el = document.getElementById(elementId);
                             if (!el) return;
 
@@ -1035,10 +1053,10 @@
                                 lottie.setAttribute('style', 'width: 100%; max-height: 500px; object-fit: contain;');
                                 lottie.setAttribute('loop', '');
                                 lottie.setAttribute('autoplay', '');
-                                
+
                                 // Preserve the classes of the original img for styling
                                 lottie.className = el.className;
-                                
+
                                 el.parentNode.replaceChild(lottie, el);
                             } else {
                                 // Standard Image
@@ -1046,28 +1064,28 @@
                             }
                         };
 
-                        if(attrs.feature1Image) renderMedia(attrs.feature1Image, 'feature1-img');
-                        if(attrs.feature2Image) renderMedia(attrs.feature2Image, 'feature2-img');
-                        if(attrs.feature3Image) renderMedia(attrs.feature3Image, 'feature3-img');
+                        if (attrs.feature1Image) renderMedia(attrs.feature1Image, 'feature1-img');
+                        if (attrs.feature2Image) renderMedia(attrs.feature2Image, 'feature2-img');
+                        if (attrs.feature3Image) renderMedia(attrs.feature3Image, 'feature3-img');
                     }
                 }
 
                 // 2. Fetch Features List
-                const featuresRes = await fetch(`${STRAPI_API_URL}/features`);
+                const featuresRes = await fetch(`${STRAPI_API_URL}/features`, fetchOpts);
                 if (featuresRes.ok) {
                     const data = await featuresRes.json();
                     updateFeatures(data.data);
                 }
 
                 // 3. Fetch FAQ list
-                const faqRes = await fetch(`${STRAPI_API_URL}/faqs`);
+                const faqRes = await fetch(`${STRAPI_API_URL}/faqs`, fetchOpts);
                 if (faqRes.ok) {
                     const data = await faqRes.json();
                     updateFAQs(data.data);
                 }
 
                 // 4. Fetch Blog Articles
-                const blogRes = await fetch(`${STRAPI_API_URL}/blogs?populate=*`);
+                const blogRes = await fetch(`${STRAPI_API_URL}/blogs?populate=*`, fetchOpts);
                 if (blogRes.ok) {
                     const data = await blogRes.json();
                     updateBlogs(data.data);
@@ -1132,12 +1150,14 @@
 
                 try {
                     // Send to Strapi Backend (Silent fail if backend is off)
-                    await fetch('http://localhost:1337/api/leads', {
+                    await fetch(`${STRAPI_API_URL}/leads`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
                         body: JSON.stringify({ data: leadData })
                     });
-                } catch(e) {
+                } catch (e) {
                     console.log('Backend not available, continuing with local storage');
                 }
 
@@ -1179,7 +1199,7 @@
                         e.stopPropagation();
                         wrapper.classList.toggle('active');
                     });
-                    
+
                     document.addEventListener('click', () => {
                         wrapper.classList.remove('active');
                     });
@@ -1219,7 +1239,7 @@
                     const modalGreeting = document.getElementById('modal-greeting');
                     if (modalGreeting) modalGreeting.textContent = `Selamat ${timeGreeting}, ${data.name}!`;
                     if (modal) modal.classList.add('show');
-                    
+
                     // Clear the query parameter without reload
                     window.history.replaceState({}, document.title, window.location.pathname);
                 }
