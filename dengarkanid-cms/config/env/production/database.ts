@@ -1,6 +1,7 @@
 import path from 'path';
+import type { Core } from '@strapi/strapi';
 
-export default ({ env }) => {
+const config = ({ env }: Core.Config.Shared.ConfigParams) => {
   // Parse the DATABASE_URL environment variable provided by Render PostgreSQL
   const dbUrl = env('DATABASE_URL');
   let connection = {};
@@ -11,7 +12,7 @@ export default ({ env }) => {
       client: 'postgres',
       connection: {
         host: url.hostname,
-        port: url.port,
+        port: Number(url.port) || 5432,
         database: url.pathname.slice(1),
         user: url.username,
         password: url.password,
@@ -27,3 +28,5 @@ export default ({ env }) => {
     connection: connection
   };
 };
+
+export default config;

@@ -1,0 +1,66 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "feature1Title": {
+      "type": "string",
+      "default": "Monitor Your Brand in<br>Real Time"
+    },
+    "feature1Desc": {
+      "type": "text",
+      "default": "Track brand mentions, audience conversations, and emerging trends across digital channels as they happen."
+    },
+    "feature1Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "feature2Title": {
+      "type": "string",
+      "default": "View Your Brand Performance<br>Overview"
+    },
+    "feature2Desc": {
+      "type": "text",
+      "default": "Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand performance."
+    },
+    "feature2Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "feature3Title": {
+      "type": "string",
+      "default": "In-Depth Analytics &<br>Reporting"
+    },
+    "feature3Desc": {
+      "type": "text",
+      "default": "Explore detailed analytics with customizable reports to measure performance and support strategic decisions."
+    },
+    "feature3Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}

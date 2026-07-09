@@ -13,6 +13,9 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Lottie Web Player for JSON Animations -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <!-- Phosphor Icons (for standard icons) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -187,17 +190,17 @@
                         <div class="feature-work-tag">
                             <span class="bullet"></span> Feature Work
                         </div>
-                        <h2>Monitor Your Brand in<br>Real Time</h2>
+                        <h2 id="feature1-title">Monitor Your Brand in<br>Real Time</h2>
                     </div>
                     <div class="feature-header-right">
-                        <p>Track brand mentions, audience conversations, and emerging trends across digital channels as
+                        <p id="feature1-desc">Track brand mentions, audience conversations, and emerging trends across digital channels as
                             they happen.</p>
                         <a href="#" class="btn-primary">Free Trial</a>
                     </div>
                 </div>
 
                 <div class="feature-mockup-container">
-                    <img src="https://placehold.co/1200x670/ffffff/dddddd?text=Statistic+and+Charts+Mockup+Image+Placeholder"
+                    <img id="feature1-img" src="https://placehold.co/1200x670/ffffff/dddddd?text=Statistic+and+Charts+Mockup+Image+Placeholder"
                         alt="Monitor Your Brand Mockup" class="feature-large-mockup">
                 </div>
             </div>
@@ -209,7 +212,7 @@
                 <div class="feature-box-card">
                     <div class="feature-box-graphic">
                         <div class="feature-box-bg-grey">
-                            <img src="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder"
+                            <img id="feature2-img" src="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder"
                                 alt="Performance Statistics Mockup" class="feature-box-mockup-img">
                         </div>
                     </div>
@@ -217,8 +220,8 @@
                         <div class="feature-work-tag">
                             <span class="bullet"></span> Feature Work
                         </div>
-                        <h2>View Your Brand Performance<br>Overview</h2>
-                        <p>Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand
+                        <h2 id="feature2-title">View Your Brand Performance<br>Overview</h2>
+                        <p id="feature2-desc">Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand
                             performance.</p>
                         <a href="#" class="btn-primary">Free Trial</a>
                     </div>
@@ -234,10 +237,10 @@
                         <div class="feature-work-tag">
                             <span class="bullet"></span> Feature Work
                         </div>
-                        <h2>In-Depth Analytics &<br>Reporting</h2>
+                        <h2 id="feature3-title">In-Depth Analytics &<br>Reporting</h2>
                     </div>
                     <div class="feature-header-right">
-                        <p>Explore detailed analytics with customizable reports to measure performance and support
+                        <p id="feature3-desc">Explore detailed analytics with customizable reports to measure performance and support
                             strategic decisions.</p>
                     </div>
                 </div>
@@ -273,8 +276,8 @@
 
                     <!-- Right Side: Mockup Image Placeholder (Statistic Card) -->
                     <div class="feature-split-right-graphic">
-                        <img src="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder"
-                            alt="Statistic Mockup" class="feature-box-mockup-img">
+                        <img id="feature3-img" src="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder"
+                            alt="In-Depth Analytics Mockup" class="feature-box-mockup-img">
                     </div>
                 </div>
             </div>
@@ -989,6 +992,54 @@
                 if (heroRes.ok) {
                     const data = await heroRes.json();
                     updateHero(data.data);
+                }
+
+                // 1.5 Fetch Homepage Sections Content (Section 2,3,4)
+                const homeRes = await fetch(`${STRAPI_API_URL}/homepage?populate=*`);
+                if (homeRes.ok) {
+                    const homeData = await homeRes.json();
+                    if (homeData && homeData.data) {
+                        const attrs = homeData.data.attributes || homeData.data;
+                        if(attrs.feature1Title) document.getElementById('feature1-title').innerHTML = attrs.feature1Title;
+                        if(attrs.feature1Desc) document.getElementById('feature1-desc').innerHTML = attrs.feature1Desc;
+                        if(attrs.feature2Title) document.getElementById('feature2-title').innerHTML = attrs.feature2Title;
+                        if(attrs.feature2Desc) document.getElementById('feature2-desc').innerHTML = attrs.feature2Desc;
+                        if(attrs.feature3Title) document.getElementById('feature3-title').innerHTML = attrs.feature3Title;
+                        if(attrs.feature3Desc) document.getElementById('feature3-desc').innerHTML = attrs.feature3Desc;
+                        
+                        const renderMedia = (mediaObj, elementId) => {
+                            if (!mediaObj) return;
+                            const mediaAttrs = mediaObj.data ? (mediaObj.data.attributes || mediaObj.data) : mediaObj;
+                            if (!mediaAttrs || !mediaAttrs.url) return;
+                            const url = 'http://localhost:1337' + mediaAttrs.url;
+                            
+                            const el = document.getElementById(elementId);
+                            if (!el) return;
+
+                            if (mediaAttrs.ext === '.json' || mediaAttrs.ext === '.txt') {
+                                // If it's a JSON or TXT file, replace the img with a lottie-player
+                                const lottie = document.createElement('lottie-player');
+                                lottie.setAttribute('src', url);
+                                lottie.setAttribute('background', 'transparent');
+                                lottie.setAttribute('speed', '1');
+                                lottie.setAttribute('style', 'width: 100%; max-height: 500px; object-fit: contain;');
+                                lottie.setAttribute('loop', '');
+                                lottie.setAttribute('autoplay', '');
+                                
+                                // Preserve the classes of the original img for styling
+                                lottie.className = el.className;
+                                
+                                el.parentNode.replaceChild(lottie, el);
+                            } else {
+                                // Standard Image
+                                el.src = url;
+                            }
+                        };
+
+                        if(attrs.feature1Image) renderMedia(attrs.feature1Image, 'feature1-img');
+                        if(attrs.feature2Image) renderMedia(attrs.feature2Image, 'feature2-img');
+                        if(attrs.feature3Image) renderMedia(attrs.feature3Image, 'feature3-img');
+                    }
                 }
 
                 // 2. Fetch Features List

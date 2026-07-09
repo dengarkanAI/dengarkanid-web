@@ -1,7 +1,4 @@
 node_modules/
 .DS_Store
-.env
-dengarkanid-cms/.tmp/
 dengarkanid-cms/build/
-dengarkanid-cms/.env
 

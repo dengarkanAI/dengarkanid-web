@@ -557,6 +557,49 @@ export interface ApiHeroHero extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
+  collectionName: 'homepages';
+  info: {
+    description: '';
+    displayName: 'Homepage';
+    pluralName: 'homepages';
+    singularName: 'homepage';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    feature1Desc: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Track brand mentions, audience conversations, and emerging trends across digital channels as they happen.'>;
+    feature1Image: Schema.Attribute.Media<'images' | 'files'>;
+    feature1Title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Monitor Your Brand in<br>Real Time'>;
+    feature2Desc: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand performance.'>;
+    feature2Image: Schema.Attribute.Media<'images' | 'files'>;
+    feature2Title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'View Your Brand Performance<br>Overview'>;
+    feature3Desc: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Explore detailed analytics with customizable reports to measure performance and support strategic decisions.'>;
+    feature3Image: Schema.Attribute.Media<'images' | 'files'>;
+    feature3Title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'In-Depth Analytics &<br>Reporting'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::homepage.homepage'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLeadLead extends Struct.CollectionTypeSchema {
   collectionName: 'leads';
   info: {
@@ -1102,6 +1145,7 @@ declare module '@strapi/strapi' {
       'api::faq.faq': ApiFaqFaq;
       'api::feature.feature': ApiFeatureFeature;
       'api::hero.hero': ApiHeroHero;
+      'api::homepage.homepage': ApiHomepageHomepage;
       'api::lead.lead': ApiLeadLead;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
