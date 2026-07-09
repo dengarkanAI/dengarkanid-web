@@ -769,11 +769,11 @@
         <div class="onetap-profile">
             <img src="assets/headshot-2.jpg" alt="User profile" class="onetap-avatar">
             <div class="onetap-info">
-                <span class="onetap-name">Aziz</span>
-                <span class="onetap-email">aziz@dengarkan.id</span>
+                <span class="onetap-name">Manis</span>
+                <span class="onetap-email">manis@dengarkan.id</span>
             </div>
         </div>
-        <button id="onetap-btn" class="onetap-btn">Lanjutkan sebagai Aziz</button>
+        <button id="onetap-btn" class="onetap-btn">Lanjutkan sebagai Manis</button>
         <div class="onetap-footer">
             Untuk melanjutkan, Google akan membagikan nama, alamat email, dan foto profil Anda dengan dengarkan.id.
         </div>
@@ -790,7 +790,7 @@
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </div>
-            <h2 id="modal-greeting">Selamat Pagi, Aziz!</h2>
+            <h2 id="modal-greeting">Selamat Pagi, Manis!</h2>
             <p>Kamu bisa mencoba fitur kami selama 7 hari gratis, coba sekarang!</p>
             <button id="modal-dashboard-btn" class="btn-primary large" style="width: 100%; margin-top: 24px;">Masuk
                 Dashboard</button>
@@ -1106,9 +1106,14 @@
 
             // Accept handler (Lead Triggered!)
             acceptBtn.addEventListener('click', async () => {
+                const simulatedUser = {
+                    name: 'Manis',
+                    email: 'manis@dengarkan.id',
+                    picture: 'https://ui-avatars.com/api/?name=Manis&background=random'
+                };
                 const leadData = {
-                    name: 'Aziz',
-                    email: 'aziz@dengarkan.id',
+                    name: 'Manis',
+                    email: 'manis@dengarkan.id',
                     company: 'Dengarkan ID',
                     jobTitle: 'Founder',
                     source: 'Website One-Tap',
