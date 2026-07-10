@@ -124,6 +124,11 @@
                 <a href="#" class="btn-secondary">Sign In</a>
                 <a href="#" class="btn-primary">Start For Free</a>
             </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <i class="ph ph-list"></i>
+            </button>
         </div>
     </header>
 
@@ -397,6 +402,27 @@
         const data = JSON.parse(savedLead);
         const navAuth = document.querySelector('.nav-auth');
         if (navAuth) navAuth.innerHTML = `<div class="user-dropdown-wrapper"><div class="user-profile-trigger"><img src="assets/headshot-2.jpg" alt="User"><span>Halo, ${data.name}!</span><i class="ph ph-caret-down"></i></div><div class="user-dropdown-menu"><a href="index.html" class="user-dropdown-item"><i class="ph ph-layout"></i>Dashboard</a><a href="#" class="user-dropdown-item" onclick="localStorage.removeItem('dengarkan_lead');location.reload()"><i class="ph ph-sign-out"></i>Keluar</a></div></div>`;
+    }
+    
+    // Mobile menu
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navAuthMobile = document.querySelector('.nav-auth');
+    
+    if(mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            navAuthMobile.classList.toggle('active');
+            
+            const icon = mobileToggle.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            } else {
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            }
+        });
     }
     </script>
 </body>

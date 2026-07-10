@@ -287,6 +287,17 @@ h2 {
     color: var(--primary-color) !important;
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 4px;
+}
+
 .nav-auth {
     display: flex;
     align-items: center;
@@ -1681,6 +1692,48 @@ h2 {
 
 /* Responsive */
 @media (max-width: 992px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        border-top: 1px solid rgba(0,0,0,0.05);
+        gap: 24px;
+        z-index: 49;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .nav-auth {
+        display: none;
+        position: absolute;
+        top: 240px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 0 24px 24px;
+        box-shadow: 0 20px 30px rgba(0,0,0,0.05);
+        gap: 12px;
+        z-index: 49;
+    }
+    .nav-auth.active {
+        display: flex;
+    }
+    .nav-auth .btn-secondary, .nav-auth .btn-primary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
     .feature-grid, .feature-section.reverse .feature-grid {
         flex-direction: column;
         gap: 40px;
@@ -1759,9 +1812,22 @@ h2 {
     }
 }
 @media (max-width: 768px) {
-    .hero-floating-card { padding: 32px 24px; margin-top: -60px; }
-    .hero-floating-card h1 { font-size: 32px; }
-    .dash-cards { grid-template-columns: repeat(2, 1fr); }
+    .hero-floating-card { 
+        padding: 32px 24px; 
+        bottom: 24px; 
+        flex-direction: column; 
+        width: 92%; 
+        gap: 24px;
+        text-align: center;
+    }
+    .hero-floating-card h1 { font-size: 28px; line-height: 1.2; }
+    .hero-cta { flex-direction: column; width: 100%; }
+    .hero-cta a { width: 100%; text-align: center; justify-content: center; }
+    
+    .dash-cards { grid-template-columns: 1fr; }
+    
+    .partners-carousel-wrapper { overflow-x: auto; }
+    .partners-logos-track { animation-duration: 20s; }
 }
 
 /* Google One Tap Mockup Styles */

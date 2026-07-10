@@ -76,6 +76,11 @@
                 <a href="#" class="btn-secondary">Sign In</a>
                 <a href="#" class="btn-primary">Start For Free</a>
             </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <i class="ph ph-list"></i>
+            </button>
         </div>
     </header>
 
@@ -1321,6 +1326,30 @@
                         }, 800); // 800ms matches the transition duration
                     }
                 }, 4000); // 4 seconds interval
+            }
+        });
+    </script>
+    <!-- Mobile Menu Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const navAuth = document.querySelector('.nav-auth');
+            
+            if(mobileToggle) {
+                mobileToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    navAuth.classList.toggle('active');
+                    
+                    const icon = mobileToggle.querySelector('i');
+                    if(navLinks.classList.contains('active')) {
+                        icon.classList.remove('ph-list');
+                        icon.classList.add('ph-x');
+                    } else {
+                        icon.classList.remove('ph-x');
+                        icon.classList.add('ph-list');
+                    }
+                });
             }
         });
     </script>
