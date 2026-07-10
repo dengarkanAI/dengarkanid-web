@@ -455,15 +455,21 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   attributes: {
     authorAvatar: Schema.Attribute.Media<'images'>;
     authorName: Schema.Attribute.String;
+    content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     date: Schema.Attribute.String;
     description: Schema.Attribute.Text;
+    gallery: Schema.Attribute.Media<'images', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
+    metaDescription: Schema.Attribute.Text;
+    metaImage: Schema.Attribute.Media<'images'>;
+    metaTitle: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     thumbnailImage: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;

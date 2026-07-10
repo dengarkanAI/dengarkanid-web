@@ -74,7 +74,7 @@
 
             <div class="nav-auth">
                 <a href="#" class="btn-secondary">Sign In</a>
-                <a href="#" class="btn-primary">Start For Free</a>
+                <a href="#" class="btn-primary dynamic-cta-btn">Start For Free</a>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="hero-cta">
-                        <a href="#" class="btn-primary large">Sign Up Free</a>
+                        <a href="#" class="btn-primary large dynamic-cta-btn">Sign Up Free</a>
                         <a href="#" class="btn-secondary large btn-outline">See Features</a>
                     </div>
                 </div>
@@ -230,7 +230,7 @@
                         <p id="feature1-desc">Track brand mentions, audience conversations, and emerging trends across
                             digital channels as
                             they happen.</p>
-                        <a href="#" class="btn-primary">Free Trial</a>
+                        <a href="#" class="btn-primary dynamic-cta-btn">Free Trial</a>
                     </div>
                 </div>
 
@@ -261,7 +261,7 @@
                         <p id="feature2-desc">Access a centralized dashboard with key metrics, sentiment, engagement,
                             and overall brand
                             performance.</p>
-                        <a href="#" class="btn-primary">Free Trial</a>
+                        <a href="#" class="btn-primary dynamic-cta-btn">Free Trial</a>
                     </div>
                 </div>
             </div>
@@ -1007,6 +1007,8 @@
 
                 if (index === 0) {
                     card.className = 'blog-card-new horizontal';
+                    card.style.cursor = 'pointer';
+                    card.onclick = () => location.href = `detail-artikel.html?slug=${attrs.slug || ''}`;
                     card.innerHTML = `
                         <div class="card-img-side">
                             <img src="${imgUrl}" alt="${attrs.title}">
@@ -1025,6 +1027,8 @@
                     `;
                 } else {
                     card.className = `blog-card-new vertical`;
+                    card.style.cursor = 'pointer';
+                    card.onclick = () => location.href = `detail-artikel.html?slug=${attrs.slug || ''}`;
                     card.innerHTML = `
                         <div class="card-img-top">
                             <img src="${imgUrl}" alt="${attrs.title}">
@@ -1258,6 +1262,13 @@
                     e.preventDefault();
                     localStorage.removeItem('dengarkan_lead');
                     location.reload(); // Reload to reset header state
+                });
+                
+                // Update CTA buttons on the page
+                const ctaBtns = document.querySelectorAll('.dynamic-cta-btn');
+                ctaBtns.forEach(btn => {
+                    btn.innerHTML = 'Go to Dashboard <i class="ph ph-arrow-right" style="margin-left:6px;"></i>';
+                    btn.href = 'index.html?show_dashboard=true';
                 });
             }
 

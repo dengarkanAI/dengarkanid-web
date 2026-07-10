@@ -24,6 +24,7 @@
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body style="background-color: #FFFFFF;">
@@ -299,6 +300,72 @@
 
         // Medium Interactions: Claps and Bookmarks
         document.addEventListener('DOMContentLoaded', () => {
+
+            // Fetch Article Details from Strapi
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+            if (slug) {
+                fetch(`http://localhost:1337/api/blogs?filters[slug][$eq]=${slug}&populate=*`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.data && data.data.length > 0) {
+                            const attrs = data.data[0].attributes || data.data[0];
+                            
+                            // 1. Update SEO Tags
+                            if (attrs.metaTitle) {
+                                document.getElementById('meta-title').innerText = attrs.metaTitle;
+                                document.getElementById('og-title').setAttribute('content', attrs.metaTitle);
+                            } else {
+                                document.getElementById('meta-title').innerText = attrs.title + " - DengarInsight";
+                                document.getElementById('og-title').setAttribute('content', attrs.title);
+                            }
+                            
+                            if (attrs.metaDescription) {
+                                document.getElementById('meta-desc').setAttribute('content', attrs.metaDescription);
+                                document.getElementById('og-desc').setAttribute('content', attrs.metaDescription);
+                            }
+                            
+                            // Image helpers
+                            const getImg = (media) => {
+                                if (!media) return null;
+                                let data = media.data;
+                                if (!data) return null;
+                                if (Array.isArray(data)) data = data[0];
+                                if (!data.attributes) return null;
+                                return "http://localhost:1337" + data.attributes.url;
+                            };
+
+                            let mainImage = getImg(attrs.thumbnailImage) || getImg(attrs.image) || "https://placehold.co/1200x600/312e81/ffffff?text=Usability+Testing+Session";
+                            if (attrs.metaImage) {
+                                document.getElementById('og-image').setAttribute('content', getImg(attrs.metaImage));
+                            } else {
+                                document.getElementById('og-image').setAttribute('content', mainImage);
+                            }
+
+                            // 2. Update Content
+                            document.querySelector('.article-title-main').innerText = attrs.title;
+                            document.querySelector('.article-full-image img').src = mainImage;
+                            
+                            // Setup Rich Text
+                            if (attrs.content) {
+                                document.querySelector('.article-body-medium').innerHTML = marked.parse(attrs.content);
+                            }
+                            
+                            // Setup Gallery
+                            if (attrs.gallery && attrs.gallery.data && attrs.gallery.data.length > 0) {
+                                let galleryHtml = "<h3 style='margin-top:40px;\>Galeri</h3><div style='display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;'>";
+                                attrs.gallery.data.forEach(img => {
+                                    const url = "http://localhost:1337" + img.attributes.url;
+                                    galleryHtml += `<img src="${url}" style='width:200px;height:200px;object-fit:cover;border-radius:8px;'>`;
+                                });
+                                galleryHtml += "</div>";
+                                document.querySelector('.article-body-medium').innerHTML += galleryHtml;
+                            }
+                        }
+                    })
+                    .catch(console.error);
+            }
+
             // Google One Tap / Session Sync logic
             const navAuth = document.querySelector('.nav-auth');
             function updateNavbarWithUser(name) {
@@ -399,6 +466,72 @@
     <!-- Mobile Menu Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // Fetch Article Details from Strapi
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+            if (slug) {
+                fetch(`http://localhost:1337/api/blogs?filters[slug][$eq]=${slug}&populate=*`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.data && data.data.length > 0) {
+                            const attrs = data.data[0].attributes || data.data[0];
+                            
+                            // 1. Update SEO Tags
+                            if (attrs.metaTitle) {
+                                document.getElementById('meta-title').innerText = attrs.metaTitle;
+                                document.getElementById('og-title').setAttribute('content', attrs.metaTitle);
+                            } else {
+                                document.getElementById('meta-title').innerText = attrs.title + " - DengarInsight";
+                                document.getElementById('og-title').setAttribute('content', attrs.title);
+                            }
+                            
+                            if (attrs.metaDescription) {
+                                document.getElementById('meta-desc').setAttribute('content', attrs.metaDescription);
+                                document.getElementById('og-desc').setAttribute('content', attrs.metaDescription);
+                            }
+                            
+                            // Image helpers
+                            const getImg = (media) => {
+                                if (!media) return null;
+                                let data = media.data;
+                                if (!data) return null;
+                                if (Array.isArray(data)) data = data[0];
+                                if (!data.attributes) return null;
+                                return "http://localhost:1337" + data.attributes.url;
+                            };
+
+                            let mainImage = getImg(attrs.thumbnailImage) || getImg(attrs.image) || "https://placehold.co/1200x600/312e81/ffffff?text=Usability+Testing+Session";
+                            if (attrs.metaImage) {
+                                document.getElementById('og-image').setAttribute('content', getImg(attrs.metaImage));
+                            } else {
+                                document.getElementById('og-image').setAttribute('content', mainImage);
+                            }
+
+                            // 2. Update Content
+                            document.querySelector('.article-title-main').innerText = attrs.title;
+                            document.querySelector('.article-full-image img').src = mainImage;
+                            
+                            // Setup Rich Text
+                            if (attrs.content) {
+                                document.querySelector('.article-body-medium').innerHTML = marked.parse(attrs.content);
+                            }
+                            
+                            // Setup Gallery
+                            if (attrs.gallery && attrs.gallery.data && attrs.gallery.data.length > 0) {
+                                let galleryHtml = "<h3 style='margin-top:40px;\>Galeri</h3><div style='display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;'>";
+                                attrs.gallery.data.forEach(img => {
+                                    const url = "http://localhost:1337" + img.attributes.url;
+                                    galleryHtml += `<img src="${url}" style='width:200px;height:200px;object-fit:cover;border-radius:8px;'>`;
+                                });
+                                galleryHtml += "</div>";
+                                document.querySelector('.article-body-medium').innerHTML += galleryHtml;
+                            }
+                        }
+                    })
+                    .catch(console.error);
+            }
+
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const navLinks = document.querySelector('.nav-links');
             const navAuth = document.querySelector('.nav-auth');
