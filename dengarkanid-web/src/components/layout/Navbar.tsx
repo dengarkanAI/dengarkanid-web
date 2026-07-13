@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 export default function Navbar() {
@@ -7,6 +7,8 @@ export default function Navbar() {
   const [showOneTap, setShowOneTap] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState<{name: string, email: string} | null>(null);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -55,6 +57,26 @@ export default function Navbar() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('dengarkan_lead');
+    sessionStorage.removeItem('jwt');
+    sessionStorage.removeItem('user');
+    setUser(null);
+    setShowUserMenu(false);
+    setShowOneTap(true);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setShowUserMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <>
       <header className="navbar">
@@ -81,23 +103,61 @@ export default function Navbar() {
 
           <div className={`nav-auth ${isMobileMenuOpen ? 'active' : ''}`}>
             {user ? (
-              <>
-                <span style={{marginRight: '12px', fontWeight: 600, fontSize: '14px'}}>Hi, {user.name}</span>
-                <a href="https://dengarkan.id/auth/signup" className="btn-primary dynamic-cta-btn" style={{marginRight: '8px'}}>Go to Dashboard</a>
+              /* ── Logged-in: dropdown button ── */
+              <div className="nav-user-dropdown" ref={userMenuRef} style={{position: 'relative'}}>
                 <button
-                  className="btn-secondary"
-                  style={{cursor: 'pointer', border: '1px solid #e4e4e7', background: 'transparent', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', fontWeight: 600}}
-                  onClick={() => {
-                    localStorage.removeItem('dengarkan_lead');
-                    sessionStorage.removeItem('jwt');
-                    sessionStorage.removeItem('user');
-                    setUser(null);
-                    setShowOneTap(true);
-                  }}
+                  className="btn-primary dynamic-cta-btn"
+                  style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer'}}
+                  onClick={() => setShowUserMenu(prev => !prev)}
                 >
-                  Logout
+                  Go to Dashboard
+                  <i className={`ph ${showUserMenu ? 'ph-caret-up' : 'ph-caret-down'}`} style={{fontSize: '14px'}}></i>
                 </button>
-              </>
+
+                {/* Dropdown panel */}
+                {showUserMenu && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 'calc(100% + 8px)',
+                    right: 0,
+                    background: '#fff',
+                    border: '1px solid #e4e4e7',
+                    borderRadius: '12px',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+                    minWidth: '200px',
+                    zIndex: 999,
+                    overflow: 'hidden',
+                  }}>
+                    {/* User info */}
+                    <div style={{padding: '12px 16px', borderBottom: '1px solid #f0f0f0'}}>
+                      <p style={{margin: 0, fontWeight: 700, fontSize: '14px'}}>{user.name}</p>
+                      <p style={{margin: 0, fontSize: '12px', color: '#888'}}>{user.email}</p>
+                    </div>
+                    {/* Go to Dashboard link */}
+                    <a
+                      href="https://dengarkan.id/auth/signup"
+                      style={{display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 16px', fontSize: '14px', fontWeight: 600, color: '#18181b', textDecoration: 'none', transition: 'background 0.15s'}}
+                      onMouseEnter={e => (e.currentTarget.style.background = '#f8f8f8')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                    >
+                      <i className="ph ph-squares-four" style={{fontSize: '16px', color: '#7c3aed'}}></i>
+                      Go to Dashboard
+                    </a>
+                    {/* Divider */}
+                    <div style={{height: '1px', background: '#f0f0f0', margin: '0'}}></div>
+                    {/* Logout */}
+                    <button
+                      onClick={handleLogout}
+                      style={{display: 'flex', alignItems: 'center', gap: '10px', width: '100%', padding: '12px 16px', fontSize: '14px', fontWeight: 600, color: '#ef4444', border: 'none', background: 'transparent', cursor: 'pointer', transition: 'background 0.15s', textAlign: 'left'}}
+                      onMouseEnter={e => (e.currentTarget.style.background = '#fff5f5')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                    >
+                      <i className="ph ph-sign-out" style={{fontSize: '16px'}}></i>
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <>
                 <a href="https://dengarkan.id/auth/login" className="btn-secondary">Sign In</a>
