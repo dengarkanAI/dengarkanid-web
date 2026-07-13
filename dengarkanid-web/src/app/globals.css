@@ -2683,7 +2683,7 @@ h2 {
     width: 1100px;
     height: 1100px;
     border-radius: 50%;
-    border: 1px solid rgba(236, 72, 153, 0.08); /* Faint background track line */
+    border: none; /* Removed thin track line */
     z-index: 3;
     pointer-events: none;
 }
