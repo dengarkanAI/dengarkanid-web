@@ -527,7 +527,7 @@ export default function Home() {
                                 const attrs = feature.attributes || feature;
                                 const colorClass = index % 2 === 0 ? 'purple' : 'orange';
                                 return (
-                                    <div className="feature-split-item" key={feature.id}>
+                                    <div className={`feature-split-item scroll-fade stagger-${index + 1}`} key={feature.id}>
                                         <div className={`split-icon ${colorClass}`}></div>
                                         <div className="split-text">
                                             <h3 dangerouslySetInnerHTML={{ __html: attrs.title }}></h3>
@@ -538,7 +538,7 @@ export default function Home() {
                             })
                         ) : (
                             <>
-                        <div className="feature-split-item">
+                        <div className="feature-split-item scroll-fade stagger-1">
                             <div className="split-icon purple"></div>
                             <div className="split-text">
                                 <h3>Lorem ipsum dolor sit amet</h3>
@@ -546,7 +546,7 @@ export default function Home() {
                                     channels as they happen.</p>
                             </div>
                         </div>
-                        <div className="feature-split-item">
+                        <div className="feature-split-item scroll-fade stagger-2">
                             <div className="split-icon orange"></div>
                             <div className="split-text">
                                 <h3>Lorem ipsum dolor sit amet</h3>
@@ -554,7 +554,7 @@ export default function Home() {
                                     channels as they happen.</p>
                             </div>
                         </div>
-                        <div className="feature-split-item">
+                        <div className="feature-split-item scroll-fade stagger-3">
                             <div className="split-icon purple"></div>
                             <div className="split-text">
                                 <h3>Lorem ipsum dolor sit amet</h3>
@@ -567,7 +567,7 @@ export default function Home() {
                     </div>
 
                     {/*  Right Side: Mockup Image Placeholder (Statistic Card)  */}
-                    <div className="feature-split-right-graphic">
+                    <div className="feature-split-right-graphic scroll-fade-left stagger-2">
                         <StrapiMedia id="feature3-img" imageObj={homeData?.feature3Image} fallbackUrl="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder" alt="In-Depth Analytics Mockup" className="feature-box-mockup-img" />
                     </div>
                 </div>

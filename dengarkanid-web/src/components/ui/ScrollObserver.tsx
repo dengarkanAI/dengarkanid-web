@@ -16,9 +16,8 @@ export default function ScrollObserver() {
       rootMargin: "0px 0px -50px 0px"
     });
 
-    // We use setTimeout to ensure the DOM is fully rendered before observing
     const timeout = setTimeout(() => {
-      const elements = document.querySelectorAll('.scroll-fade, .scroll-fade-up, .scroll-fade-left, .scroll-fade-right');
+      const elements = document.querySelectorAll('.scroll-fade, .scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-fade-basic');
       elements.forEach(el => observer.observe(el));
     }, 100);
 
