@@ -18,6 +18,21 @@ export default function Home() {
   const [showCompanyDetails, setShowCompanyDetails] = useState(false);
   const [currentUspIndex, setCurrentUspIndex] = useState(0);
   const [parallaxPos, setParallaxPos] = useState({ x: 0, y: 0 });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check login state from sessionStorage (set by admin login page using key 'jwt')
+  useEffect(() => {
+    const token = sessionStorage.getItem('jwt');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  // Helper: render the correct CTA button depending on login state
+  const CtaButton = ({ className = 'btn-primary dynamic-cta-btn' }: { className?: string }) => {
+    if (isLoggedIn) {
+      return <a href="/admin/leads" className={className} id="cta-btn">Go to Dashboard</a>;
+    }
+    return <a href="https://app.dengarkan.id/signup" className={className} id="cta-btn">Free Trial</a>;
+  };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
@@ -224,7 +239,10 @@ export default function Home() {
                 </div>
 
                 <div className="hero-cta" style={{ display: 'flex', alignItems: 'center' }}>
-                    <a href="#" className="btn-primary large dynamic-cta-btn">Sign Up Free</a>
+                    {isLoggedIn
+                        ? <a href="https://app.dengarkan.id/dashboard" className="btn-primary large" id="hero-cta-main">Go to Dashboard</a>
+                        : <a href="https://app.dengarkan.id/signup" className="btn-primary large" id="hero-cta-main">Sign Up Free</a>
+                    }
                     <a href="#" className="btn-secondary large btn-outline">See Features</a>
                 </div>
             </div>
@@ -392,7 +410,7 @@ export default function Home() {
                     </div>
                     <div className="feature-header-right">
                         <p id="feature1-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature1Desc || 'Track brand mentions, audience conversations, and emerging trends across digital channels as they happen.' }}></p>
-                        <a href="#" className="btn-primary dynamic-cta-btn">Free Trial</a>
+                        <CtaButton />
                     </div>
                 </div>
 
@@ -417,7 +435,7 @@ export default function Home() {
                         <p id="feature2-desc">Access a centralized dashboard with key metrics, sentiment, engagement,
                             and overall brand
                             performance.</p>
-                        <a href="#" className="btn-primary dynamic-cta-btn">Free Trial</a>
+                        <CtaButton />
                     </div>
                 </div>
             </div>
@@ -503,7 +521,7 @@ export default function Home() {
                         </div>
                         <h2 id="feature4-title" dangerouslySetInnerHTML={{ __html: homeData?.feature4Title || 'Speak the Language<br/>Your Audience Understands' }}></h2>
                         <p id="feature4-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature4Desc || 'Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.' }}></p>
-                        <a href="#" className="btn-primary dynamic-cta-btn">Free Trial</a>
+                        <CtaButton />
                     </div>
                     <div className="feature-box-graphic">
                         <div className="feature-box-bg-grey">
@@ -526,7 +544,7 @@ export default function Home() {
                     </div>
                     <div className="feature-header-right">
                         <p id="feature5-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature5Desc || 'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.' }}></p>
-                        <a href="#" className="btn-primary dynamic-cta-btn">Free Trial</a>
+                        <CtaButton />
                     </div>
                 </div>
 
