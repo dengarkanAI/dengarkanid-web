@@ -5,21 +5,16 @@ import { useState, useEffect } from 'react';
 
 interface Testimonial {
   id: number;
-  attributes: {
-    quote: string;
-    name: string;
-    role: string | null;
-    cardColor: 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple';
-    row: 'top' | 'middle' | 'bottom';
-    isActive: boolean;
-    avatar: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      } | null;
-    };
-  };
+  documentId?: string;
+  quote: string;
+  name: string;
+  role: string | null;
+  cardColor: 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple';
+  row: 'top' | 'middle' | 'bottom';
+  isActive: boolean;
+  avatar: {
+    url: string;
+  } | null;
 }
 
 // Fallback data shown when CMS has no entries yet
@@ -27,110 +22,100 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
   top: [
     {
       id: 1,
-      attributes: {
-        quote: '"Dengarkan memberikan insight yang tidak pernah kami bayangkan sebelumnya. Kami akhirnya benar-benar mendengar pelanggan kami."',
-        name: 'Rina Kusuma',
-        role: 'Marketing Director',
-        cardColor: 'red',
-        row: 'top',
-        isActive: true,
-        avatar: { data: null },
-      },
+      quote: '"Dengarkan memberikan insight yang tidak pernah kami bayangkan sebelumnya. Kami akhirnya benar-benar mendengar pelanggan kami."',
+      name: 'Rina Kusuma',
+      role: 'Marketing Director',
+      cardColor: 'red',
+      row: 'top',
+      isActive: true,
+      avatar: null,
     },
     {
       id: 2,
-      attributes: {
-        quote: '"Platform ini mengubah cara kami memahami sentimen pasar. Data yang akurat, analitik yang tajam."',
-        name: 'Budi Santoso',
-        role: 'CEO, Tech Startup',
-        cardColor: 'orange',
-        row: 'top',
-        isActive: true,
-        avatar: { data: null },
-      },
+      quote: '"Platform ini mengubah cara kami memahami sentimen pasar. Data yang akurat, analitik yang tajam."',
+      name: 'Budi Santoso',
+      role: 'CEO, Tech Startup',
+      cardColor: 'orange',
+      row: 'top',
+      isActive: true,
+      avatar: null,
     },
     {
       id: 3,
-      attributes: {
-        quote: '"Kami bisa mendeteksi krisis reputasi sebelum menjadi viral. Dengarkan adalah game-changer untuk tim PR kami."',
-        name: 'Sari Dewi',
-        role: 'Public Relations Head',
-        cardColor: 'yellow',
-        row: 'top',
-        isActive: true,
-        avatar: { data: null },
-      },
+      quote: '"Kami bisa mendeteksi krisis reputasi sebelum menjadi viral. Dengarkan adalah game-changer untuk tim PR kami."',
+      name: 'Sari Dewi',
+      role: 'Public Relations Head',
+      cardColor: 'yellow',
+      row: 'top',
+      isActive: true,
+      avatar: null,
     },
   ],
   bottom: [
     {
       id: 4,
-      attributes: {
-        quote: '"Kompetitor kami bergerak cepat, tapi dengan Dengarkan kami selalu satu langkah lebih maju."',
-        name: 'Agus Wijaya',
-        role: 'Brand Manager',
-        cardColor: 'green',
-        row: 'bottom',
-        isActive: true,
-        avatar: { data: null },
-      },
+      quote: '"Kompetitor kami bergerak cepat, tapi dengan Dengarkan kami selalu satu langkah lebih maju."',
+      name: 'Agus Wijaya',
+      role: 'Brand Manager',
+      cardColor: 'green',
+      row: 'bottom',
+      isActive: true,
+      avatar: null,
     },
     {
       id: 5,
-      attributes: {
-        quote: '"ROI yang luar biasa. Dalam 3 bulan, kami bisa mengoptimalkan strategi konten kami berdasarkan data nyata."',
-        name: 'Dian Purnama',
-        role: 'Digital Strategist',
-        cardColor: 'blue',
-        row: 'bottom',
-        isActive: true,
-        avatar: { data: null },
-      },
+      quote: '"ROI yang luar biasa. Dalam 3 bulan, kami bisa mengoptimalkan strategi konten kami berdasarkan data nyata."',
+      name: 'Dian Purnama',
+      role: 'Digital Strategist',
+      cardColor: 'blue',
+      row: 'bottom',
+      isActive: true,
+      avatar: null,
     },
     {
       id: 6,
-      attributes: {
-        quote: '"Fitur analitik sentimen budayanya sangat akurat untuk konteks Indonesia. Tidak ada yang menandingi ini."',
-        name: 'Maya Saputri',
-        role: 'Social Media Manager',
-        cardColor: 'purple',
-        row: 'bottom',
-        isActive: true,
-        avatar: { data: null },
-      },
+      quote: '"Fitur analitik sentimen budayanya sangat akurat untuk konteks Indonesia. Tidak ada yang menandingi ini."',
+      name: 'Maya Saputri',
+      role: 'Social Media Manager',
+      cardColor: 'purple',
+      row: 'bottom',
+      isActive: true,
+      avatar: null,
     },
     {
       id: 7,
-      attributes: {
-        quote: '"Tim customer success Dengarkan sangat responsif. Kami merasa benar-benar diperhatikan sebagai klien."',
-        name: 'Hendra Lim',
-        role: 'Product Manager',
-        cardColor: 'red',
-        row: 'bottom',
-        isActive: true,
-        avatar: { data: null },
-      },
+      quote: '"Tim customer success Dengarkan sangat responsif. Kami merasa benar-benar diperhatikan sebagai klien."',
+      name: 'Hendra Lim',
+      role: 'Product Manager',
+      cardColor: 'red',
+      row: 'bottom',
+      isActive: true,
+      avatar: null,
     },
   ],
 };
 
 function TestiCard({ t, strapiUrl }: { t: Testimonial; strapiUrl: string }) {
-  const { quote, name, role, cardColor, avatar } = t.attributes;
+  const { quote, name, role, cardColor, avatar } = t;
   
   // Map hardcoded names to their original avatars when no CMS avatar is provided
-  const getFallbackAvatar = (name: string) => {
+  // Provide a random-ish consistent avatar for new names
+  const getFallbackAvatar = (id: number, name: string) => {
     if (name.includes('Olivia')) return '/assets/headshot-1.jpg';
     if (name.includes('Sophia')) return '/assets/headshot-2.jpg';
     if (name.includes('Aisha')) return '/assets/headshot-3.jpg';
     if (name.includes('Emily')) return '/assets/headshot-4.jpg';
     if (name.includes('Priya')) return '/assets/headshot-5.jpg';
     if (name.includes('Mia')) return '/assets/headshot-2.jpg';
-    return '/assets/headshot-1.jpg';
+    
+    // Cycle through avatars 1-5 for new entries that don't have avatars uploaded
+    const avatarIndex = (id % 5) + 1;
+    return `/assets/headshot-${avatarIndex}.jpg`;
   };
 
-  const avatarUrl = avatar?.data?.attributes?.url
-    ? `${strapiUrl}${avatar.data.attributes.url}`
-    : getFallbackAvatar(name);
+  const avatarUrl = avatar?.url
+    ? `${strapiUrl}${avatar.url}`
+    : getFallbackAvatar(t.id, name);
 
   return (
     <div className={`testimonial-card color-${cardColor}`}>
@@ -165,8 +150,8 @@ export default function TestimonialsSection() {
 
         if (items.length === 0) throw new Error('No testimonials in CMS');
 
-        setTopRow(items.filter((t) => t.attributes.row === 'top'));
-        setBottomRow(items.filter((t) => t.attributes.row === 'bottom' || t.attributes.row === 'middle'));
+        setTopRow(items.filter((t) => t.row === 'top'));
+        setBottomRow(items.filter((t) => t.row === 'bottom' || t.row === 'middle'));
         setLoaded(true);
       } catch {
         // Use fallback data
