@@ -52,7 +52,14 @@ export default {
           'api::glosarium.glosarium.findOne',
           'api::testimonial.testimonial.find',
           'api::testimonial.testimonial.findOne',
-          'api::lead.lead.create'
+          'api::lead.lead.create',
+          'api::feature.feature.find',
+          'api::feature.feature.findOne',
+          'api::faq.faq.find',
+          'api::faq.faq.findOne',
+          'api::blog.blog.find',
+          'api::blog.blog.findOne',
+          'api::homepage.homepage.find'
         ];
         
         const existingPermissions = await strapi.db.query('plugin::users-permissions.permission').findMany({
@@ -116,6 +123,57 @@ export default {
         }
       }
 
+      // 4. Migrate Features Data if empty
+      const featureCount = await strapi.db.query('api::feature.feature').count();
+      if (featureCount === 0) {
+        const initialFeatures = [
+          { title: "Lorem ipsum dolor sit amet", description: "Track brand mentions, audience conversations, and emerging trends across digital channels as they happen." },
+          { title: "Lorem ipsum dolor sit amet", description: "Track brand mentions, audience conversations, and emerging trends across digital channels as they happen." },
+          { title: "Lorem ipsum dolor sit amet", description: "Track brand mentions, audience conversations, and emerging trends across digital channels as they happen." }
+        ];
+        console.log(`[BOOTSTRAP] Migrating ${initialFeatures.length} features...`);
+        for (const item of initialFeatures) {
+          await strapi.documents('api::feature.feature').create({
+            data: item,
+            status: 'published'
+          });
+        }
+      }
+
+      // 5. Migrate FAQs Data if empty
+      const faqCount = await strapi.db.query('api::faq.faq').count();
+      if (faqCount === 0) {
+        const initialFaqs = [
+          { question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
+          { question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
+          { question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." }
+        ];
+        console.log(`[BOOTSTRAP] Migrating ${initialFaqs.length} faqs...`);
+        for (const item of initialFaqs) {
+          await strapi.documents('api::faq.faq').create({
+            data: item,
+            status: 'published'
+          });
+        }
+      }
+
+      // 6. Migrate Blogs Data if empty
+      const blogCount = await strapi.db.query('api::blog.blog').count();
+      if (blogCount === 0) {
+        const initialBlogs = [
+          { title: "Step by step to conduct usability testing", slug: "step-by-step", excerpt: "Examining how fintech is promoting access to financial services for underserved populations.", content: "Content here...", authorName: "Andrea william", date: "2023-01-21", layoutStyle: "horizontal" },
+          { title: "Minimal workspace for inspirations", slug: "minimal-workspace", excerpt: "Minimal workspace for inspirations", content: "Content here...", authorName: "Harsh Patel", date: "2023-02-21", layoutStyle: "vertical_purple" },
+          { title: "Morning routine to boost your mood", slug: "morning-routine", excerpt: "Morning routine to boost your mood", content: "Content here...", authorName: "John Doe", date: "2023-03-21", layoutStyle: "vertical" },
+          { title: "5 tips to increase your productivity", slug: "5-tips", excerpt: "5 tips to increase your productivity", content: "Content here...", authorName: "Jane Smith", date: "2023-04-21", layoutStyle: "vertical" }
+        ];
+        console.log(`[BOOTSTRAP] Migrating ${initialBlogs.length} blogs...`);
+        for (const item of initialBlogs) {
+          await strapi.documents('api::blog.blog').create({
+            data: item,
+            status: 'published'
+          });
+        }
+      }
     } catch (err) {
       console.log('[BOOTSTRAP] Error in bootstrap:', err);
     }
