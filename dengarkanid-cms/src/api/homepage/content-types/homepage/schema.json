@@ -47,7 +47,7 @@
     },
     "feature1Title": {
       "type": "string",
-      "default": "Monitor Your Brand in<br>Real Time"
+      "default": "Hear Every Conversation<br>That Matters"
     },
     "feature1Desc": {
       "type": "text",
@@ -64,7 +64,7 @@
     },
     "feature2Title": {
       "type": "string",
-      "default": "View Your Brand Performance<br>Overview"
+      "default": "Think Smarter with<br>AI-Powered Insights"
     },
     "feature2Desc": {
       "type": "text",
@@ -81,7 +81,7 @@
     },
     "feature3Title": {
       "type": "string",
-      "default": "In-Depth Analytics &<br>Reporting"
+      "default": "Guard Your Brand<br>Reputation 24/7"
     },
     "feature3Desc": {
       "type": "text",
@@ -98,7 +98,7 @@
     },
     "feature4Title": {
       "type": "string",
-      "default": "Understand Audience Sentiment &<br>Emotions"
+      "default": "Speak the Language<br>Your Audience Understands"
     },
     "feature4Desc": {
       "type": "text",
@@ -115,7 +115,7 @@
     },
     "feature5Title": {
       "type": "string",
-      "default": "Competitive Intelligence &<br>Benchmarking"
+      "default": "See Every Move<br>Before It Happens"
     },
     "feature5Desc": {
       "type": "text",

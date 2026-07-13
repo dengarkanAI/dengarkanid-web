@@ -388,7 +388,7 @@ export default function Home() {
                         <div className="feature-work-tag">
                             <span className="bullet"></span> THE EARS
                         </div>
-                        <h2 id="feature1-title" dangerouslySetInnerHTML={{ __html: homeData?.feature1Title || 'Monitor Your Brand in<br/>Real Time' }}></h2>
+                        <h2 id="feature1-title" dangerouslySetInnerHTML={{ __html: homeData?.feature1Title || 'Hear Every Conversation<br/>That Matters' }}></h2>
                     </div>
                     <div className="feature-header-right">
                         <p id="feature1-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature1Desc || 'Track brand mentions, audience conversations, and emerging trends across digital channels as they happen.' }}></p>
@@ -413,7 +413,7 @@ export default function Home() {
                         <div className="feature-work-tag">
                             <span className="bullet"></span> THE BRAIN
                         </div>
-                        <h2 id="feature2-title" dangerouslySetInnerHTML={{ __html: homeData?.feature2Title || 'View Your Brand Performance<br/>Overview' }}></h2>
+                        <h2 id="feature2-title" dangerouslySetInnerHTML={{ __html: homeData?.feature2Title || 'Think Smarter with<br/>AI-Powered Insights' }}></h2>
                         <p id="feature2-desc">Access a centralized dashboard with key metrics, sentiment, engagement,
                             and overall brand
                             performance.</p>
@@ -429,7 +429,7 @@ export default function Home() {
                         <div className="feature-work-tag">
                             <span className="bullet"></span> THE SHIELD
                         </div>
-                        <h2 id="feature3-title" dangerouslySetInnerHTML={{ __html: homeData?.feature3Title || 'In-Depth Analytics &<br/>Reporting' }}></h2>
+                        <h2 id="feature3-title" dangerouslySetInnerHTML={{ __html: homeData?.feature3Title || 'Guard Your Brand<br/>Reputation 24/7' }}></h2>
                     </div>
                     <div className="feature-header-right">
                         <p id="feature3-desc">Explore detailed analytics with customizable reports to measure
@@ -501,7 +501,7 @@ export default function Home() {
                         <div className="feature-work-tag">
                             <span className="bullet"></span> THE MOUTH
                         </div>
-                        <h2 id="feature4-title" dangerouslySetInnerHTML={{ __html: homeData?.feature4Title || 'Understand Audience Sentiment &<br/>Emotions' }}></h2>
+                        <h2 id="feature4-title" dangerouslySetInnerHTML={{ __html: homeData?.feature4Title || 'Speak the Language<br/>Your Audience Understands' }}></h2>
                         <p id="feature4-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature4Desc || 'Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.' }}></p>
                         <a href="#" className="btn-primary dynamic-cta-btn">Free Trial</a>
                     </div>
@@ -522,7 +522,7 @@ export default function Home() {
                         <div className="feature-work-tag">
                             <span className="bullet"></span> THE EYES
                         </div>
-                        <h2 id="feature5-title" dangerouslySetInnerHTML={{ __html: homeData?.feature5Title || 'Competitive Intelligence &<br/>Benchmarking' }}></h2>
+                        <h2 id="feature5-title" dangerouslySetInnerHTML={{ __html: homeData?.feature5Title || 'See Every Move<br/>Before It Happens' }}></h2>
                     </div>
                     <div className="feature-header-right">
                         <p id="feature5-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature5Desc || 'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.' }}></p>
