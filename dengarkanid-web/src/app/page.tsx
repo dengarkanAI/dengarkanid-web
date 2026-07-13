@@ -234,11 +234,20 @@ export default function Home() {
   }, []);
 
   const attrs = homeData?.attributes || homeData;
+  const heroAttrs = heroData?.attributes || heroData;
   const usps = [
       attrs?.heroUSP1 || "Discover Customer Insights.",
       attrs?.heroUSP2 || "Analyze Trends Faster.",
       attrs?.heroUSP3 || "Monitor Brand Health."
   ];
+
+  // Helper to highlight #Dengarkan with gradient
+  const renderDescription = () => {
+      const defaultDesc = `Understand what people are saying, how they feel, and what matters most. #Dengarkan helps you track market sentiment, discover trends, and gain real-time insights from billions of conversations.`;
+      const desc = heroAttrs?.description || defaultDesc;
+      const gradientStyle = `background: linear-gradient(135deg, #C060FF 0%, #30C0FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; font-weight: bold;`;
+      return desc.replace(/#Dengarkan/gi, `<span style="${gradientStyle}">#Dengarkan</span>`);
+  };
 
   return (
     <main>
@@ -277,14 +286,16 @@ export default function Home() {
                         marginTop: '20px',
                         textAlign: 'center',
                         animation: 'fadeIn 0.8s ease-in-out'
-                    }}>
-                        Understand what people are saying, how they feel, and what matters most. <strong style={{
-                            background: 'linear-gradient(135deg, #C060FF 0%, #30C0FF 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            display: 'inline-block'
-                        }}>#Dengarkan</strong> helps you track market sentiment, discover trends, and gain real-time insights from billions of conversations.
+                    }} dangerouslySetInnerHTML={{ __html: renderDescription() }}>
                     </p>
+                </div>
+
+                <div className="hero-cta" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {isLoggedIn
+                        ? <a href="https://app.dengarkan.id/dashboard" className="btn-primary large" id="hero-cta-main">Go to Dashboard</a>
+                        : <a href="https://app.dengarkan.id/signup" className="btn-primary large" id="hero-cta-main">Sign Up Free</a>
+                    }
+                    <a href="#" className="btn-secondary large btn-outline">See Features</a>
                 </div>
             </div>
 
@@ -292,9 +303,9 @@ export default function Home() {
             <div className="hero-mockup-wrapper" style={{ background: '#000', minHeight: '600px', width: '100%', maxWidth: '100%', borderRadius: 0, position: 'relative', flex: 1 }}>
                 {/* Media from CMS */}
                 <div className="dashboard-mockup" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, overflow: 'hidden' }}>
-                    {attrs?.heroMedia && (
+                    {(heroAttrs?.image || attrs?.heroMedia) && (
                         <StrapiMedia 
-                            imageObj={attrs.heroMedia} 
+                            imageObj={heroAttrs?.image || attrs?.heroMedia} 
                             fallbackUrl="" 
                             alt="Dashboard Media" 
                             className="mockup-image" 
