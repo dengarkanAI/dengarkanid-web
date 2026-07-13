@@ -611,6 +611,10 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    aboutUsDescription: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Data tanpa konteks budaya hanyalah tumpukan angka. Kami memberi Anda kebenaran yang jujur, untuk #DengarkanDulu'>;
+    aboutUsTagline: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Dengarkan Yang tak Terucapkan'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -618,17 +622,36 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
       Schema.Attribute.DefaultTo<'Track brand mentions, audience conversations, and emerging trends across digital channels as they happen.'>;
     feature1Image: Schema.Attribute.Media<'images' | 'files'>;
     feature1Title: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Monitor Your Brand in<br>Real Time'>;
+      Schema.Attribute.DefaultTo<'Hear Every Conversation<br>That Matters'>;
     feature2Desc: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand performance.'>;
     feature2Image: Schema.Attribute.Media<'images' | 'files'>;
     feature2Title: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'View Your Brand Performance<br>Overview'>;
+      Schema.Attribute.DefaultTo<'Think Smarter with<br>AI-Powered Insights'>;
     feature3Desc: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'Explore detailed analytics with customizable reports to measure performance and support strategic decisions.'>;
     feature3Image: Schema.Attribute.Media<'images' | 'files'>;
     feature3Title: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'In-Depth Analytics &<br>Reporting'>;
+      Schema.Attribute.DefaultTo<'Guard Your Brand<br>Reputation 24/7'>;
+    feature4Desc: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.'>;
+    feature4Image: Schema.Attribute.Media<'images' | 'files'>;
+    feature4Title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Speak the Language<br>Your Audience Understands'>;
+    feature5Desc: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.'>;
+    feature5Image: Schema.Attribute.Media<'images' | 'files'>;
+    feature5Title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'See Every Move<br>Before It Happens'>;
+    heroMedia: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    heroTagline: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'AI SOCIAL LISTENING TOOL'>;
+    heroUSP1: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Discover Customer Insights.'>;
+    heroUSP2: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Analyze Trends Faster.'>;
+    heroUSP3: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Monitor Brand Health.'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -666,6 +689,47 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     source: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Website'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
+  collectionName: 'testimonials';
+  info: {
+    description: 'Customer testimonials shown in the homepage marquee section';
+    displayName: 'Testimonial';
+    pluralName: 'testimonials';
+    singularName: 'testimonial';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    avatar: Schema.Attribute.Media<'images'>;
+    cardColor: Schema.Attribute.Enumeration<
+      ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'blue'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonial.testimonial'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    quote: Schema.Attribute.Text & Schema.Attribute.Required;
+    row: Schema.Attribute.Enumeration<['top', 'middle', 'bottom']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'top'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1190,6 +1254,7 @@ declare module '@strapi/strapi' {
       'api::hero.hero': ApiHeroHero;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::lead.lead': ApiLeadLead;
+      'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -42,16 +42,24 @@ export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
     try {
-      // 1. Set Permissions
+      // 1. Set Permissions for Glosarium and Testimonial
       const role = await strapi.db.query('plugin::users-permissions.role').findOne({
         where: { type: 'public' }
       });
       if (role) {
+        const requiredActions = [
+          'api::glosarium.glosarium.find', 
+          'api::glosarium.glosarium.findOne',
+          'api::testimonial.testimonial.find',
+          'api::testimonial.testimonial.findOne'
+        ];
+        
         const existingPermissions = await strapi.db.query('plugin::users-permissions.permission').findMany({
-          where: { role: role.id, action: { $in: ['api::glosarium.glosarium.find', 'api::glosarium.glosarium.findOne'] } }
+          where: { role: role.id, action: { $in: requiredActions } }
         });
         const existingActions = existingPermissions.map(p => p.action);
-        for (const action of ['api::glosarium.glosarium.find', 'api::glosarium.glosarium.findOne']) {
+        
+        for (const action of requiredActions) {
           if (!existingActions.includes(action)) {
             await strapi.db.query('plugin::users-permissions.permission').create({
               data: { action: action, role: role.id }
@@ -61,10 +69,10 @@ export default {
         }
       }
 
-      // 2. Migrate Data if empty
-      const count = await strapi.db.query('api::glosarium.glosarium').count();
-      if (count === 0) {
-        console.log(`[BOOTSTRAP] Database is empty. Migrating ${data.length} glossary terms...`);
+      // 2. Migrate Glosarium Data if empty
+      const glosariumCount = await strapi.db.query('api::glosarium.glosarium').count();
+      if (glosariumCount === 0) {
+        console.log(`[BOOTSTRAP] Migrating ${data.length} glossary terms...`);
         for (const item of data) {
           await strapi.documents('api::glosarium.glosarium').create({
             data: {
@@ -77,8 +85,36 @@ export default {
             status: 'published'
           });
         }
-        console.log(`[BOOTSTRAP] Migration successful.`);
       }
+
+      // 3. Migrate Testimonials Data if empty
+      const testiCount = await strapi.db.query('api::testimonial.testimonial').count();
+      if (testiCount === 0) {
+        const initialTestimonials = [
+          { quote: "I've tried countless tea brands, but nothing compares to the freshness and aroma of this one. Every sip feels like a warm hug! My mornings are incomplete without it.", name: "Olivia Richardson", location: "New York, USA", cardColor: "red", row: "top" },
+          { quote: "As a tea lover, I appreciate the rich flavors and organic ingredients. The chamomile blend has become my go-to for relaxation after a long day!", name: "Sophia Mitchell", location: "London, UK", cardColor: "orange", row: "top" },
+          { quote: "I never knew tea could taste this good! The flavors are so pure and soothing. Plus, the packaging is beautiful - perfect for gifting too!", name: "Aisha Khan", location: "London, UK", cardColor: "yellow", row: "top" },
+          { quote: "The variety of blends is amazing! Whether I need a morning energy boost or a calming bedtime tea, this brand has it all. Highly recommend!", name: "Emily Sanders", location: "Sydney, Australia", cardColor: "blue", row: "bottom" },
+          { quote: "This tea has changed my daily routine for the better! The detox blend helps me feel refreshed and energized. Love the natural ingredients!", name: "Priya Deshmukh", location: "Mumbai, India", cardColor: "purple", row: "bottom" },
+          { quote: "I'm obsessed with the matcha! It's so smooth and gives me the perfect energy without any jitters. A must-try for all tea lovers!", name: "Mia Lawrence", location: "Toronto, Canada", cardColor: "green", row: "bottom" },
+        ];
+        
+        console.log(`[BOOTSTRAP] Migrating ${initialTestimonials.length} testimonials...`);
+        for (const item of initialTestimonials) {
+          await strapi.documents('api::testimonial.testimonial').create({
+            data: {
+              quote: item.quote,
+              name: item.name,
+              location: item.location,
+              cardColor: item.cardColor,
+              row: item.row,
+              isActive: true
+            },
+            status: 'published'
+          });
+        }
+      }
+
     } catch (err) {
       console.log('[BOOTSTRAP] Error in bootstrap:', err);
     }

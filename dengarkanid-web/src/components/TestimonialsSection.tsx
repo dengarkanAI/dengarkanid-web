@@ -116,9 +116,21 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
 
 function TestiCard({ t, strapiUrl }: { t: Testimonial; strapiUrl: string }) {
   const { quote, name, location, cardColor, avatar } = t.attributes;
+  
+  // Map hardcoded names to their original avatars when no CMS avatar is provided
+  const getFallbackAvatar = (name: string) => {
+    if (name.includes('Olivia')) return '/assets/headshot-1.jpg';
+    if (name.includes('Sophia')) return '/assets/headshot-2.jpg';
+    if (name.includes('Aisha')) return '/assets/headshot-3.jpg';
+    if (name.includes('Emily')) return '/assets/headshot-4.jpg';
+    if (name.includes('Priya')) return '/assets/headshot-5.jpg';
+    if (name.includes('Mia')) return '/assets/headshot-2.jpg';
+    return '/assets/headshot-1.jpg';
+  };
+
   const avatarUrl = avatar?.data?.attributes?.url
     ? `${strapiUrl}${avatar.data.attributes.url}`
-    : `/assets/headshot-1.jpg`;
+    : getFallbackAvatar(name);
 
   return (
     <div className={`testimonial-card color-${cardColor}`}>
