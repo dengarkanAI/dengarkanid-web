@@ -290,13 +290,7 @@ export default function Home() {
                     </p>
                 </div>
 
-                <div className="hero-cta" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {isLoggedIn
-                        ? <a href="https://app.dengarkan.id/dashboard" className="btn-primary large" id="hero-cta-main">Go to Dashboard</a>
-                        : <a href="https://app.dengarkan.id/signup" className="btn-primary large" id="hero-cta-main">Sign Up Free</a>
-                    }
-                    <a href="#" className="btn-secondary large btn-outline">See Features</a>
-                </div>
+
             </div>
 
             {/* BLACK PLACEHOLDER FOR MEDIA */}
@@ -324,8 +318,8 @@ export default function Home() {
 
                 <div className="hero-cta" style={{ display: 'flex', alignItems: 'center' }}>
                     {isLoggedIn
-                        ? <a href="https://dengarkan.id/auth/signup" className="btn-primary large" id="hero-cta-main">Go to Dashboard</a>
-                        : <a href="https://dengarkan.id/auth/signup" className="btn-primary large" id="hero-cta-main">Sign Up Free</a>
+                        ? <a href="/admin/leads" className="btn-primary large" id="hero-cta-main">Go to Dashboard</a>
+                        : <a href="https://app.dengarkan.id/signup" className="btn-primary large" id="hero-cta-main">Sign Up Free</a>
                     }
                     <a href="#" className="btn-secondary large btn-outline">See Features</a>
                 </div>
