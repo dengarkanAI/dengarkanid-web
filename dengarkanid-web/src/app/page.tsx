@@ -257,7 +257,7 @@ export default function Home() {
             <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', flex: 'none' }}>
                 
                 {/* TOP TEXT SECTION */}
-                <div style={{ textAlign: 'center', padding: '10px 20px 130px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ textAlign: 'center', padding: '10px 20px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '24px', padding: '4px 14px', background: '#f4f4f5', border: '1px solid #e4e4e7', borderRadius: '100px', color: '#52525b' }}>
                         <i className="ph ph-medal" style={{ fontSize: '16px' }}></i>
                         {attrs?.heroTagline || "AI SOCIAL LISTENING TOOL"}
@@ -295,14 +295,14 @@ export default function Home() {
 
             {/* MEDIA FROM CMS */}
             <div className="hero-mockup-wrapper" style={{ background: 'transparent', width: '100%', maxWidth: '1440px', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center' }}>
-                <div className="dashboard-mockup" style={{ width: '100%', minHeight: '700px', display: 'flex', justifyContent: 'center' }}>
+                <div className="dashboard-mockup" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                     {(heroAttrs?.image || attrs?.heroMedia) && (
                         <StrapiMedia 
                             imageObj={heroAttrs?.image || attrs?.heroMedia} 
                             fallbackUrl="" 
                             alt="Dashboard Media" 
                             className="mockup-image" 
-                            style={{ width: '100%', height: '100%', minHeight: '700px', objectFit: 'contain', objectPosition: 'top center' }} 
+                            style={{ width: '100%', height: 'auto', display: 'block' }} 
                         />
                     )}
                 </div>
