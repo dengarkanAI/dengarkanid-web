@@ -24,7 +24,7 @@ export default function Page() {
   }, []);
 
   return (
-    <main>
+    <>
       <Navbar />
       
 <section className="glosari-hero" style={{padding: '140px 24px 60px'}}>
@@ -104,6 +104,6 @@ export default function Page() {
       </main>
 
       <Footer />
-    </main>
+    </>
   );
 }

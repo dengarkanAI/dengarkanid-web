@@ -105,7 +105,7 @@ export default function Glosari() {
   };
 
   return (
-    <main>
+    <>
       <Navbar />
 
       <section className="glosari-hero">
@@ -216,6 +216,6 @@ export default function Glosari() {
       </div>
 
       <Footer />
-    </main>
+    </>
   );
 }
