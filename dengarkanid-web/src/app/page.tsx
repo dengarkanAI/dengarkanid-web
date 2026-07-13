@@ -859,12 +859,18 @@ export default function Home() {
                     }}>
                         <div style={{
                             width: '80px', height: '80px', borderRadius: '50%', 
-                            background: 'linear-gradient(135deg, #7131FF, #00D5FF)',
+                            background: '#ffffff',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            margin: '0 auto 24px auto', fontSize: '36px', color: '#ffffff',
-                            boxShadow: '0 0 20px rgba(113, 49, 255, 0.4)'
+                            margin: '0 auto 24px auto', fontSize: '42px',
+                            boxShadow: '0 0 25px rgba(255, 255, 255, 0.15)'
                         }}>
-                            <i className="ph-bold ph-check" style={{ color: '#ffffff' }}></i>
+                            <i className="ph-bold ph-check" style={{ 
+                                background: 'linear-gradient(135deg, #7131FF, #00D5FF)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                display: 'inline-block',
+                                filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.1))'
+                            }}></i>
                         </div>
                         <h3 style={{ color: '#fff', fontSize: '24px', marginBottom: '12px' }}>Terima Kasih!</h3>
                         <p style={{ color: '#A0A0A0', lineHeight: 1.6, marginBottom: '24px' }}>
@@ -878,7 +884,13 @@ export default function Home() {
                                 "Kami akan <strong style={{color: '#00D5FF'}}>#dengarkan</strong> kebutuhanmu"
                             </p>
                         </div>
-                        <button className="btn-primary w-100" onClick={() => setShowLeadModal(false)}>
+                        <button style={{ 
+                            width: '100%', padding: '14px', borderRadius: '12px', 
+                            background: 'linear-gradient(135deg, #7131FF, #00D5FF)', 
+                            color: '#fff', border: 'none', fontWeight: 600, fontSize: '16px',
+                            cursor: 'pointer', boxSizing: 'border-box',
+                            boxShadow: '0 4px 15px rgba(113, 49, 255, 0.3)'
+                        }} onClick={() => setShowLeadModal(false)}>
                             Tutup
                         </button>
                     </div>
