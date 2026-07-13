@@ -386,7 +386,7 @@ export default function Home() {
                 <div className="feature-header-row">
                     <div className="feature-header-left">
                         <div className="feature-work-tag">
-                            <span className="bullet"></span> Feature Work
+                            <span className="bullet"></span> THE EARS
                         </div>
                         <h2 id="feature1-title" dangerouslySetInnerHTML={{ __html: homeData?.feature1Title || 'Monitor Your Brand in<br/>Real Time' }}></h2>
                     </div>
@@ -411,7 +411,7 @@ export default function Home() {
                     </div>
                     <div className="feature-box-content">
                         <div className="feature-work-tag">
-                            <span className="bullet"></span> Feature Work
+                            <span className="bullet"></span> THE BRAIN
                         </div>
                         <h2 id="feature2-title" dangerouslySetInnerHTML={{ __html: homeData?.feature2Title || 'View Your Brand Performance<br/>Overview' }}></h2>
                         <p id="feature2-desc">Access a centralized dashboard with key metrics, sentiment, engagement,
@@ -427,7 +427,7 @@ export default function Home() {
                 <div className="feature-header-row">
                     <div className="feature-header-left">
                         <div className="feature-work-tag">
-                            <span className="bullet"></span> Feature Work
+                            <span className="bullet"></span> THE SHIELD
                         </div>
                         <h2 id="feature3-title" dangerouslySetInnerHTML={{ __html: homeData?.feature3Title || 'In-Depth Analytics &<br/>Reporting' }}></h2>
                     </div>
@@ -499,7 +499,7 @@ export default function Home() {
                 <div className="feature-box-card feature-box-card-reverse">
                     <div className="feature-box-content">
                         <div className="feature-work-tag">
-                            <span className="bullet"></span> Feature Work
+                            <span className="bullet"></span> THE MOUTH
                         </div>
                         <h2 id="feature4-title" dangerouslySetInnerHTML={{ __html: homeData?.feature4Title || 'Understand Audience Sentiment &<br/>Emotions' }}></h2>
                         <p id="feature4-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature4Desc || 'Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.' }}></p>
@@ -520,7 +520,7 @@ export default function Home() {
                 <div className="feature-header-row">
                     <div className="feature-header-left">
                         <div className="feature-work-tag">
-                            <span className="bullet"></span> Feature Work
+                            <span className="bullet"></span> THE EYES
                         </div>
                         <h2 id="feature5-title" dangerouslySetInnerHTML={{ __html: homeData?.feature5Title || 'Competitive Intelligence &<br/>Benchmarking' }}></h2>
                     </div>
