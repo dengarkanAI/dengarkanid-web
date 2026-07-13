@@ -67,10 +67,19 @@ export default function Home() {
     }
   };
 
-  // Check login state from sessionStorage (set by admin login page using key 'jwt')
+  // Check login state from sessionStorage (set by admin login page) OR localStorage (set by One Tap)
   useEffect(() => {
-    const token = sessionStorage.getItem('jwt');
-    setIsLoggedIn(!!token);
+    const checkAuth = () => {
+      const token = sessionStorage.getItem('jwt');
+      const lead = localStorage.getItem('dengarkan_lead');
+      setIsLoggedIn(!!token || !!lead);
+    };
+
+    checkAuth();
+
+    // Listen for custom event from Navbar when login state changes
+    window.addEventListener('auth-status-changed', checkAuth);
+    return () => window.removeEventListener('auth-status-changed', checkAuth);
   }, []);
 
   // Helper: render the correct CTA button depending on login state

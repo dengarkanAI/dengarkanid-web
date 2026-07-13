@@ -46,6 +46,7 @@ export default function Navbar() {
         setUser(leadData);
         setShowOneTap(false);
         setShowModal(true);
+        window.dispatchEvent(new Event('auth-status-changed'));
       }
     } catch (error) {
       console.error('Error submitting lead:', error);
@@ -54,6 +55,7 @@ export default function Navbar() {
       setUser(leadData);
       setShowOneTap(false);
       setShowModal(true);
+      window.dispatchEvent(new Event('auth-status-changed'));
     }
   };
 
@@ -64,6 +66,7 @@ export default function Navbar() {
     setUser(null);
     setShowUserMenu(false);
     setShowOneTap(true);
+    window.dispatchEvent(new Event('auth-status-changed'));
   };
 
   // Close dropdown when clicking outside
