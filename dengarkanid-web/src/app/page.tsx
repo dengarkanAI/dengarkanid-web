@@ -766,7 +766,7 @@ export default function Home() {
                                 <div className="method-icon-box">
                                     <i className="ph-bold ph-phone"></i>
                                 </div>
-                                <span>+62 812-3456-7890</span>
+                                <span>+62 899-9004-646</span>
                             </div>
                         </div>
                     </div>
