@@ -2607,10 +2607,10 @@ h2 {
     position: absolute;
     left: -15%;
     top: 10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(147, 51, 234, 0.14) 0%, transparent 70%);
-    filter: blur(100px);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(147, 51, 234, 0.20) 0%, transparent 70%);
+    filter: blur(110px);
     z-index: 1;
     pointer-events: none;
 }
@@ -2633,17 +2633,45 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1100px;
-    height: 1100px;
+    width: 1350px;
+    height: 1350px;
     border-radius: 50%;
-    /* Bright pink/purple corona offset to the left and bottom-left */
+    /* Bright, wide corona — pink & purple offset to left */
     box-shadow: 
-        -55px 35px 110px -10px rgba(236, 72, 153, 0.65), 
-        -20px 15px 60px -5px rgba(139, 92, 246, 0.85);
-    background: radial-gradient(circle at 20% 50%, rgba(236, 72, 153, 0.12) 0%, transparent 60%);
-    filter: blur(15px);
+        -80px 50px 160px 20px rgba(236, 72, 153, 0.75), 
+        -30px 20px 100px 10px rgba(139, 92, 246, 0.90),
+         80px -40px 130px 10px rgba(68, 175, 226, 0.35);
+    background: radial-gradient(circle at 25% 50%, rgba(236, 72, 153, 0.18) 0%, transparent 65%);
+    filter: blur(22px);
     z-index: 2;
-    animation: eclipseBreathe 8s ease-in-out infinite alternate;
+    animation: eclipseBreathe 5s ease-in-out infinite alternate;
+}
+
+@keyframes eclipseBreathe {
+    0% {
+        box-shadow:
+            -80px 50px 160px 20px rgba(236, 72, 153, 0.55),
+            -30px 20px 100px 10px rgba(139, 92, 246, 0.70),
+             80px -40px 130px 10px rgba(68, 175, 226, 0.25);
+        filter: blur(22px);
+        opacity: 0.85;
+    }
+    50% {
+        box-shadow:
+            -100px 60px 200px 35px rgba(236, 72, 153, 0.90),
+            -40px 25px 130px 20px rgba(139, 92, 246, 1.00),
+             100px -50px 160px 20px rgba(68, 175, 226, 0.50);
+        filter: blur(18px);
+        opacity: 1;
+    }
+    100% {
+        box-shadow:
+            -60px 40px 140px 15px rgba(236, 72, 153, 0.60),
+            -20px 15px 80px 5px rgba(139, 92, 246, 0.75),
+             70px -30px 110px 8px rgba(68, 175, 226, 0.30);
+        filter: blur(26px);
+        opacity: 0.80;
+    }
 }
 
 /* The clean, sharp outline circle in front of the glow (faint background track) */
