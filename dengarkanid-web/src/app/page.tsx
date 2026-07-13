@@ -492,6 +492,49 @@ export default function Home() {
                 </div>
             </div>
         </section>
+
+        {/* Feature 4: Boxed — Image RIGHT, content LEFT (mirrored from feature 2) */}
+<section className="feature-section-boxed scroll-fade">
+            <div className="container">
+                <div className="feature-box-card feature-box-card-reverse">
+                    <div className="feature-box-content">
+                        <div className="feature-work-tag">
+                            <span className="bullet"></span> Feature Work
+                        </div>
+                        <h2 id="feature4-title" dangerouslySetInnerHTML={{ __html: homeData?.feature4Title || 'Understand Audience Sentiment &<br/>Emotions' }}></h2>
+                        <p id="feature4-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature4Desc || 'Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.' }}></p>
+                        <a href="#" className="btn-primary dynamic-cta-btn">Free Trial</a>
+                    </div>
+                    <div className="feature-box-graphic">
+                        <div className="feature-box-bg-grey">
+                            <StrapiMedia id="feature4-img" imageObj={homeData?.feature4Image} fallbackUrl="https://placehold.co/400x500/ffffff/dddddd?text=Sentiment+Analysis+Mockup+Placeholder" alt="Audience Sentiment Mockup" className="feature-box-mockup-img" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* Feature 5: Full-width — same layout as feature 1 */}
+<section className="feature-section-full scroll-fade">
+            <div className="container">
+                <div className="feature-header-row">
+                    <div className="feature-header-left">
+                        <div className="feature-work-tag">
+                            <span className="bullet"></span> Feature Work
+                        </div>
+                        <h2 id="feature5-title" dangerouslySetInnerHTML={{ __html: homeData?.feature5Title || 'Competitive Intelligence &<br/>Benchmarking' }}></h2>
+                    </div>
+                    <div className="feature-header-right">
+                        <p id="feature5-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature5Desc || 'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.' }}></p>
+                        <a href="#" className="btn-primary dynamic-cta-btn">Free Trial</a>
+                    </div>
+                </div>
+
+                <div className="feature-mockup-container">
+                    <StrapiMedia id="feature5-img" imageObj={homeData?.feature5Image} fallbackUrl="https://placehold.co/1200x670/ffffff/dddddd?text=Competitive+Intelligence+Mockup+Placeholder" alt="Competitive Intelligence Mockup" className="feature-large-mockup" />
+                </div>
+            </div>
+        </section>
 <section className="testimonials-section-new scroll-fade">
             <div className="testimonials-header text-center">
                 <h2>What people are saying?</h2>

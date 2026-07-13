@@ -683,6 +683,11 @@ h2 {
     gap: 80px;
 }
 
+/* Mirror layout: content left, image right */
+.feature-box-card-reverse {
+    flex-direction: row-reverse;
+}
+
 .feature-box-graphic {
     flex: 1;
 }
