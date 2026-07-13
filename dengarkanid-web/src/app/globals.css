@@ -2746,8 +2746,8 @@ h2 {
         transparent 46%,
         transparent 100%
     );
-    -webkit-mask: radial-gradient(circle at center, transparent 46.5%, black 48.5%, transparent 50.5%);
-    mask: radial-gradient(circle at center, transparent 46.5%, black 48.5%, transparent 50.5%);
+    -webkit-mask: radial-gradient(circle at center, transparent 43.5%, black 47%, transparent 51.5%);
+    mask: radial-gradient(circle at center, transparent 43.5%, black 47%, transparent 51.5%);
     filter: blur(6px);
     opacity: 0.9;
     pointer-events: none;
