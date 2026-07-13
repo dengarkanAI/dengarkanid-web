@@ -453,9 +453,9 @@ export default function Home() {
             <div className="tech-particle" style={{ width: '5px', height: '5px', top: '10%', left: '70%', animationDelay: '3s' }}></div>
 
             <div className="container tech-text-container" style={{ position: 'relative', zIndex: 10 }}>
-                <h3 className="tech-tagline">
+                <div className="tech-tagline">
                     {attrs?.aboutUsTagline || "Dengarkan Yang tak Terucapkan"}
-                </h3>
+                </div>
                 <h2 className="tech-desc">
                     {attrs?.aboutUsDescription || "Data tanpa konteks budaya hanyalah tumpukan angka. Kami memberi Anda kebenaran yang jujur, untuk #DengarkanDulu"}
                 </h2>
