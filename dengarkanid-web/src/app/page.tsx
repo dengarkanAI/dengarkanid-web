@@ -74,11 +74,12 @@ export default function Home() {
   }, []);
 
   // Helper: render the correct CTA button depending on login state
-  const CtaButton = ({ className = 'btn-primary dynamic-cta-btn' }: { className?: string }) => {
+  const CtaButton = ({ className }: { className?: string }) => {
+    const finalClassName = `btn-primary dynamic-cta-btn ${className || ''}`.trim();
     if (isLoggedIn) {
-      return <a href="https://dengarkan.id/auth/signup" className={className} id="cta-btn">Go to Dashboard</a>;
+      return <a href="/admin/leads" className={finalClassName} id="cta-btn">Go to Dashboard</a>;
     }
-    return <a href="https://dengarkan.id/auth/signup" className={className} id="cta-btn">Free Trial</a>;
+    return <a href="https://app.dengarkan.id/signup" className={finalClassName} id="cta-btn">Free Trial</a>;
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
