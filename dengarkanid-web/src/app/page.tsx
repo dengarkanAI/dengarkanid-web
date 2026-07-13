@@ -268,7 +268,12 @@ export default function Home() {
                         textAlign: 'center',
                         animation: 'fadeIn 0.8s ease-in-out'
                     }}>
-                        Understand what people are saying, how they feel, and what matters most. <strong>#Dengarkan</strong> helps you track market sentiment, discover trends, and gain real-time insights from billions of conversations.
+                        Understand what people are saying, how they feel, and what matters most. <strong style={{
+                            background: 'linear-gradient(135deg, #7131FF, #00D5FF)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            display: 'inline-block'
+                        }}>#Dengarkan</strong> helps you track market sentiment, discover trends, and gain real-time insights from billions of conversations.
                     </p>
                 </div>
             </div>
