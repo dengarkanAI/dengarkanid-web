@@ -2595,8 +2595,8 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1120px;
-    height: 1120px;
+    width: 1280px;
+    height: 1280px;
     z-index: 2; /* Sits above background, below particles and grain */
     pointer-events: none;
     overflow: visible; /* Prevent clipping of the glowing flares */
@@ -2746,8 +2746,8 @@ h2 {
         transparent 46%,
         transparent 100%
     );
-    -webkit-mask: radial-gradient(circle at center, transparent 43.5%, black 47%, transparent 51.5%);
-    mask: radial-gradient(circle at center, transparent 43.5%, black 47%, transparent 51.5%);
+    -webkit-mask: radial-gradient(circle at center, transparent 46.5%, black 48.5%, transparent 50.5%);
+    mask: radial-gradient(circle at center, transparent 46.5%, black 48.5%, transparent 50.5%);
     filter: blur(6px);
     opacity: 0.9;
     pointer-events: none;
