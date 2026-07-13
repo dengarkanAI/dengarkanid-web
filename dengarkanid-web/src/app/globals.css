@@ -2595,8 +2595,8 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 820px;
-    height: 820px;
+    width: 960px;
+    height: 960px;
     z-index: 2; /* Sits above background, below particles and grain */
     pointer-events: none;
     overflow: visible; /* Prevent clipping of the glowing flares */
@@ -2633,8 +2633,8 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 800px;
-    height: 800px;
+    width: 940px;
+    height: 940px;
     border-radius: 50%;
     /* Bright pink/purple corona offset to the left and bottom-left */
     box-shadow: 
@@ -2652,8 +2652,8 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 800px;
-    height: 800px;
+    width: 940px;
+    height: 940px;
     border-radius: 50%;
     border: 1px solid rgba(236, 72, 153, 0.08); /* Faint background track line */
     z-index: 3;
