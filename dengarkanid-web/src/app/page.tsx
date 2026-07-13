@@ -269,7 +269,7 @@ export default function Home() {
                         animation: 'fadeIn 0.8s ease-in-out'
                     }}>
                         Understand what people are saying, how they feel, and what matters most. <strong style={{
-                            background: 'linear-gradient(135deg, #7131FF, #00D5FF)',
+                            background: 'linear-gradient(135deg, #C060FF 0%, #30C0FF 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             display: 'inline-block'
