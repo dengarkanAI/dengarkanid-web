@@ -82,8 +82,21 @@ export default function Navbar() {
           <div className={`nav-auth ${isMobileMenuOpen ? 'active' : ''}`}>
             {user ? (
               <>
-                <span style={{marginRight: '16px', fontWeight: 600}}>Hi, {user.name}</span>
-                <a href="https://dengarkan.id/auth/signup" className="btn-primary dynamic-cta-btn">Go to Dashboard</a>
+                <span style={{marginRight: '12px', fontWeight: 600, fontSize: '14px'}}>Hi, {user.name}</span>
+                <a href="https://dengarkan.id/auth/signup" className="btn-primary dynamic-cta-btn" style={{marginRight: '8px'}}>Go to Dashboard</a>
+                <button
+                  className="btn-secondary"
+                  style={{cursor: 'pointer', border: '1px solid #e4e4e7', background: 'transparent', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', fontWeight: 600}}
+                  onClick={() => {
+                    localStorage.removeItem('dengarkan_lead');
+                    sessionStorage.removeItem('jwt');
+                    sessionStorage.removeItem('user');
+                    setUser(null);
+                    setShowOneTap(true);
+                  }}
+                >
+                  Logout
+                </button>
               </>
             ) : (
               <>
