@@ -295,14 +295,14 @@ export default function Home() {
 
             {/* MEDIA FROM CMS */}
             <div className="hero-mockup-wrapper" style={{ background: 'transparent', width: '100%', maxWidth: '1440px', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center' }}>
-                <div className="dashboard-mockup" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <div className="dashboard-mockup" style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '24px' }}>
                     {(heroAttrs?.image || attrs?.heroMedia) && (
                         <StrapiMedia 
                             imageObj={heroAttrs?.image || attrs?.heroMedia} 
                             fallbackUrl="" 
                             alt="Dashboard Media" 
                             className="mockup-image" 
-                            style={{ width: '100%', height: 'auto', display: 'block' }} 
+                            style={{ width: '100%', height: 'auto', display: 'block', border: 'none', outline: 'none', boxShadow: 'none', transform: 'scale(1.02)' }} 
                         />
                     )}
                 </div>
