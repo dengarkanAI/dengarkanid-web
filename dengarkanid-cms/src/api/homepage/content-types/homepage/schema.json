@@ -11,6 +11,40 @@
     "draftAndPublish": false
   },
   "attributes": {
+    "heroTagline": {
+      "type": "string",
+      "default": "AI SOCIAL LISTENING TOOL"
+    },
+    "heroUSP1": {
+      "type": "string",
+      "default": "Discover Customer Insights."
+    },
+    "heroUSP2": {
+      "type": "string",
+      "default": "Analyze Trends Faster."
+    },
+    "heroUSP3": {
+      "type": "string",
+      "default": "Monitor Brand Health."
+    },
+    "heroMedia": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "aboutUsTagline": {
+      "type": "string",
+      "default": "Dengarkan Yang tak Terucapkan"
+    },
+    "aboutUsDescription": {
+      "type": "text",
+      "default": "Data tanpa konteks budaya hanyalah tumpukan angka. Kami memberi Anda kebenaran yang jujur, untuk #DengarkanDulu"
+    },
     "feature1Title": {
       "type": "string",
       "default": "Monitor Your Brand in<br>Real Time"
@@ -54,6 +88,40 @@
       "default": "Explore detailed analytics with customizable reports to measure performance and support strategic decisions."
     },
     "feature3Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "feature4Title": {
+      "type": "string",
+      "default": "Understand Audience Sentiment &<br>Emotions"
+    },
+    "feature4Desc": {
+      "type": "text",
+      "default": "Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand."
+    },
+    "feature4Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "feature5Title": {
+      "type": "string",
+      "default": "Competitive Intelligence &<br>Benchmarking"
+    },
+    "feature5Desc": {
+      "type": "text",
+      "default": "Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities."
+    },
+    "feature5Image": {
       "type": "media",
       "multiple": false,
       "required": false,

@@ -48,6 +48,21 @@
 
     <!-- Phosphor Icons (for standard icons) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+    /* Scroll Fade Interaction */
+    .scroll-fade {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+    }
+    .scroll-fade.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    </style>
+
 </head>
 
 <body>
@@ -86,7 +101,7 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section">
+        <section class="hero-section scroll-fade">
 
             <div class="hero-content">
                 <div class="hero-mockup-wrapper">
@@ -112,7 +127,7 @@
         </section>
 
         <!-- Partners Section -->
-        <section class="partners-section">
+        <section class="partners-section scroll-fade">
             <div class="partners-container">
                 <div class="partners-static-text">
                     Used by Teams Across Multiple Industries
@@ -217,7 +232,7 @@
         </section>
 
         <!-- Feature 1: Monitor Your Brand -->
-        <section class="feature-section-full">
+        <section class="feature-section-full scroll-fade">
             <div class="container">
                 <div class="feature-header-row">
                     <div class="feature-header-left">
@@ -243,7 +258,7 @@
         </section>
 
         <!-- Feature 2: View Performance -->
-        <section class="feature-section-boxed">
+        <section class="feature-section-boxed scroll-fade">
             <div class="container">
                 <div class="feature-box-card">
                     <div class="feature-box-graphic">
@@ -268,7 +283,7 @@
         </section>
 
         <!-- Feature 3: In-Depth Analytics -->
-        <section class="feature-section-full">
+        <section class="feature-section-full scroll-fade">
             <div class="container">
                 <div class="feature-header-row">
                     <div class="feature-header-left">
@@ -324,7 +339,7 @@
         </section>
 
         <!-- Testimonials / What people are saying -->
-        <section class="testimonials-section-new">
+        <section class="testimonials-section-new scroll-fade">
             <div class="testimonials-header text-center">
                 <h2>What people are saying?</h2>
                 <p class="text-muted">Don't just take our word for it—see what our customers have to say about their
@@ -518,7 +533,7 @@
         </section>
 
         <!-- FAQ Section -->
-        <section class="faq-section-new">
+        <section class="faq-section-new scroll-fade">
             <div class="container">
                 <div class="faq-card-box">
                     <div class="faq-header text-center">
@@ -582,7 +597,7 @@
         </section>
 
         <!-- Blog Section -->
-        <section class="blog-section-new">
+        <section class="blog-section-new scroll-fade">
             <div class="container">
                 <h2 class="text-center section-title">Our Blog</h2>
 
@@ -661,7 +676,7 @@
                 </div>
             </div>
             <!-- Contact Us Section -->
-            <section id="contact" class="contact-section-new">
+            <section id="contact" class="contact-section-new scroll-fade">
                 <div class="container contact-grid-new">
                     <!-- Left Side: Copy and Contacts Info -->
                     <div class="contact-left-info">
@@ -1338,6 +1353,21 @@
                     }
                 }, 4000); // 4 seconds interval
             }
+        
+        // Scroll Fade Interaction
+        const fadeElements = document.querySelectorAll('.scroll-fade');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
         });
     </script>
     <!-- Mobile Menu Script -->
@@ -1362,6 +1392,9 @@
                     }
                 });
             }
+        
+
+
         });
     </script>
 </body>
