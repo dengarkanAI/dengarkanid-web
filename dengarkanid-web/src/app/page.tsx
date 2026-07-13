@@ -837,8 +837,8 @@ export default function Home() {
                                 ></textarea>
                             </div>
                             
-                            <button type="submit" className="btn-primary w-100" disabled={leadSubmitting}>
-                                {leadSubmitting ? 'Sending...' : 'Send Message'}
+                            <button type="submit" className="btn-send-message" disabled={leadSubmitting}>
+                                {leadSubmitting ? 'Sending...' : <>Send Message &nbsp;&rarr;</>}
                             </button>
                         </form>
                     </div>
@@ -861,10 +861,10 @@ export default function Home() {
                             width: '80px', height: '80px', borderRadius: '50%', 
                             background: 'linear-gradient(135deg, #7131FF, #00D5FF)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            margin: '0 auto 24px auto', fontSize: '36px', color: '#fff',
+                            margin: '0 auto 24px auto', fontSize: '36px', color: '#ffffff',
                             boxShadow: '0 0 20px rgba(113, 49, 255, 0.4)'
                         }}>
-                            <i className="ph-bold ph-check"></i>
+                            <i className="ph-bold ph-check" style={{ color: '#ffffff' }}></i>
                         </div>
                         <h3 style={{ color: '#fff', fontSize: '24px', marginBottom: '12px' }}>Terima Kasih!</h3>
                         <p style={{ color: '#A0A0A0', lineHeight: 1.6, marginBottom: '24px' }}>
