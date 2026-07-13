@@ -27,9 +27,7 @@ export default function Footer() {
                         </p>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                        <div className="footer-logo-box">
-                            <img src="https://placehold.co/120x30/transparent/1a1a1a?text=Dengarkan" alt="Dengarkan Logo" className="footer-logo-placeholder"/>
-                        </div>
+                        <h4>Follow Us</h4>
                         <div className="footer-social-box" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 40px)', gap: '12px' }}>
                             <a href="https://www.linkedin.com/company/dengarkan" target="_blank" rel="noopener noreferrer" className="social-circle"><i className="ph ph-linkedin-logo"></i></a>
                             <a href="https://web.facebook.com/profile.php?id=61591381015840" target="_blank" rel="noopener noreferrer" className="social-circle"><i className="ph ph-facebook-logo"></i></a>
