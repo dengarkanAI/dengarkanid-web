@@ -259,6 +259,17 @@ export default function Home() {
                             {usps[currentUspIndex]}
                         </h1>
                     </div>
+                    <p style={{
+                        maxWidth: '600px',
+                        fontSize: '18px',
+                        lineHeight: 1.6,
+                        color: '#52525b',
+                        marginTop: '20px',
+                        textAlign: 'center',
+                        animation: 'fadeIn 0.8s ease-in-out'
+                    }}>
+                        Understand what people are saying, how they feel, and what matters most. AI helps you track market sentiment, discover trends, and gain real-time insights from billions of conversations.
+                    </p>
                 </div>
             </div>
 
