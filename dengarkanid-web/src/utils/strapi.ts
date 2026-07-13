@@ -4,21 +4,15 @@ export function getStrapiImageUrl(imageObj: any): string {
   if (!imageObj) return '';
   let url = '';
 
-  const getBestUrl = (imgData: any) => {
-      if (imgData.formats && imgData.formats.large) return imgData.formats.large.url;
-      if (imgData.formats && imgData.formats.medium) return imgData.formats.medium.url;
-      return imgData.url;
-  };
-
   // Strapi v5 flat format
   if (imageObj.url) {
-      url = getBestUrl(imageObj);
+      url = imageObj.url;
   }
   // Strapi v4 nested format
   else if (imageObj.data?.attributes?.url) {
-      url = getBestUrl(imageObj.data.attributes);
+      url = imageObj.data.attributes.url;
   } else if (imageObj.data?.url) {
-      url = getBestUrl(imageObj.data);
+      url = imageObj.data.url;
   }
 
   if (url && url.startsWith('/')) {
