@@ -29,9 +29,9 @@ export default function Home() {
   // Helper: render the correct CTA button depending on login state
   const CtaButton = ({ className = 'btn-primary dynamic-cta-btn' }: { className?: string }) => {
     if (isLoggedIn) {
-      return <a href="/admin/leads" className={className} id="cta-btn">Go to Dashboard</a>;
+      return <a href="https://dengarkan.id/auth/signup" className={className} id="cta-btn">Go to Dashboard</a>;
     }
-    return <a href="https://app.dengarkan.id/signup" className={className} id="cta-btn">Free Trial</a>;
+    return <a href="https://dengarkan.id/auth/signup" className={className} id="cta-btn">Free Trial</a>;
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -240,8 +240,8 @@ export default function Home() {
 
                 <div className="hero-cta" style={{ display: 'flex', alignItems: 'center' }}>
                     {isLoggedIn
-                        ? <a href="https://app.dengarkan.id/dashboard" className="btn-primary large" id="hero-cta-main">Go to Dashboard</a>
-                        : <a href="https://app.dengarkan.id/signup" className="btn-primary large" id="hero-cta-main">Sign Up Free</a>
+                        ? <a href="https://dengarkan.id/auth/signup" className="btn-primary large" id="hero-cta-main">Go to Dashboard</a>
+                        : <a href="https://dengarkan.id/auth/signup" className="btn-primary large" id="hero-cta-main">Sign Up Free</a>
                     }
                     <a href="#" className="btn-secondary large btn-outline">See Features</a>
                 </div>

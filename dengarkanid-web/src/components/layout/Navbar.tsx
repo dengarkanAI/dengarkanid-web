@@ -83,12 +83,12 @@ export default function Navbar() {
             {user ? (
               <>
                 <span style={{marginRight: '16px', fontWeight: 600}}>Hi, {user.name}</span>
-                <Link href="/admin/leads" className="btn-primary dynamic-cta-btn">Go to Dashboard</Link>
+                <a href="https://dengarkan.id/auth/signup" className="btn-primary dynamic-cta-btn">Go to Dashboard</a>
               </>
             ) : (
               <>
-                <Link href="/admin/login" className="btn-secondary">Sign In</Link>
-                <a href="#" className="btn-primary dynamic-cta-btn">Start For Free</a>
+                <a href="https://dengarkan.id/auth/login" className="btn-secondary">Sign In</a>
+                <a href="https://dengarkan.id/auth/signup" className="btn-primary dynamic-cta-btn">Start For Free</a>
               </>
             )}
           </div>
@@ -147,7 +147,7 @@ export default function Navbar() {
           </p>
           <div className="modal-actions">
             <button className="btn-secondary" style={{width: '100%', marginBottom: '12px'}} onClick={() => setShowModal(false)}>Explore Features First</button>
-            <Link href="/admin/leads" className="btn-primary" style={{width: '100%'}} onClick={() => setShowModal(false)}>Go to Dashboard</Link>
+            <a href="https://dengarkan.id/auth/signup" className="btn-primary" style={{width: '100%'}} onClick={() => setShowModal(false)}>Go to Dashboard</a>
           </div>
         </div>
       </div>
