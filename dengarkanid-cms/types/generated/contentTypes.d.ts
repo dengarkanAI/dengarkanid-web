@@ -723,10 +723,10 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
       'api::testimonial.testimonial'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.String;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     quote: Schema.Attribute.Text & Schema.Attribute.Required;
+    role: Schema.Attribute.String;
     row: Schema.Attribute.Enumeration<['top', 'middle', 'bottom']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'top'>;

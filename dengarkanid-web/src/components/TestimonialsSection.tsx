@@ -8,7 +8,7 @@ interface Testimonial {
   attributes: {
     quote: string;
     name: string;
-    location: string | null;
+    role: string | null;
     cardColor: 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple';
     row: 'top' | 'middle' | 'bottom';
     isActive: boolean;
@@ -30,7 +30,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
       attributes: {
         quote: '"Dengarkan memberikan insight yang tidak pernah kami bayangkan sebelumnya. Kami akhirnya benar-benar mendengar pelanggan kami."',
         name: 'Rina Kusuma',
-        location: 'Jakarta, Indonesia',
+        role: 'Marketing Director',
         cardColor: 'red',
         row: 'top',
         isActive: true,
@@ -42,7 +42,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
       attributes: {
         quote: '"Platform ini mengubah cara kami memahami sentimen pasar. Data yang akurat, analitik yang tajam."',
         name: 'Budi Santoso',
-        location: 'Surabaya, Indonesia',
+        role: 'CEO, Tech Startup',
         cardColor: 'orange',
         row: 'top',
         isActive: true,
@@ -54,7 +54,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
       attributes: {
         quote: '"Kami bisa mendeteksi krisis reputasi sebelum menjadi viral. Dengarkan adalah game-changer untuk tim PR kami."',
         name: 'Sari Dewi',
-        location: 'Bandung, Indonesia',
+        role: 'Public Relations Head',
         cardColor: 'yellow',
         row: 'top',
         isActive: true,
@@ -68,7 +68,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
       attributes: {
         quote: '"Kompetitor kami bergerak cepat, tapi dengan Dengarkan kami selalu satu langkah lebih maju."',
         name: 'Agus Wijaya',
-        location: 'Medan, Indonesia',
+        role: 'Brand Manager',
         cardColor: 'green',
         row: 'bottom',
         isActive: true,
@@ -80,7 +80,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
       attributes: {
         quote: '"ROI yang luar biasa. Dalam 3 bulan, kami bisa mengoptimalkan strategi konten kami berdasarkan data nyata."',
         name: 'Dian Purnama',
-        location: 'Yogyakarta, Indonesia',
+        role: 'Digital Strategist',
         cardColor: 'blue',
         row: 'bottom',
         isActive: true,
@@ -92,7 +92,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
       attributes: {
         quote: '"Fitur analitik sentimen budayanya sangat akurat untuk konteks Indonesia. Tidak ada yang menandingi ini."',
         name: 'Maya Saputri',
-        location: 'Makassar, Indonesia',
+        role: 'Social Media Manager',
         cardColor: 'purple',
         row: 'bottom',
         isActive: true,
@@ -104,7 +104,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
       attributes: {
         quote: '"Tim customer success Dengarkan sangat responsif. Kami merasa benar-benar diperhatikan sebagai klien."',
         name: 'Hendra Lim',
-        location: 'Bali, Indonesia',
+        role: 'Product Manager',
         cardColor: 'red',
         row: 'bottom',
         isActive: true,
@@ -115,7 +115,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
 };
 
 function TestiCard({ t, strapiUrl }: { t: Testimonial; strapiUrl: string }) {
-  const { quote, name, location, cardColor, avatar } = t.attributes;
+  const { quote, name, role, cardColor, avatar } = t.attributes;
   
   // Map hardcoded names to their original avatars when no CMS avatar is provided
   const getFallbackAvatar = (name: string) => {
@@ -139,7 +139,7 @@ function TestiCard({ t, strapiUrl }: { t: Testimonial; strapiUrl: string }) {
         <img src={avatarUrl} alt={name} className="testi-avatar" />
         <div className="testi-meta">
           <h4>{name}</h4>
-          {location && <span>{location}</span>}
+          {role && <span>{role}</span>}
         </div>
       </div>
     </div>

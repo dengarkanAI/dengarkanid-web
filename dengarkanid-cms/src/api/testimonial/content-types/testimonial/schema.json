@@ -20,7 +20,7 @@
       "type": "string",
       "required": true
     },
-    "location": {
+    "role": {
       "type": "string",
       "required": false
     },

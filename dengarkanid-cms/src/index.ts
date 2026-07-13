@@ -91,12 +91,12 @@ export default {
       const testiCount = await strapi.db.query('api::testimonial.testimonial').count();
       if (testiCount === 0) {
         const initialTestimonials = [
-          { quote: "I've tried countless tea brands, but nothing compares to the freshness and aroma of this one. Every sip feels like a warm hug! My mornings are incomplete without it.", name: "Olivia Richardson", location: "New York, USA", cardColor: "red", row: "top" },
-          { quote: "As a tea lover, I appreciate the rich flavors and organic ingredients. The chamomile blend has become my go-to for relaxation after a long day!", name: "Sophia Mitchell", location: "London, UK", cardColor: "orange", row: "top" },
-          { quote: "I never knew tea could taste this good! The flavors are so pure and soothing. Plus, the packaging is beautiful - perfect for gifting too!", name: "Aisha Khan", location: "London, UK", cardColor: "yellow", row: "top" },
-          { quote: "The variety of blends is amazing! Whether I need a morning energy boost or a calming bedtime tea, this brand has it all. Highly recommend!", name: "Emily Sanders", location: "Sydney, Australia", cardColor: "blue", row: "bottom" },
-          { quote: "This tea has changed my daily routine for the better! The detox blend helps me feel refreshed and energized. Love the natural ingredients!", name: "Priya Deshmukh", location: "Mumbai, India", cardColor: "purple", row: "bottom" },
-          { quote: "I'm obsessed with the matcha! It's so smooth and gives me the perfect energy without any jitters. A must-try for all tea lovers!", name: "Mia Lawrence", location: "Toronto, Canada", cardColor: "green", row: "bottom" },
+          { quote: "I've tried countless tea brands, but nothing compares to the freshness and aroma of this one. Every sip feels like a warm hug! My mornings are incomplete without it.", name: "Olivia Richardson", role: "Marketing Director", cardColor: "red", row: "top" },
+          { quote: "As a tea lover, I appreciate the rich flavors and organic ingredients. The chamomile blend has become my go-to for relaxation after a long day!", name: "Sophia Mitchell", role: "CEO, Tech Startup", cardColor: "orange", row: "top" },
+          { quote: "I never knew tea could taste this good! The flavors are so pure and soothing. Plus, the packaging is beautiful - perfect for gifting too!", name: "Aisha Khan", role: "Public Relations Head", cardColor: "yellow", row: "top" },
+          { quote: "The variety of blends is amazing! Whether I need a morning energy boost or a calming bedtime tea, this brand has it all. Highly recommend!", name: "Emily Sanders", role: "Brand Manager", cardColor: "blue", row: "bottom" },
+          { quote: "This tea has changed my daily routine for the better! The detox blend helps me feel refreshed and energized. Love the natural ingredients!", name: "Priya Deshmukh", role: "Digital Strategist", cardColor: "purple", row: "bottom" },
+          { quote: "I'm obsessed with the matcha! It's so smooth and gives me the perfect energy without any jitters. A must-try for all tea lovers!", name: "Mia Lawrence", role: "Social Media Manager", cardColor: "green", row: "bottom" },
         ];
         
         console.log(`[BOOTSTRAP] Migrating ${initialTestimonials.length} testimonials...`);
@@ -105,9 +105,9 @@ export default {
             data: {
               quote: item.quote,
               name: item.name,
-              location: item.location,
-              cardColor: item.cardColor,
-              row: item.row,
+              role: item.role,
+              cardColor: item.cardColor as any,
+              row: item.row as any,
               isActive: true
             },
             status: 'published'
