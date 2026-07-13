@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "glosariums",
+  "info": {
+    "singularName": "glosarium",
+    "pluralName": "glosariums",
+    "displayName": "Glosarium",
+    "description": "Kamus istilah"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "term": {
+      "type": "string",
+      "required": true
+    },
+    "englishTerm": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "listening",
+        "analytics",
+        "sentiment",
+        "social",
+        "strategy",
+        "metrics"
+      ],
+      "required": true
+    },
+    "definition": {
+      "type": "text",
+      "required": true
+    },
+    "relatedTerms": {
+      "type": "string"
+    }
+  }
+}
