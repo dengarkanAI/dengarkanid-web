@@ -293,17 +293,16 @@ export default function Home() {
 
             </div>
 
-            {/* BLACK PLACEHOLDER FOR MEDIA */}
-            <div className="hero-mockup-wrapper" style={{ background: '#000', minHeight: '600px', width: '100%', maxWidth: '100%', borderRadius: 0, position: 'relative', flex: 1 }}>
-                {/* Media from CMS */}
-                <div className="dashboard-mockup" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, overflow: 'hidden' }}>
+            {/* MEDIA FROM CMS */}
+            <div className="hero-mockup-wrapper" style={{ background: 'transparent', width: '100%', maxWidth: '1440px', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center' }}>
+                <div className="dashboard-mockup" style={{ width: '100%', overflow: 'hidden' }}>
                     {(heroAttrs?.image || attrs?.heroMedia) && (
                         <StrapiMedia 
                             imageObj={heroAttrs?.image || attrs?.heroMedia} 
                             fallbackUrl="" 
                             alt="Dashboard Media" 
                             className="mockup-image" 
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                            style={{ width: '100%', height: 'auto', display: 'block' }} 
                         />
                     )}
                 </div>
