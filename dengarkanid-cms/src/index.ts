@@ -51,7 +51,8 @@ export default {
           'api::glosarium.glosarium.find', 
           'api::glosarium.glosarium.findOne',
           'api::testimonial.testimonial.find',
-          'api::testimonial.testimonial.findOne'
+          'api::testimonial.testimonial.findOne',
+          'api::lead.lead.create'
         ];
         
         const existingPermissions = await strapi.db.query('plugin::users-permissions.permission').findMany({
