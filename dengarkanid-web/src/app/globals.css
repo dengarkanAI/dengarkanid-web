@@ -585,7 +585,7 @@ h2 {
 /* Feature Section Full (Monitor Your Brand) */
 .feature-section-full {
     padding: 80px 0;
-    background-color: #FAFAFA;
+    background-color: #FFFFFF;
 }
 
 .feature-header-row {
@@ -669,7 +669,7 @@ h2 {
 /* Feature Section Boxed (View Performance Overview) */
 .feature-section-boxed {
     padding: 60px 0;
-    background-color: #FAFAFA; /* Light grey page background */
+    background-color: #FFFFFF; /* Changed to solid white as requested */
 }
 
 .feature-box-card {
