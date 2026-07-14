@@ -20,11 +20,28 @@
       "type": "email",
       "required": true
     },
+    "phone": {
+      "type": "string"
+    },
     "company": {
+      "type": "string"
+    },
+    "industry": {
       "type": "string"
     },
     "jobTitle": {
       "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Automatic Login",
+        "Talk to our team"
+      ],
+      "default": "Talk to our team"
     },
     "source": {
       "type": "string",

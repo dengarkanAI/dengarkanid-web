@@ -30,6 +30,8 @@ export default function Navbar() {
       email: 'manis@dengarkan.id',
       company: 'Dengarkan ID',
       jobTitle: 'Founder',
+      category: 'Automatic Login',
+      source: 'Google One Tap Simulator'
     };
     
     // Simulate API call

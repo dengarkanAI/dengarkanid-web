@@ -653,16 +653,23 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    category: Schema.Attribute.Enumeration<
+      ['Automatic Login', 'Talk to our team']
+    > &
+      Schema.Attribute.DefaultTo<'Talk to our team'>;
     company: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.Email & Schema.Attribute.Required;
+    industry: Schema.Attribute.String;
     jobTitle: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::lead.lead'> &
       Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     source: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Website'>;
     updatedAt: Schema.Attribute.DateTime;

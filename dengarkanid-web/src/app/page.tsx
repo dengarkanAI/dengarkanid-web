@@ -40,10 +40,6 @@ export default function Home() {
     e.preventDefault();
     setLeadSubmitting(true);
     try {
-      const companyVal = leadForm.industry ? `${leadForm.company} (${leadForm.industry})` : leadForm.company;
-      const jobTitleVal = leadForm.phone ? `${leadForm.position} - Ph: ${leadForm.phone}` : leadForm.position;
-      const sourceVal = leadForm.message ? `Talk to our team - Message: ${leadForm.message}` : 'Talk to our team';
-      
       const res = await fetch(`${STRAPI_API_URL}/leads`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,9 +47,13 @@ export default function Home() {
           data: {
             name: leadForm.name,
             email: leadForm.email,
-            company: companyVal,
-            jobTitle: jobTitleVal,
-            source: sourceVal
+            phone: leadForm.phone,
+            company: leadForm.company,
+            industry: leadForm.industry,
+            jobTitle: leadForm.position,
+            message: leadForm.message,
+            category: 'Talk to our team',
+            source: 'Website Form'
           }
         })
       });

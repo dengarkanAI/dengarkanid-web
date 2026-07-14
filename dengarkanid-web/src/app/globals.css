@@ -1808,10 +1808,10 @@ h2 {
     .feature-header-right {
         padding-top: 0;
     }
-    .feature-box-card, .feature-mockup-card-split {
+    .feature-box-card, .feature-box-card-reverse, .feature-mockup-card-split {
         flex-direction: column;
-        padding: 40px;
-        gap: 40px;
+        padding: 32px 24px;
+        gap: 32px;
     }
     .feature-split-right-graphic {
         width: 100%;
@@ -3351,21 +3351,21 @@ h2 {
 /* Apple-Style Scroll Animations */
 .scroll-fade, .scroll-fade-up {
     opacity: 0;
-    transform: translateY(40px) scale(0.96);
+    transform: translateY(80px) scale(0.92);
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
 .scroll-fade-left {
     opacity: 0;
-    transform: translateX(-40px) scale(0.96);
+    transform: translateX(-80px) scale(0.92);
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
 .scroll-fade-right {
     opacity: 0;
-    transform: translateX(40px) scale(0.96);
+    transform: translateX(80px) scale(0.92);
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
@@ -3382,7 +3382,7 @@ h2 {
 .scroll-fade-left.is-visible,
 .scroll-fade-right.is-visible {
     opacity: 1;
-    transform: translate(0);
+    transform: translate(0) scale(1);
 }
 
 /* Optional staggering for children */
