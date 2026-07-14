@@ -1,0 +1,48 @@
+# ===========================================
+# Dengarkan.id — Base Docker Compose
+# Service inti: Strapi CMS + Next.js frontend
+#
+# Full stack:
+#   docker compose up -d          (CMS + frontend + Caddy)
+#
+# Tanpa Caddy (production-like):
+#   docker compose -f docker-compose.yml up -d
+# ===========================================
+
+services:
+  cms:
+    build:
+      context: ./dengarkanid-cms
+    container_name: dengarkan-cms
+    env_file:
+      - .env
+    volumes:
+      - cms-data:/opt/app/.tmp
+      - cms-uploads:/opt/app/public/uploads
+    networks:
+      - app-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:1337/_health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  frontend:
+    build:
+      context: ./dengarkanid-web
+    container_name: dengarkan-frontend
+    env_file:
+      - .env
+    networks:
+      - app-net
+    restart: unless-stopped
+
+volumes:
+  cms-data:
+  cms-uploads:
+
+networks:
+  app-net:
+    driver: bridge

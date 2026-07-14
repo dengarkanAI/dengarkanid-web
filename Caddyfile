@@ -1,0 +1,12 @@
+:80 {
+    # Group all CMS paths into a named matcher
+    @cms {
+        path /api/* /admin* /uploads/* /i18n* /content-manager* /content-type-builder* /email/* /upload/* /users-permissions* /config-sync* /_health
+    }
+
+    # Proxy CMS-bound requests to Strapi
+    reverse_proxy @cms cms:1337
+
+    # Everything else goes to Next.js frontend
+    reverse_proxy frontend:3000
+}
