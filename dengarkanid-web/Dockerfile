@@ -7,8 +7,8 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 
-# Build-time env: client-side API URL (browser → Caddy → CMS)
-ARG NEXT_PUBLIC_STRAPI_URL=
+# Must be ENV (not ARG) — Next.js reads process.env during build
+ENV NEXT_PUBLIC_STRAPI_URL=
 
 COPY package.json package-lock.json ./
 RUN npm ci
