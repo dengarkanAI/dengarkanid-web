@@ -33,7 +33,7 @@ export default function Page() {
   const [adminName, setAdminName] = useState("Admin");
   const [token, setToken] = useState<string | null>(null);
 
-  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
 
   // Check auth on mount
   useEffect(() => {

@@ -14,7 +14,7 @@ export default function Page() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
 
   useEffect(() => {
     // If already logged in, redirect to leads dashboard
@@ -41,7 +41,7 @@ export default function Page() {
         // Save JWT to Session Storage
         sessionStorage.setItem("jwt", data.jwt);
         sessionStorage.setItem("user", JSON.stringify(data.user));
-        
+
         setSuccess(true);
         setTimeout(() => {
           router.push("/admin/leads");
