@@ -97,7 +97,7 @@ const FALLBACK: { top: Testimonial[]; bottom: Testimonial[] } = {
 
 function TestiCard({ t, strapiUrl }: { t: Testimonial; strapiUrl: string }) {
   const { quote, name, role, cardColor, avatar } = t;
-  
+
   // Map hardcoded names to their original avatars when no CMS avatar is provided
   // Provide a random-ish consistent avatar for new names
   const getFallbackAvatar = (id: number, name: string) => {
@@ -107,7 +107,7 @@ function TestiCard({ t, strapiUrl }: { t: Testimonial; strapiUrl: string }) {
     if (name.includes('Emily')) return '/assets/headshot-4.jpg';
     if (name.includes('Priya')) return '/assets/headshot-5.jpg';
     if (name.includes('Mia')) return '/assets/headshot-2.jpg';
-    
+
     // Cycle through avatars 1-5 for new entries that don't have avatars uploaded
     const avatarIndex = (id % 5) + 1;
     return `/assets/headshot-${avatarIndex}.jpg`;
@@ -136,7 +136,7 @@ export default function TestimonialsSection() {
   const [bottomRow, setBottomRow] = useState<Testimonial[]>([]);
   const [loaded, setLoaded] = useState(false);
 
-  const STRAPI = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+  const STRAPI = process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
 
   useEffect(() => {
     const fetchTestimonials = async () => {

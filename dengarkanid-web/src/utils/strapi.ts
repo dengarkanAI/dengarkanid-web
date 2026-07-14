@@ -3,7 +3,9 @@
 export const STRAPI_API_URL =
   typeof window === 'undefined'
     ? (process.env.STRAPI_INTERNAL_URL as string) || 'http://localhost:1337/api'
-    : ((process.env.NEXT_PUBLIC_STRAPI_URL as string) || 'http://localhost:1337') + '/api';
+    : process.env.NEXT_PUBLIC_STRAPI_URL != null
+      ? (process.env.NEXT_PUBLIC_STRAPI_URL as string) + '/api'
+      : 'http://localhost:1337/api';
 
 export function getStrapiImageUrl(imageObj: any): string {
   if (!imageObj) return '';

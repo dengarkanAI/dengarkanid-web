@@ -33,10 +33,10 @@ export default function Glosari() {
   useEffect(() => {
     async function loadGlossaryData() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+        const apiUrl = process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
         const res = await fetch(`${apiUrl}/api/glosariums?pagination[limit]=100&sort=term:ASC`);
         const json = await res.json();
-        
+
         const mappedData: TermData[] = json.data.map((item: any) => {
           const attrs = item.attributes || item;
           const t = attrs.term;
@@ -50,7 +50,7 @@ export default function Glosari() {
             r: rList
           };
         });
-        
+
         mappedData.sort((a, b) => a.t.localeCompare(b.t));
         setGlossaryData(mappedData);
       } catch (err) {
@@ -69,7 +69,7 @@ export default function Glosari() {
     }
     if (searchQuery) {
       const q = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(d => 
+      filtered = filtered.filter(d =>
         (d.t + d.e + d.d + (d.r || []).join(' ')).toLowerCase().includes(q)
       );
     }
@@ -94,7 +94,7 @@ export default function Glosari() {
   const handleLetterClick = (l: string) => {
     const target = document.getElementById('group-' + l);
     if (target) {
-      const yOffset = -100; 
+      const yOffset = -100;
       const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({top: y, behavior: 'smooth'});
     }
@@ -127,8 +127,8 @@ export default function Glosari() {
         <div className="glosari-search-inner">
           <div className="search-box">
             <i className="ph ph-magnifying-glass"></i>
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Cari istilah: sentiment, reach, mention…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -137,7 +137,7 @@ export default function Glosari() {
           <div className="search-count">Menampilkan <span>{filteredData.length}</span> istilah</div>
           <div className="alpha-nav" id="alpha-nav">
             {alphabets.map(l => (
-              <button 
+              <button
                 key={l}
                 className={`alpha-btn ${usedLetters.includes(l) ? 'has-terms' : ''}`}
                 disabled={!usedLetters.includes(l)}
