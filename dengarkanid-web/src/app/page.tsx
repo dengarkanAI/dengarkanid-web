@@ -312,13 +312,13 @@ export default function Home() {
             </div>
 
             {/* Floating Card */}
-            <div className="hero-floating-card horizontal" style={{ maxWidth: '1200px', width: 'calc(100% - 40px)', zIndex: 10 }}>
-                <div className="card-text" style={{ textAlign: 'left' }}>
+            <div className="hero-floating-card horizontal">
+                <div className="card-text">
                     <h2 style={{ fontSize: '24px', fontWeight: 600, margin: '0 0 8px 0' }}>Transform Conversations into Actionable Intelligence.</h2>
                     <p style={{ margin: 0, color: '#666' }}>Monitor conversations across social media and digital channels with AI-powered insights.</p>
                 </div>
 
-                <div className="hero-cta" style={{ display: 'flex', alignItems: 'center' }}>
+                <div className="hero-cta">
                     {isLoggedIn
                         ? <a href="/admin/leads" className="btn-primary large" id="hero-cta-main">Go to Dashboard</a>
                         : <a href="https://app.dengarkan.id/signup" className="btn-primary large" id="hero-cta-main">Sign Up Free</a>
