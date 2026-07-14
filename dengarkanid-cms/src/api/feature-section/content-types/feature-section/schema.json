@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feature_sections",
+  "info": {
+    "singularName": "feature-section",
+    "pluralName": "feature-sections",
+    "displayName": "Feature Section"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "categoryIdentifier": {
+      "type": "string"
+    },
+    "carouselItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "feature.carousel-item"
+    }
+  }
+}

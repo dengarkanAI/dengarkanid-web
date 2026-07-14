@@ -505,35 +505,32 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFeatureFeature extends Struct.CollectionTypeSchema {
-  collectionName: 'features';
+export interface ApiFeatureSectionFeatureSection
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'feature_sections';
   info: {
-    description: '';
-    displayName: 'Feature';
-    pluralName: 'features';
-    singularName: 'feature';
+    displayName: 'Feature Section';
+    pluralName: 'feature-sections';
+    singularName: 'feature-section';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    category: Schema.Attribute.Enumeration<
-      ['ears', 'brain', 'shield', 'mouth', 'eyes']
-    > &
-      Schema.Attribute.Required;
+    carouselItems: Schema.Attribute.Component<'feature.carousel-item', true>;
+    categoryIdentifier: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    image: Schema.Attribute.Media<'images' | 'files'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::feature.feature'
+      'api::feature-section.feature-section'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    tagline: Schema.Attribute.String;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1228,7 +1225,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::blog.blog': ApiBlogBlog;
       'api::faq.faq': ApiFaqFaq;
-      'api::feature.feature': ApiFeatureFeature;
+      'api::feature-section.feature-section': ApiFeatureSectionFeatureSection;
       'api::glosarium.glosarium': ApiGlosariumGlosarium;
       'api::hero.hero': ApiHeroHero;
       'api::homepage.homepage': ApiHomepageHomepage;

@@ -120,7 +120,7 @@ export default function Home() {
         const homeRes = await fetch(`${STRAPI_API_URL}/homepage?populate=*`, fetchOpts);
         if (homeRes.ok) setHomeData((await homeRes.json()).data);
 
-        const featuresRes = await fetch(`${STRAPI_API_URL}/features?populate=*`, fetchOpts);
+        const featuresRes = await fetch(`${STRAPI_API_URL}/feature-sections?populate[carouselItems][populate]=image`, fetchOpts);
         if (featuresRes.ok) setFeaturesData((await featuresRes.json()).data);
 
         const faqRes = await fetch(`${STRAPI_API_URL}/faqs`, fetchOpts);
@@ -480,8 +480,8 @@ export default function Home() {
         </section>
 
         <FeatureCarousel
-            features={featuresData?.filter((f: any) => f?.attributes?.category === 'ears') || []}
-            layoutType="full"
+            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'ears') || null}
+            layoutType="boxed"
             sectionTag="THE EARS"
             defaultTitle={'Hear Every Conversation<br/>That Matters'}
             defaultDesc={'Track brand mentions, audience conversations, and emerging trends across digital channels as they happen.'}
@@ -489,8 +489,8 @@ export default function Home() {
         />
         
         <FeatureCarousel
-            features={featuresData?.filter((f: any) => f?.attributes?.category === 'brain') || []}
-            layoutType="boxed"
+            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'brain') || null}
+            layoutType="boxed-reverse"
             sectionTag="THE BRAIN"
             defaultTitle={'Think Smarter with<br/>AI-Powered Insights'}
             defaultDesc={'Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand performance.'}
@@ -498,15 +498,15 @@ export default function Home() {
         />
         
         <FeatureCarousel
-            features={featuresData?.filter((f: any) => f?.attributes?.category === 'shield') || []}
-            layoutType="full"
+            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'shield') || null}
+            layoutType="boxed"
             sectionTag="THE SHIELD"
             defaultTitle={'Guard Your Brand<br/>Reputation 24/7'}
             defaultDesc={'Explore detailed analytics with customizable reports to measure performance and support strategic decisions.'}
         />
         
         <FeatureCarousel
-            features={featuresData?.filter((f: any) => f?.attributes?.category === 'mouth') || []}
+            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'mouth') || null}
             layoutType="boxed-reverse"
             sectionTag="THE MOUTH"
             defaultTitle={'Speak the Language<br/>Your Audience Understands'}
@@ -515,8 +515,8 @@ export default function Home() {
         />
         
         <FeatureCarousel
-            features={featuresData?.filter((f: any) => f?.attributes?.category === 'eyes') || []}
-            layoutType="full"
+            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'eyes') || null}
+            layoutType="boxed"
             sectionTag="THE EYES"
             defaultTitle={'See Every Move<br/>Before It Happens'}
             defaultDesc={'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.'}
@@ -688,7 +688,7 @@ export default function Home() {
                                 <div className="method-icon-box">
                                     <i className="ph-bold ph-phone"></i>
                                 </div>
-                                <span>+62 899-9004-646</span>
+                                <span>+62818-20-4646</span>
                             </div>
                         </div>
                     </div>

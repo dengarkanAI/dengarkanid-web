@@ -22,8 +22,9 @@ export default function Footer() {
                     </div>
                     <div className="footer-col">
                         <h4>Contact</h4>
-                        <p style={{ color: '#888', fontSize: '14px', lineHeight: '1.6' }}>
+                        <p style={{ color: '#888', fontSize: '14px', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             <a href="mailto:boleh@dengarkan.id" style={{ color: '#888', textDecoration: 'none' }}>boleh@dengarkan.id</a>
+                            <a href="tel:+62818204646" style={{ color: '#888', textDecoration: 'none' }}>+62818-20-4646</a>
                         </p>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>

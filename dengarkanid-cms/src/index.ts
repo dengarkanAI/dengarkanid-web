@@ -53,13 +53,13 @@ export default {
           'api::testimonial.testimonial.find',
           'api::testimonial.testimonial.findOne',
           'api::lead.lead.create',
-          'api::feature.feature.find',
-          'api::feature.feature.findOne',
           'api::faq.faq.find',
           'api::faq.faq.findOne',
           'api::blog.blog.find',
           'api::blog.blog.findOne',
-          'api::homepage.homepage.find'
+          'api::homepage.homepage.find',
+          'api::feature-section.feature-section.find',
+          'api::feature-section.feature-section.findOne'
         ];
         
         const existingPermissions = await strapi.db.query('plugin::users-permissions.permission').findMany({
@@ -123,40 +123,65 @@ export default {
         }
       }
 
-      // 4. Migrate Features Data
-      const featureCount = await strapi.db.query('api::feature.feature').count();
-      if (featureCount < 14) {
-        // Clear existing to avoid duplicates if partially seeded
-        await strapi.db.query('api::feature.feature').deleteMany({});
-        
-        const initialFeatures = [
-          // The ears
-          { title: "Multi-Channel Data Crawling", category: "ears", description: "Collect data seamlessly across various digital platforms in real-time." },
-          { title: "Hashtag tracking & Trending", category: "ears", description: "Monitor hashtags and identify emerging trends as they happen." },
-          // The brain
-          { title: "Automated Sentiment Analysis (Dasar)", category: "brain", description: "Automatically analyze and categorize audience sentiment." },
-          { title: "Advanced Query Management (Boolean Search)", category: "brain", description: "Use powerful boolean operators to filter exactly what you need." },
-          { title: "Volume & Trend Analytics (Statistik)", category: "brain", description: "Visualize data volumes and track historical trends easily." },
-          { title: "Account & Influencer Identification", category: "brain", description: "Discover key accounts and influencers driving the conversation." },
-          { title: "Word Cloud & Topic Mapping", category: "brain", description: "Understand the most discussed topics at a glance." },
-          { title: "Comparison brand project", category: "brain", description: "Compare your brand's performance against competitors directly." },
-          // The shield
-          { title: "Real-Time Alert System", category: "shield", description: "Get notified instantly about critical brand mentions or PR crises." },
-          // The mouth
-          { title: "Reporting & Exporting", category: "mouth", description: "Generate comprehensive reports and export data for your team." },
-          // The eyes
-          { title: "Visual Content Recognition", category: "eyes", description: "Analyze images and logos to see where your brand appears visually." },
-          { title: "Video Content Analysis", category: "eyes", description: "Extract insights and sentiment directly from video content." },
-          { title: "Multimodal Synthesis", category: "eyes", description: "Combine text and visual data for a unified brand intelligence report." },
-          { title: "Visual Sentiment Insights", category: "eyes", description: "Understand the emotion conveyed in images shared by your audience." }
+      // 4.5 Migrate Feature Sections Data
+      const featureSectionCount = await strapi.db.query('api::feature-section.feature-section').count();
+      if (featureSectionCount === 0) {
+        const featureSections = [
+          {
+            title: "THE EARS",
+            tagline: "Hear Every Conversation That Matters",
+            categoryIdentifier: "ears",
+            carouselItems: [
+              { subtitle: "Multi-Channel Data Crawling", description: "Collect data seamlessly across various digital platforms in real-time." },
+              { subtitle: "Hashtag tracking & Trending", description: "Monitor hashtags and identify emerging trends as they happen." }
+            ]
+          },
+          {
+            title: "THE BRAIN",
+            tagline: "Analyze With Unmatched Precision",
+            categoryIdentifier: "brain",
+            carouselItems: [
+              { subtitle: "Automated Sentiment Analysis", description: "Automatically analyze and categorize audience sentiment." },
+              { subtitle: "Advanced Query Management", description: "Use powerful boolean operators to filter exactly what you need." },
+              { subtitle: "Volume & Trend Analytics", description: "Visualize data volumes and track historical trends easily." },
+              { subtitle: "Account & Influencer Identification", description: "Discover key accounts and influencers driving the conversation." },
+              { subtitle: "Word Cloud & Topic Mapping", description: "Understand the most discussed topics at a glance." },
+              { subtitle: "Comparison brand project", description: "Compare your brand's performance against competitors directly." }
+            ]
+          },
+          {
+            title: "THE SHIELD",
+            tagline: "Protect Your Brand Reputation",
+            categoryIdentifier: "shield",
+            carouselItems: [
+              { subtitle: "Real-Time Alert System", description: "Get notified instantly about critical brand mentions or PR crises." }
+            ]
+          },
+          {
+            title: "THE MOUTH",
+            tagline: "Speak Volumes With Insights",
+            categoryIdentifier: "mouth",
+            carouselItems: [
+              { subtitle: "Reporting & Exporting", description: "Generate comprehensive reports and export data for your team." }
+            ]
+          },
+          {
+            title: "THE EYES",
+            tagline: "See Beyond The Text",
+            categoryIdentifier: "eyes",
+            carouselItems: [
+              { subtitle: "Visual Content Recognition", description: "Analyze images and logos to see where your brand appears visually." },
+              { subtitle: "Video Content Analysis", description: "Extract insights and sentiment directly from video content." },
+              { subtitle: "Multimodal Synthesis", description: "Combine text and visual data for a unified brand intelligence report." },
+              { subtitle: "Visual Sentiment Insights", description: "Understand the emotion conveyed in images shared by your audience." }
+            ]
+          }
         ];
-        console.log(`[BOOTSTRAP] Migrating ${initialFeatures.length} features...`);
-        for (const item of initialFeatures) {
-          await strapi.documents('api::feature.feature').create({
-            data: {
-              ...item,
-              category: item.category as any
-            },
+        
+        console.log(`[BOOTSTRAP] Migrating ${featureSections.length} feature sections...`);
+        for (const section of featureSections) {
+          await strapi.documents('api::feature-section.feature-section').create({
+            data: section,
             status: 'published'
           });
         }

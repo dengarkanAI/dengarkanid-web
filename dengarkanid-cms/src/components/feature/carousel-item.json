@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_feature_carousel_items",
+  "info": {
+    "displayName": "Carousel Item",
+    "icon": "images",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "subtitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
