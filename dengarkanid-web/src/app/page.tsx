@@ -255,13 +255,13 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <section className="hero-section scroll-fade" style={{ paddingTop: '40px', display: 'flex', flexDirection: 'column' }}>
+      <section className="hero-section scroll-fade" style={{ paddingTop: '10px', display: 'flex', flexDirection: 'column' }}>
 
             <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', flex: 'none' }}>
                 
                 {/* TOP TEXT SECTION */}
-                <div style={{ textAlign: 'center', padding: '10px 20px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '24px', padding: '4px 14px', background: '#f4f4f5', border: '1px solid #e4e4e7', borderRadius: '100px', color: '#52525b' }}>
+                <div style={{ textAlign: 'center', padding: '10px 20px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '16px', padding: '4px 14px', background: '#f4f4f5', border: '1px solid #e4e4e7', borderRadius: '100px', color: '#52525b' }}>
                         <i className="ph ph-medal" style={{ fontSize: '16px' }}></i>
                         {attrs?.heroTagline || "AI SOCIAL LISTENING TOOL"}
                     </div>
@@ -286,7 +286,7 @@ export default function Home() {
                         fontSize: '18px',
                         lineHeight: 1.6,
                         color: '#52525b',
-                        marginTop: '20px',
+                        marginTop: '12px',
                         textAlign: 'center',
                         animation: 'fadeIn 0.8s ease-in-out'
                     }} dangerouslySetInnerHTML={{ __html: renderDescription() }}>
@@ -297,7 +297,7 @@ export default function Home() {
             </div>
 
             {/* MEDIA FROM CMS */}
-            <div className="hero-mockup-wrapper" style={{ background: 'transparent', width: '100%', maxWidth: '1440px', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center' }}>
+            <div className="hero-mockup-wrapper" style={{ background: 'transparent', width: '100%', maxWidth: '1440px', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center', paddingBottom: '100px' }}>
                 <div className="dashboard-mockup" style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '24px' }}>
                     {attrs?.heroMedia && (
                         <StrapiMedia 
