@@ -8,6 +8,9 @@ import Footer from "@/components/layout/Footer";
 import { STRAPI_API_URL, getStrapiImageUrl } from "@/utils/strapi";
 import StrapiMedia from "@/components/ui/StrapiMedia";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import FeatureCarousel from '@/components/ui/FeatureCarousel';
+
+export const dynamic = 'force-dynamic';
 
 export default function Home() {
 
@@ -117,7 +120,7 @@ export default function Home() {
         const homeRes = await fetch(`${STRAPI_API_URL}/homepage?populate=*`, fetchOpts);
         if (homeRes.ok) setHomeData((await homeRes.json()).data);
 
-        const featuresRes = await fetch(`${STRAPI_API_URL}/features`, fetchOpts);
+        const featuresRes = await fetch(`${STRAPI_API_URL}/features?populate=*`, fetchOpts);
         if (featuresRes.ok) setFeaturesData((await featuresRes.json()).data);
 
         const faqRes = await fetch(`${STRAPI_API_URL}/faqs`, fetchOpts);
@@ -296,9 +299,9 @@ export default function Home() {
             {/* MEDIA FROM CMS */}
             <div className="hero-mockup-wrapper" style={{ background: 'transparent', width: '100%', maxWidth: '1440px', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center' }}>
                 <div className="dashboard-mockup" style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '24px' }}>
-                    {(heroAttrs?.image || attrs?.heroMedia) && (
+                    {attrs?.heroMedia && (
                         <StrapiMedia 
-                            imageObj={heroAttrs?.image || attrs?.heroMedia} 
+                            imageObj={attrs?.heroMedia} 
                             fallbackUrl="" 
                             alt="Dashboard Media" 
                             className="mockup-image" 
@@ -476,160 +479,49 @@ export default function Home() {
             </div>
         </section>
 
-<section className="feature-section-full scroll-fade">
-            <div className="container">
-                <div className="feature-header-row">
-                    <div className="feature-header-left">
-                        <div className="feature-work-tag">
-                            <span className="bullet"></span> THE EARS
-                        </div>
-                        <h2 id="feature1-title" dangerouslySetInnerHTML={{ __html: homeData?.feature1Title || 'Hear Every Conversation<br/>That Matters' }}></h2>
-                    </div>
-                    <div className="feature-header-right">
-                        <p id="feature1-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature1Desc || 'Track brand mentions, audience conversations, and emerging trends across digital channels as they happen.' }}></p>
-                        <CtaButton />
-                    </div>
-                </div>
-
-                <div className="feature-mockup-container">
-                    <StrapiMedia id="feature1-img" imageObj={homeData?.feature1Image} fallbackUrl="https://placehold.co/1200x670/ffffff/dddddd?text=Statistic+and+Charts+Mockup+Image+Placeholder" alt="Monitor Your Brand Mockup" className="feature-large-mockup" />
-                </div>
-            </div>
-        </section>
-<section className="feature-section-boxed scroll-fade">
-            <div className="container">
-                <div className="feature-box-card">
-                    <div className="feature-box-graphic">
-                        <div className="feature-box-bg-grey">
-                            <StrapiMedia id="feature2-img" imageObj={homeData?.feature2Image} fallbackUrl="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder" alt="Performance Statistics Mockup" className="feature-box-mockup-img" />
-                        </div>
-                    </div>
-                    <div className="feature-box-content">
-                        <div className="feature-work-tag">
-                            <span className="bullet"></span> THE BRAIN
-                        </div>
-                        <h2 id="feature2-title" dangerouslySetInnerHTML={{ __html: homeData?.feature2Title || 'Think Smarter with<br/>AI-Powered Insights' }}></h2>
-                        <p id="feature2-desc">Access a centralized dashboard with key metrics, sentiment, engagement,
-                            and overall brand
-                            performance.</p>
-                        <CtaButton />
-                    </div>
-                </div>
-            </div>
-        </section>
-<section className="feature-section-full scroll-fade">
-            <div className="container">
-                <div className="feature-header-row">
-                    <div className="feature-header-left">
-                        <div className="feature-work-tag">
-                            <span className="bullet"></span> THE SHIELD
-                        </div>
-                        <h2 id="feature3-title" dangerouslySetInnerHTML={{ __html: homeData?.feature3Title || 'Guard Your Brand<br/>Reputation 24/7' }}></h2>
-                    </div>
-                    <div className="feature-header-right">
-                        <p id="feature3-desc">Explore detailed analytics with customizable reports to measure
-                            performance and support
-                            strategic decisions.</p>
-                    </div>
-                </div>
-
-                <div className="feature-mockup-card-split">
-                    {/*  Left Side: HTML Text List  */}
-                    <div className="feature-split-left-list">
-                        {featuresData && featuresData.length > 0 ? (
-                            featuresData.map((feature: any, index: number) => {
-                                const attrs = feature.attributes || feature;
-                                const colorClass = index % 2 === 0 ? 'purple' : 'orange';
-                                return (
-                                    <div className={`feature-split-item scroll-fade stagger-${index + 1}`} key={feature.id}>
-                                        <div className={`split-icon ${colorClass}`}></div>
-                                        <div className="split-text">
-                                            <h3 dangerouslySetInnerHTML={{ __html: attrs.title }}></h3>
-                                            <p dangerouslySetInnerHTML={{ __html: attrs.description }}></p>
-                                        </div>
-                                    </div>
-                                );
-                            })
-                        ) : (
-                            <>
-                        <div className="feature-split-item scroll-fade stagger-1">
-                            <div className="split-icon purple"></div>
-                            <div className="split-text">
-                                <h3>Lorem ipsum dolor sit amet</h3>
-                                <p>Track brand mentions, audience conversations, and emerging trends across digital
-                                    channels as they happen.</p>
-                            </div>
-                        </div>
-                        <div className="feature-split-item scroll-fade stagger-2">
-                            <div className="split-icon orange"></div>
-                            <div className="split-text">
-                                <h3>Lorem ipsum dolor sit amet</h3>
-                                <p>Track brand mentions, audience conversations, and emerging trends across digital
-                                    channels as they happen.</p>
-                            </div>
-                        </div>
-                        <div className="feature-split-item scroll-fade stagger-3">
-                            <div className="split-icon purple"></div>
-                            <div className="split-text">
-                                <h3>Lorem ipsum dolor sit amet</h3>
-                                <p>Track brand mentions, audience conversations, and emerging trends across digital
-                                    channels as they happen.</p>
-                            </div>
-                        </div>
-                            </>
-                        )}
-                    </div>
-
-                    {/*  Right Side: Mockup Image Placeholder (Statistic Card)  */}
-                    <div className="feature-split-right-graphic scroll-fade-left stagger-2">
-                        <StrapiMedia id="feature3-img" imageObj={homeData?.feature3Image} fallbackUrl="https://placehold.co/400x500/ffffff/dddddd?text=Statistic+Mockup+Placeholder" alt="In-Depth Analytics Mockup" className="feature-box-mockup-img" />
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* Feature 4: Boxed — Image RIGHT, content LEFT (mirrored from feature 2) */}
-<section className="feature-section-boxed scroll-fade">
-            <div className="container">
-                <div className="feature-box-card feature-box-card-reverse">
-                    <div className="feature-box-content">
-                        <div className="feature-work-tag">
-                            <span className="bullet"></span> THE MOUTH
-                        </div>
-                        <h2 id="feature4-title" dangerouslySetInnerHTML={{ __html: homeData?.feature4Title || 'Speak the Language<br/>Your Audience Understands' }}></h2>
-                        <p id="feature4-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature4Desc || 'Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.' }}></p>
-                        <CtaButton />
-                    </div>
-                    <div className="feature-box-graphic">
-                        <div className="feature-box-bg-grey">
-                            <StrapiMedia id="feature4-img" imageObj={homeData?.feature4Image} fallbackUrl="https://placehold.co/400x500/ffffff/dddddd?text=Sentiment+Analysis+Mockup+Placeholder" alt="Audience Sentiment Mockup" className="feature-box-mockup-img" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* Feature 5: Full-width — same layout as feature 1 */}
-<section className="feature-section-full scroll-fade">
-            <div className="container">
-                <div className="feature-header-row">
-                    <div className="feature-header-left">
-                        <div className="feature-work-tag">
-                            <span className="bullet"></span> THE EYES
-                        </div>
-                        <h2 id="feature5-title" dangerouslySetInnerHTML={{ __html: homeData?.feature5Title || 'See Every Move<br/>Before It Happens' }}></h2>
-                    </div>
-                    <div className="feature-header-right">
-                        <p id="feature5-desc" dangerouslySetInnerHTML={{ __html: homeData?.feature5Desc || 'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.' }}></p>
-                        <CtaButton />
-                    </div>
-                </div>
-
-                <div className="feature-mockup-container">
-                    <StrapiMedia id="feature5-img" imageObj={homeData?.feature5Image} fallbackUrl="https://placehold.co/1200x670/ffffff/dddddd?text=Competitive+Intelligence+Mockup+Placeholder" alt="Competitive Intelligence Mockup" className="feature-large-mockup" />
-                </div>
-            </div>
-        </section>
+        <FeatureCarousel
+            features={featuresData?.filter((f: any) => f?.attributes?.category === 'ears') || []}
+            layoutType="full"
+            sectionTag="THE EARS"
+            defaultTitle={'Hear Every Conversation<br/>That Matters'}
+            defaultDesc={'Track brand mentions, audience conversations, and emerging trends across digital channels as they happen.'}
+            ctaButton={<CtaButton />}
+        />
+        
+        <FeatureCarousel
+            features={featuresData?.filter((f: any) => f?.attributes?.category === 'brain') || []}
+            layoutType="boxed"
+            sectionTag="THE BRAIN"
+            defaultTitle={'Think Smarter with<br/>AI-Powered Insights'}
+            defaultDesc={'Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand performance.'}
+            ctaButton={<CtaButton />}
+        />
+        
+        <FeatureCarousel
+            features={featuresData?.filter((f: any) => f?.attributes?.category === 'shield') || []}
+            layoutType="full"
+            sectionTag="THE SHIELD"
+            defaultTitle={'Guard Your Brand<br/>Reputation 24/7'}
+            defaultDesc={'Explore detailed analytics with customizable reports to measure performance and support strategic decisions.'}
+        />
+        
+        <FeatureCarousel
+            features={featuresData?.filter((f: any) => f?.attributes?.category === 'mouth') || []}
+            layoutType="boxed-reverse"
+            sectionTag="THE MOUTH"
+            defaultTitle={'Speak the Language<br/>Your Audience Understands'}
+            defaultDesc={'Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.'}
+            ctaButton={<CtaButton />}
+        />
+        
+        <FeatureCarousel
+            features={featuresData?.filter((f: any) => f?.attributes?.category === 'eyes') || []}
+            layoutType="full"
+            sectionTag="THE EYES"
+            defaultTitle={'See Every Move<br/>Before It Happens'}
+            defaultDesc={'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.'}
+            ctaButton={<CtaButton />}
+        />
 <TestimonialsSection />
 <section className="faq-section-new scroll-fade">
             <div className="container">

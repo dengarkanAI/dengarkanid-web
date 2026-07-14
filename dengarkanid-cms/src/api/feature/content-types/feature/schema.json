@@ -17,6 +17,26 @@
     },
     "description": {
       "type": "text"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "ears",
+        "brain",
+        "shield",
+        "mouth",
+        "eyes"
+      ],
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
     }
   }
 }

@@ -123,18 +123,40 @@ export default {
         }
       }
 
-      // 4. Migrate Features Data if empty
+      // 4. Migrate Features Data
       const featureCount = await strapi.db.query('api::feature.feature').count();
-      if (featureCount === 0) {
+      if (featureCount < 14) {
+        // Clear existing to avoid duplicates if partially seeded
+        await strapi.db.query('api::feature.feature').deleteMany({});
+        
         const initialFeatures = [
-          { title: "Lorem ipsum dolor sit amet", description: "Track brand mentions, audience conversations, and emerging trends across digital channels as they happen." },
-          { title: "Lorem ipsum dolor sit amet", description: "Track brand mentions, audience conversations, and emerging trends across digital channels as they happen." },
-          { title: "Lorem ipsum dolor sit amet", description: "Track brand mentions, audience conversations, and emerging trends across digital channels as they happen." }
+          // The ears
+          { title: "Multi-Channel Data Crawling", category: "ears", description: "Collect data seamlessly across various digital platforms in real-time." },
+          { title: "Hashtag tracking & Trending", category: "ears", description: "Monitor hashtags and identify emerging trends as they happen." },
+          // The brain
+          { title: "Automated Sentiment Analysis (Dasar)", category: "brain", description: "Automatically analyze and categorize audience sentiment." },
+          { title: "Advanced Query Management (Boolean Search)", category: "brain", description: "Use powerful boolean operators to filter exactly what you need." },
+          { title: "Volume & Trend Analytics (Statistik)", category: "brain", description: "Visualize data volumes and track historical trends easily." },
+          { title: "Account & Influencer Identification", category: "brain", description: "Discover key accounts and influencers driving the conversation." },
+          { title: "Word Cloud & Topic Mapping", category: "brain", description: "Understand the most discussed topics at a glance." },
+          { title: "Comparison brand project", category: "brain", description: "Compare your brand's performance against competitors directly." },
+          // The shield
+          { title: "Real-Time Alert System", category: "shield", description: "Get notified instantly about critical brand mentions or PR crises." },
+          // The mouth
+          { title: "Reporting & Exporting", category: "mouth", description: "Generate comprehensive reports and export data for your team." },
+          // The eyes
+          { title: "Visual Content Recognition", category: "eyes", description: "Analyze images and logos to see where your brand appears visually." },
+          { title: "Video Content Analysis", category: "eyes", description: "Extract insights and sentiment directly from video content." },
+          { title: "Multimodal Synthesis", category: "eyes", description: "Combine text and visual data for a unified brand intelligence report." },
+          { title: "Visual Sentiment Insights", category: "eyes", description: "Understand the emotion conveyed in images shared by your audience." }
         ];
         console.log(`[BOOTSTRAP] Migrating ${initialFeatures.length} features...`);
         for (const item of initialFeatures) {
           await strapi.documents('api::feature.feature').create({
-            data: item,
+            data: {
+              ...item,
+              category: item.category as any
+            },
             status: 'published'
           });
         }
@@ -170,6 +192,31 @@ export default {
         for (const item of initialBlogs) {
           await strapi.documents('api::blog.blog').create({
             data: item,
+            status: 'published'
+          });
+        }
+      }
+      // 7. Migrate Homepage Data if empty
+      const homepageData = await strapi.db.query('api::homepage.homepage').findOne({});
+      if (!homepageData || !homepageData.heroTagline) {
+        console.log(`[BOOTSTRAP] Migrating Homepage default data...`);
+        const defaultHomeData = {
+          heroTagline: "AI SOCIAL LISTENING TOOL",
+          heroUSP1: "Discover Customer Insights.",
+          heroUSP2: "Analyze Trends Faster.",
+          heroUSP3: "Monitor Brand Health.",
+          aboutUsTagline: "Dengarkan Yang tak Terucapkan",
+          aboutUsDescription: "Data tanpa konteks budaya hanyalah tumpukan angka. Kami memberi Anda kebenaran yang jujur, untuk #DengarkanDulu"
+        };
+        
+        if (homepageData) {
+          await strapi.db.query('api::homepage.homepage').update({
+            where: { id: homepageData.id },
+            data: defaultHomeData
+          });
+        } else {
+          await strapi.documents('api::homepage.homepage').create({
+            data: defaultHomeData,
             status: 'published'
           });
         }

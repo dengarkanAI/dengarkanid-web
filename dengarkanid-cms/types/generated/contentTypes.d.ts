@@ -517,10 +517,15 @@ export interface ApiFeatureFeature extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    category: Schema.Attribute.Enumeration<
+      ['ears', 'brain', 'shield', 'mouth', 'eyes']
+    > &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -587,7 +592,6 @@ export interface ApiHeroHero extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::hero.hero'> &
       Schema.Attribute.Private;
@@ -618,31 +622,6 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    feature1Desc: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<'Track brand mentions, audience conversations, and emerging trends across digital channels as they happen.'>;
-    feature1Image: Schema.Attribute.Media<'images' | 'files'>;
-    feature1Title: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Hear Every Conversation<br>That Matters'>;
-    feature2Desc: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<'Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand performance.'>;
-    feature2Image: Schema.Attribute.Media<'images' | 'files'>;
-    feature2Title: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Think Smarter with<br>AI-Powered Insights'>;
-    feature3Desc: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<'Explore detailed analytics with customizable reports to measure performance and support strategic decisions.'>;
-    feature3Image: Schema.Attribute.Media<'images' | 'files'>;
-    feature3Title: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Guard Your Brand<br>Reputation 24/7'>;
-    feature4Desc: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<'Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.'>;
-    feature4Image: Schema.Attribute.Media<'images' | 'files'>;
-    feature4Title: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Speak the Language<br>Your Audience Understands'>;
-    feature5Desc: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.'>;
-    feature5Image: Schema.Attribute.Media<'images' | 'files'>;
-    feature5Title: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'See Every Move<br>Before It Happens'>;
     heroMedia: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     heroTagline: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'AI SOCIAL LISTENING TOOL'>;
