@@ -228,7 +228,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <section className="hero-section scroll-fade" style={{ paddingTop: '10px', display: 'flex', flexDirection: 'column' }}>
+      <section className="hero-section scroll-fade" style={{ display: 'flex', flexDirection: 'column' }}>
 
             <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', flex: 'none' }}>
                 
@@ -270,7 +270,7 @@ export default function Home() {
             </div>
 
             {/* MEDIA FROM CMS */}
-            <div className="hero-mockup-wrapper" style={{ background: 'transparent', width: '100%', maxWidth: '1440px', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center', paddingBottom: '100px' }}>
+            <div className="hero-mockup-wrapper" style={{ background: 'transparent', width: '100%', maxWidth: '1440px', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center' }}>
                 <div className="dashboard-mockup" style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '24px' }}>
                     {attrs?.heroMedia && (
                         <StrapiMedia 

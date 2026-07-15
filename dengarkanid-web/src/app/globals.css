@@ -358,13 +358,20 @@ h2 {
 /* Hero Section */
 .hero-section {
     position: relative;
-    padding: 20px 24px 24px;
+    padding: 100px 24px 24px; /* added top padding to account for navbar */
     background-color: #FFFFFF;
     overflow: hidden;
     height: auto;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+    .hero-section {
+        height: 100vh;
+        min-height: 850px;
+    }
 }
 
 .hero-content {
