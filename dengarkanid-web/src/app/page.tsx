@@ -233,7 +233,7 @@ export default function Home() {
             <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', flex: 'none' }}>
                 
                 {/* TOP TEXT SECTION */}
-                <div style={{ textAlign: 'center', padding: '10px 20px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ textAlign: 'center', padding: '0px 20px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '16px', padding: '4px 14px', background: '#f4f4f5', border: '1px solid #e4e4e7', borderRadius: '100px', color: '#52525b' }}>
                         <i className="ph ph-medal" style={{ fontSize: '16px' }}></i>
                         {attrs?.heroTagline || "AI SOCIAL LISTENING TOOL"}
