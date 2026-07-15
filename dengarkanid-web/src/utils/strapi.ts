@@ -23,8 +23,8 @@ export function getStrapiImageUrl(imageObj: any): string {
   }
 
   if (url && url.startsWith('/')) {
-      const host = STRAPI_API_URL.replace('/api', '');
-      return host + url;
+      const publicStrapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+      return publicStrapiUrl + url;
   }
   return url;
 }
