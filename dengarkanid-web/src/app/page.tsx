@@ -114,20 +114,25 @@ export default function Home() {
   useEffect(() => {
     async function fetchStrapiContent() {
       try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const isPreview = urlParams.get('preview') === 'true';
+        const draftQuery = isPreview ? '&status=draft' : '';
+        const draftQueryFirst = isPreview ? '?status=draft' : '';
+
         const fetchOpts = { headers: {} };
-        const heroRes = await fetch(`${STRAPI_API_URL}/hero?populate=*`, fetchOpts);
+        const heroRes = await fetch(`${STRAPI_API_URL}/hero?populate=*${draftQuery}`, fetchOpts);
         if (heroRes.ok) setHeroData((await heroRes.json()).data);
 
-        const homeRes = await fetch(`${STRAPI_API_URL}/homepage?populate=*`, fetchOpts);
+        const homeRes = await fetch(`${STRAPI_API_URL}/homepage?populate=*${draftQuery}`, fetchOpts);
         if (homeRes.ok) setHomeData((await homeRes.json()).data);
 
-        const featuresRes = await fetch(`${STRAPI_API_URL}/feature-sections?populate[carouselItems][populate]=image`, fetchOpts);
+        const featuresRes = await fetch(`${STRAPI_API_URL}/feature-sections?populate[carouselItems][populate]=image${draftQuery}`, fetchOpts);
         if (featuresRes.ok) setFeaturesData((await featuresRes.json()).data);
 
-        const faqRes = await fetch(`${STRAPI_API_URL}/faqs`, fetchOpts);
+        const faqRes = await fetch(`${STRAPI_API_URL}/faqs${isPreview ? '?status=draft' : ''}`, fetchOpts);
         if (faqRes.ok) setFaqsData((await faqRes.json()).data);
 
-        const blogRes = await fetch(`${STRAPI_API_URL}/blogs?populate=*`, fetchOpts);
+        const blogRes = await fetch(`${STRAPI_API_URL}/blogs?populate=*${draftQuery}`, fetchOpts);
         if (blogRes.ok) setBlogsData((await blogRes.json()).data);
       } catch (err) {
         console.error("Failed to fetch from Strapi", err);

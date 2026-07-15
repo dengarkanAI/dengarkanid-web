@@ -20,6 +20,15 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Admin => 
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
     docLinks: env.bool('FLAG_DOC_LINKS', true),
   },
+  preview: {
+    enabled: true,
+    config: {
+      allowedOrigins: [env('FRONTEND_URL', 'http://127.0.0.1:3001')],
+      async handler(uid, { documentId, locale, status }) {
+        return `${env('FRONTEND_URL', 'http://127.0.0.1:3001')}/api/preview?uid=${uid}&documentId=${documentId}`;
+      },
+    },
+  },
 });
 
 export default config;
