@@ -1,9 +1,26 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useGoogleOneTapLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+import { STRAPI_API_URL } from '@/utils/strapi';
+
+function GoogleOneTapHandler({ onLogin }: { onLogin: (data: any) => void }) {
+  useGoogleOneTapLogin({
+    onSuccess: (credentialResponse) => {
+      if (credentialResponse.credential) {
+        const decoded: any = jwtDecode(credentialResponse.credential);
+        onLogin(decoded);
+      }
+    },
+    onError: () => console.error('Google One Tap Login Failed'),
+  });
+  return null;
+}
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
   const [showOneTap, setShowOneTap] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState<{name: string, email: string} | null>(null);
@@ -15,28 +32,22 @@ export default function Navbar() {
     const existingLead = localStorage.getItem('dengarkan_lead');
     if (existingLead) {
       setUser(JSON.parse(existingLead));
-    } else {
-      // Simulate Google One Tap showing up after 2 seconds
-      const timer = setTimeout(() => {
-        setShowOneTap(true);
-      }, 2000);
-      return () => clearTimeout(timer);
     }
+    setIsAuthChecked(true);
   }, []);
 
-  const handleAcceptOneTap = async () => {
+  const handleRealOneTap = async (decodedData: any) => {
     const leadData = {
-      name: 'Manis',
-      email: 'manis@dengarkan.id',
-      company: 'Dengarkan ID',
-      jobTitle: 'Founder',
+      name: decodedData.name || 'Google User',
+      email: decodedData.email,
+      company: 'Unknown',
+      jobTitle: 'Visitor',
       category: 'Automatic Login',
-      source: 'Google One Tap Simulator'
+      source: 'Google One Tap API'
     };
     
-    // Simulate API call
     try {
-      const response = await fetch('http://localhost:1337/api/leads', {
+      const response = await fetch(`${STRAPI_API_URL}/leads`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,21 +57,18 @@ export default function Navbar() {
       if (response.ok) {
         localStorage.setItem('dengarkan_lead', JSON.stringify(leadData));
         setUser(leadData);
-        setShowOneTap(false);
         setShowModal(true);
         window.dispatchEvent(new Event('auth-status-changed'));
       }
     } catch (error) {
       console.error('Error submitting lead:', error);
-      // Fallback for demo purposes
+      // Fallback
       localStorage.setItem('dengarkan_lead', JSON.stringify(leadData));
       setUser(leadData);
-      setShowOneTap(false);
       setShowModal(true);
       window.dispatchEvent(new Event('auth-status-changed'));
     }
   };
-
   const handleLogout = () => {
     localStorage.removeItem('dengarkan_lead');
     sessionStorage.removeItem('jwt');
@@ -182,33 +190,10 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Google One Tap Simulator Prompt */}
-      <div id="google-one-tap" className={`google-one-tap-mockup ${showOneTap ? 'show' : ''}`}>
-        <div className="onetap-header">
-          <div className="onetap-logo">
-            <svg width="18" height="18" viewBox="0 0 18 18">
-              <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.91c1.7-1.56 2.69-3.86 2.69-6.6z" />
-              <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.2l-2.91-2.26a5.6 5.6 0 0 1-8.77-2.98H.24v2.33A9 9 0 0 0 9 18z" />
-              <path fill="#FBBC05" d="M3.28 10.56A5.4 5.4 0 0 1 3 9c0-.54.1-1.07.28-1.56V5.11H.24A9 9 0 0 0 0 9c0 1.41.33 2.74.9 3.89l2.38-2.33z" />
-              <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.4A9 9 0 0 0 .24 5.11l2.38 2.33A5.6 5.6 0 0 1 9 3.58z" />
-            </svg>
-            <span className="onetap-title">Sign in to dengarkan.id with Google</span>
-          </div>
-          <button className="onetap-close" onClick={() => setShowOneTap(false)}>&times;</button>
-        </div>
-        <div className="onetap-profile">
-          <img src="/assets/headshot-2.jpg" alt="User profile" className="onetap-avatar"/>
-          <div className="onetap-info">
-            <span className="onetap-name">Manis</span>
-            <span className="onetap-email">manis@dengarkan.id</span>
-          </div>
-        </div>
-        <button className="onetap-btn" onClick={handleAcceptOneTap}>Lanjutkan sebagai Manis</button>
-        <div className="onetap-footer">
-          Untuk melanjutkan, Google akan membagikan nama, alamat email, dan foto profil Anda dengan dengarkan.id.
-        </div>
-      </div>
-
+      {/* Google One Tap Logic */}
+      {isAuthChecked && !user && (
+        <GoogleOneTapHandler onLogin={handleRealOneTap} />
+      )}
       {/* Confirmation Modal */}
       <div id="confirmation-modal" className={`confirm-modal-backdrop ${showModal ? 'show' : ''}`}>
         <div className="confirm-modal-content">
@@ -219,7 +204,7 @@ export default function Navbar() {
               <path d="M42.6666 23L27.9999 37.6667L21.3333 31" stroke="#10B981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
-          <h3 className="modal-title">Welcome Aboard, Manis!</h3>
+          <h3 className="modal-title">Welcome Aboard, {user?.name || 'Google User'}!</h3>
           <p className="modal-desc">
             You've successfully signed in via Google. Your free trial is now active, and you have full access to our dashboard. Let's start transforming your conversations into actionable intelligence!
           </p>

@@ -52,6 +52,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,10 +73,12 @@ export default function RootLayout({
         `}} />
       </head>
       <body className={inter.className}>
-        <ScrollObserver />
-        {children}
-        <Script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" strategy="beforeInteractive" />
-        <Script src="https://unpkg.com/@phosphor-icons/web" strategy="beforeInteractive" />
+        <GoogleOAuthProvider clientId="70871060452-onejag4o3lrtq23lsc3tn0b28osp6lts.apps.googleusercontent.com">
+          <ScrollObserver />
+          {children}
+          <Script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" strategy="beforeInteractive" />
+          <Script src="https://unpkg.com/@phosphor-icons/web" strategy="beforeInteractive" />
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

@@ -23,6 +23,7 @@ export default function Home() {
   const [currentUspIndex, setCurrentUspIndex] = useState(0);
   const [parallaxPos, setParallaxPos] = useState({ x: 0, y: 0 });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const [leadForm, setLeadForm] = useState({
     name: '',
@@ -136,34 +137,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // FAQ Toggle
-    const faqQuestions = document.querySelectorAll('.faq-question-new');
-    faqQuestions.forEach(question => {
-        // Remove existing listeners to prevent duplicates in strict mode
-        const clone = question.cloneNode(true);
-        if (question.parentNode) {
-            question.parentNode.replaceChild(clone, question);
-        }
-        
-        clone.addEventListener('click', () => {
-            const answer = (clone as HTMLElement).nextElementSibling as HTMLElement;
-            const icon = (clone as HTMLElement).querySelector('.faq-toggle-icon') as HTMLElement;
-            if (!answer || !icon) return;
-
-            const isOpen = answer.style.display === 'block';
-
-            document.querySelectorAll('.faq-answer-new').forEach(a => (a as HTMLElement).style.display = 'none');
-            document.querySelectorAll('.faq-toggle-icon').forEach(i => i.textContent = '+');
-            document.querySelectorAll('.faq-question-new').forEach(q => q.classList.remove('active'));
-
-            if (!isOpen) {
-                answer.style.display = 'block';
-                icon.textContent = '-';
-                (clone as HTMLElement).classList.add('active');
-            }
-        });
-    });
-
     // Sticky Navbar & Scroll Progress
     const handleScroll = () => {
         const navbar = document.querySelector('.navbar-new') as HTMLElement;
@@ -543,12 +516,12 @@ export default function Home() {
                     <div className="faq-accordion">
                     {faqsData && faqsData.length > 0 ? (
                         faqsData.map((faq: any, index: number) => (
-                            <div className={`faq-item-new ${index === 0 ? 'active' : ''}`} key={faq.id}>
-                                <div className="faq-question-new">
+                            <div className={`faq-item-new ${openFaqIndex === index ? 'active' : ''}`} key={faq.id}>
+                                <div className="faq-question-new" onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)} style={{ cursor: 'pointer' }}>
                                     <h3 dangerouslySetInnerHTML={{ __html: faq.question || faq.attributes?.question }}></h3>
-                                    <span className="faq-toggle-icon">{index === 0 ? '-' : '+'}</span>
+                                    <span className="faq-toggle-icon">{openFaqIndex === index ? '-' : '+'}</span>
                                 </div>
-                                <div className="faq-answer-new" style={{ display: index === 0 ? 'block' : 'none' }}>
+                                <div className="faq-answer-new" style={{ display: openFaqIndex === index ? 'block' : 'none' }}>
                                     <p dangerouslySetInnerHTML={{ __html: faq.answer || faq.attributes?.answer || faq.attributes?.content }}></p>
                                 </div>
                             </div>
