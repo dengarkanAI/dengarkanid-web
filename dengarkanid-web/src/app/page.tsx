@@ -291,13 +291,14 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
             defaultDesc={'Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand performance.'}
             ctaButton={<ClientCtaButton />}
         />
-        
+
         <FeatureCarousel
-            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'shield') || null}
+            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'eyes') || null}
             layoutType="boxed"
-            sectionTag="THE SHIELD"
-            defaultTitle={'Guard Your Brand<br/>Reputation 24/7'}
-            defaultDesc={'Explore detailed analytics with customizable reports to measure performance and support strategic decisions.'}
+            sectionTag="THE EYES"
+            defaultTitle={'See Every Move<br/>Before It Happens'}
+            defaultDesc={'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.'}
+            ctaButton={<ClientCtaButton />}
         />
         
         <FeatureCarousel
@@ -310,12 +311,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
         />
         
         <FeatureCarousel
-            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'eyes') || null}
+            sectionData={featuresData?.find((f: any) => f?.categoryIdentifier === 'shield') || null}
             layoutType="boxed"
-            sectionTag="THE EYES"
-            defaultTitle={'See Every Move<br/>Before It Happens'}
-            defaultDesc={'Stay ahead of the competition by tracking rival brands, comparing performance, and identifying market opportunities.'}
-            ctaButton={<ClientCtaButton />}
+            sectionTag="THE SHIELD"
+            defaultTitle={'Guard Your Brand<br/>Reputation 24/7'}
+            defaultDesc={'Explore detailed analytics with customizable reports to measure performance and support strategic decisions.'}
         />
 <TestimonialsSection />
         <ClientFaqSection faqsData={faqsData} />
