@@ -3,6 +3,12 @@ import type { NextConfig } from "next";
 const cmsUrl = process.env.NODE_ENV === 'production' ? 'http://cms:1337' : 'http://127.0.0.1:1337';
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: 'http', hostname: '**' },
+      { protocol: 'https', hostname: '**' },
+    ],
+  },
   async rewrites() {
     return [
       {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { getStrapiImageUrl } from '@/utils/strapi';
 
 interface StrapiMediaProps {
@@ -30,5 +31,28 @@ export default function StrapiMedia({ imageObj, fallbackUrl, alt, className, id,
         });
     }
 
-    return <img id={id} src={url} alt={alt || ""} className={className} style={style} />;
+    let w = 800;
+    let h = 600;
+    if (imageObj?.width) {
+        w = imageObj.width;
+        h = imageObj.height;
+    } else if (imageObj?.data?.attributes?.width) {
+        w = imageObj.data.attributes.width;
+        h = imageObj.data.attributes.height;
+    } else if (imageObj?.data?.width) {
+        w = imageObj.data.width;
+        h = imageObj.data.height;
+    }
+
+    return (
+        <Image 
+            id={id} 
+            src={url} 
+            alt={alt || ""} 
+            width={w} 
+            height={h}
+            className={className} 
+            style={{ width: '100%', height: 'auto', ...style }} 
+        />
+    );
 }
