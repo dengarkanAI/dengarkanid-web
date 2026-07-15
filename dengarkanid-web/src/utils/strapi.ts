@@ -23,8 +23,18 @@ export function getStrapiImageUrl(imageObj: any): string {
   }
 
   if (url && url.startsWith('/')) {
-      const publicStrapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
-      return publicStrapiUrl + url;
+      const isServer = typeof window === 'undefined';
+      if (isServer) {
+          // On server (SSR), use internal URL so Next.js Image optimizer can fetch from CMS container/localhost
+          const internalUrl = (process.env.STRAPI_INTERNAL_URL as string) || 'http://localhost:1337/api';
+          const host = internalUrl.replace('/api', '');
+          return host + url;
+      } else {
+          // On client, use public facing URL
+          const publicUrl = (process.env.NEXT_PUBLIC_STRAPI_URL as string) || 'http://localhost:1337';
+          const host = publicUrl.replace('/api', '');
+          return host + url;
+      }
   }
   return url;
 }
