@@ -145,8 +145,12 @@ export default function TestimonialsSection() {
           `${STRAPI}/api/testimonials?populate=avatar&filters[isActive][$eq]=true&pagination[pageSize]=50&sort=createdAt:asc`
         );
         if (!res.ok) throw new Error('CMS not available');
-        const json = await res.json();
-        const items: Testimonial[] = json.data || [];
+        const items: Testimonial[] = (json.data || []).map((item: any) => ({
+          id: item.id,
+          ...item.attributes,
+          // Fallback if it's already flat (e.g. Strapi v5)
+          ...(item.attributes ? {} : item)
+        }));
 
         if (items.length === 0) throw new Error('No testimonials in CMS');
 
@@ -166,7 +170,7 @@ export default function TestimonialsSection() {
   if (!loaded) return null;
 
   return (
-    <section className="testimonials-section-new scroll-fade">
+    <section className="testimonials-section-new">
       <div className="testimonials-header text-center">
         <h2>What people are saying?</h2>
         <p className="text-muted">
