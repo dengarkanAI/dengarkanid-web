@@ -5,6 +5,7 @@ const cmsUrl = process.env.NODE_ENV === 'production' ? 'http://cms:1337' : 'http
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
+      { protocol: 'https', hostname: 'placehold.co' },
       { protocol: 'http', hostname: '**' },
       { protocol: 'https', hostname: '**' },
     ],
