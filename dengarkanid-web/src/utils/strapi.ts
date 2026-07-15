@@ -22,19 +22,8 @@ export function getStrapiImageUrl(imageObj: any): string {
       url = imageObj.data.url;
   }
 
-  if (url && url.startsWith('/')) {
-      const isServer = typeof window === 'undefined';
-      if (isServer) {
-          // On server (SSR), use internal URL so Next.js Image optimizer can fetch from CMS container/localhost
-          const internalUrl = (process.env.STRAPI_INTERNAL_URL as string) || 'http://localhost:1337/api';
-          const host = internalUrl.replace('/api', '');
-          return host + url;
-      } else {
-          // On client, use public facing URL
-          const publicUrl = (process.env.NEXT_PUBLIC_STRAPI_URL as string) || 'http://localhost:1337';
-          const host = publicUrl.replace('/api', '');
-          return host + url;
-      }
-  }
+  // Next.js <Image> component combined with our next.config.ts rewrites
+  // works best with relative paths (e.g. /uploads/...)
+  // so we just return the relative url directly.
   return url;
 }
