@@ -358,7 +358,7 @@ h2 {
 /* Hero Section */
 .hero-section {
     position: relative;
-    padding: 100px 24px 24px; /* added top padding to account for navbar */
+    padding: 20px 24px 24px;
     background-color: #FFFFFF;
     overflow: hidden;
     height: auto;
@@ -369,8 +369,8 @@ h2 {
 
 @media (min-width: 1024px) {
     .hero-section {
-        height: 100vh;
-        min-height: 850px;
+        height: calc(100vh - 80px); /* 80px accounts for the sticky navbar height */
+        min-height: 800px;
     }
 }
 
