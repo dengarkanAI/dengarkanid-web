@@ -78,6 +78,16 @@ export default function RootLayout({
           {children}
           <Script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" strategy="beforeInteractive" />
           <Script src="https://unpkg.com/@phosphor-icons/web" strategy="beforeInteractive" />
+          {/* Google Analytics */}
+          <Script src="https://www.googletagmanager.com/gtag/js?id=G-74VVKG046M" strategy="afterInteractive" />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-74VVKG046M');
+            `}
+          </Script>
         </GoogleOAuthProvider>
       </body>
     </html>
