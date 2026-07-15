@@ -145,6 +145,7 @@ export default function TestimonialsSection() {
           `${STRAPI}/api/testimonials?populate=avatar&filters[isActive][$eq]=true&pagination[pageSize]=50&sort=createdAt:asc`
         );
         if (!res.ok) throw new Error('CMS not available');
+        const json = await res.json();
         const items: Testimonial[] = (json.data || []).map((item: any) => ({
           id: item.id,
           ...item.attributes,
