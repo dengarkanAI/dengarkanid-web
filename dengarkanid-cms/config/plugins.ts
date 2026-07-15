@@ -1,4 +1,4 @@
-export default () => ({
+export default ({ env }) => ({
   'preview-button': {
     enabled: true,
     config: {
@@ -6,31 +6,31 @@ export default () => ({
         {
           uid: 'api::homepage.homepage',
           draft: {
-            url: 'http://localhost:3001',
+            url: env('FRONTEND_URL', 'http://127.0.0.1:3001'),
             query: { preview: 'true' },
           },
           published: {
-            url: 'http://localhost:3001',
+            url: env('FRONTEND_URL', 'http://127.0.0.1:3001'),
           },
         },
         {
           uid: 'api::hero.hero',
           draft: {
-            url: 'http://localhost:3001',
+            url: env('FRONTEND_URL', 'http://127.0.0.1:3001'),
             query: { preview: 'true' },
           },
           published: {
-            url: 'http://localhost:3001',
+            url: env('FRONTEND_URL', 'http://127.0.0.1:3001'),
           },
         },
         {
           uid: 'api::blog.blog',
           draft: {
-            url: 'http://localhost:3001/artikel/{slug}',
+            url: `${env('FRONTEND_URL', 'http://127.0.0.1:3001')}/artikel/{slug}`,
             query: { preview: 'true' },
           },
           published: {
-            url: 'http://localhost:3001/artikel/{slug}',
+            url: `${env('FRONTEND_URL', 'http://127.0.0.1:3001')}/artikel/{slug}`,
           },
         },
       ],
