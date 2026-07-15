@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
         source: '/uploads/:path*',
         destination: `${cmsUrl}/uploads/:path*`,
       },
+      {
+        source: '/export-csv/:path*',
+        destination: `${cmsUrl}/export-csv/:path*`,
+      },
     ];
   },
 };
