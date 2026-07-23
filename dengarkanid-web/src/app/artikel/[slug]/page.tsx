@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       description,
       type: "article",
-      url: `https://dengarkan.id/artikel/${params.slug}`,
+      url: `https://dengarkan.id/artikel/${resolvedParams.slug}`,
       ...(imageUrl && { images: [{ url: imageUrl }] }),
     },
     twitter: {
