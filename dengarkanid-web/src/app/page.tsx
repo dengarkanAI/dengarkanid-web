@@ -330,7 +330,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
                             const attrs = blog.attributes || blog;
                             if (index === 0) {
                                 return (
-                                    <a href={`/artikel/${blog.id}`} className="blog-card-new horizontal" key={blog.id} style={{textDecoration: 'none', color: 'inherit'}}>
+                                    <a href={`/artikel/${attrs.slug}`} className="blog-card-new horizontal" key={blog.id} style={{textDecoration: 'none', color: 'inherit'}}>
                                         <div className="card-img-side">
                                             <StrapiMedia imageObj={attrs.thumbnailImage} fallbackUrl="https://placehold.co/400x400/ffffff/dddddd?text=No+Image" alt={attrs.title} />
                                         </div>
@@ -349,7 +349,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
                                 );
                             } else if (index === 1) {
                                 return (
-                                    <a href={`/artikel/${blog.id}`} className="blog-card-new vertical color-purple-banner" key={blog.id} style={{textDecoration: 'none', color: 'inherit'}}>
+                                    <a href={`/artikel/${attrs.slug}`} className="blog-card-new vertical color-purple-banner" key={blog.id} style={{textDecoration: 'none', color: 'inherit'}}>
                                         <div className="card-img-top">
                                             <StrapiMedia imageObj={attrs.thumbnailImage} fallbackUrl="https://placehold.co/400x300/ffffff/dddddd?text=No+Image" alt={attrs.title} />
                                         </div>
@@ -361,7 +361,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
                                 );
                             } else {
                                 return (
-                                    <a href={`/artikel/${blog.id}`} className="blog-card-new vertical" key={blog.id} style={{textDecoration: 'none', color: 'inherit'}}>
+                                    <a href={`/artikel/${attrs.slug}`} className="blog-card-new vertical" key={blog.id} style={{textDecoration: 'none', color: 'inherit'}}>
                                         <div className="card-img-top">
                                             <StrapiMedia imageObj={attrs.thumbnailImage} fallbackUrl="https://placehold.co/400x300/ffffff/dddddd?text=No+Image" alt={attrs.title} />
                                         </div>

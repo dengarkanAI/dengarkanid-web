@@ -24,16 +24,6 @@ export default function ClientScrollEffects() {
         };
         window.addEventListener('scroll', handleScroll);
 
-        // Scroll Fade Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 
         // Logo Carousel Interval
         const track = document.getElementById('logo-track');
@@ -69,7 +59,6 @@ export default function ClientScrollEffects() {
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            observer.disconnect();
             if (logoInterval) clearInterval(logoInterval);
         };
     }, []);

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { STRAPI_API_URL } from '@/utils/strapi';
@@ -19,6 +20,7 @@ function GoogleOneTapHandler({ onLogin }: { onLogin: (data: any) => void }) {
 }
 
 export default function Navbar() {
+  const pathname = usePathname() || '';
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthChecked, setIsAuthChecked] = useState(false);
   const [showOneTap, setShowOneTap] = useState(false);
@@ -101,10 +103,10 @@ export default function Navbar() {
           </div>
 
           <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-            <Link href="/" className="active">Home</Link>
+            <Link href="/" className={pathname === '/' ? 'active' : ''}>Home</Link>
             <a href="#">Feature</a>
             <div className="nav-dropdown-wrapper">
-              <a href="#" className="has-dropdown" id="dropdown-toggle">
+              <a href="#" className={`has-dropdown ${pathname.startsWith('/artikel') || pathname.startsWith('/glosari') ? 'active' : ''}`} id="dropdown-toggle">
                 DengarInsight <i className="ph ph-caret-down"></i>
               </a>
               <div className="nav-dropdown-menu">

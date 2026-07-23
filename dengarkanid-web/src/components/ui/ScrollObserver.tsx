@@ -1,7 +1,10 @@
 "use client";
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function ScrollObserver() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -25,7 +28,7 @@ export default function ScrollObserver() {
       clearTimeout(timeout);
       observer.disconnect();
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
