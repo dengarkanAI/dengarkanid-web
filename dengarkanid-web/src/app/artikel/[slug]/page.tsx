@@ -7,7 +7,14 @@ import { marked } from "marked";
 
 async function getArticle(slug: string) {
   try {
-    const res = await fetch(`${STRAPI_API_URL}/blogs?filters[$or][0][slug][$eq]=${slug}&filters[$or][1][documentId][$eq]=${slug}&filters[$or][2][id][$eq]=${slug}&populate=*`, {
+    const encodedSlug = encodeURIComponent(slug);
+    let url = `${STRAPI_API_URL}/blogs?filters[$or][0][slug][$eq]=${encodedSlug}&filters[$or][1][documentId][$eq]=${encodedSlug}&populate=*`;
+    
+    if (/^\d+$/.test(slug)) {
+      url = `${STRAPI_API_URL}/blogs?filters[$or][0][slug][$eq]=${encodedSlug}&filters[$or][1][documentId][$eq]=${encodedSlug}&filters[$or][2][id][$eq]=${encodedSlug}&populate=*`;
+    }
+
+    const res = await fetch(url, {
       next: { revalidate: 60 }
     });
     if (!res.ok) return null;
