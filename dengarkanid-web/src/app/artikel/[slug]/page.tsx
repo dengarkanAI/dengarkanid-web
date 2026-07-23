@@ -7,7 +7,7 @@ import { marked } from "marked";
 
 async function getArticle(slug: string) {
   try {
-    const res = await fetch(`${STRAPI_API_URL}/blogs?filters[slug][$eq]=${slug}&populate=*`, {
+    const res = await fetch(`${STRAPI_API_URL}/blogs?filters[$or][0][slug][$eq]=${slug}&filters[$or][1][documentId][$eq]=${slug}&populate=*`, {
       next: { revalidate: 60 }
     });
     if (!res.ok) return null;
