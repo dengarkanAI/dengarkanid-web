@@ -50,7 +50,7 @@ export default function Page() {
                   const featured = blogsData[0];
                   const attrs = featured.attributes || featured;
                   return (
-                      <a href={`/artikel/${attrs.slug || featured.documentId}`} className="featured-article-card" data-category={attrs.category?.toLowerCase() || 'insight'}>
+                      <a href={`/artikel/${attrs.slug || featured.documentId || featured.id}`} className="featured-article-card" data-category={attrs.category?.toLowerCase() || 'insight'}>
                           <div className="featured-img-side">
                               <StrapiMedia imageObj={attrs.thumbnailImage} fallbackUrl="https://placehold.co/800x600/312e81/ffffff?text=No+Image" alt={attrs.title} />
                           </div>
@@ -75,7 +75,7 @@ export default function Page() {
                     blogsData.slice(1).map((blog: any) => {
                         const attrs = blog.attributes || blog;
                         return (
-                            <div key={blog.id} className="blog-card-new vertical" data-category={attrs.category?.toLowerCase() || 'insight'} style={{cursor: 'pointer'}} onClick={() => window.location.href=`/artikel/${attrs.slug || blog.documentId}`}>
+                            <div key={blog.id} className="blog-card-new vertical" data-category={attrs.category?.toLowerCase() || 'insight'} style={{cursor: 'pointer'}} onClick={() => window.location.href=`/artikel/${attrs.slug || blog.documentId || blog.id}`}>
                                 <div className="card-img-top">
                                     <StrapiMedia imageObj={attrs.thumbnailImage} fallbackUrl="https://placehold.co/400x300/1e1b4b/ffffff?text=No+Image" alt={attrs.title} />
                                 </div>
