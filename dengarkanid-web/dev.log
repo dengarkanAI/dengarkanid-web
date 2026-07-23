@@ -1,0 +1,26 @@
+
+> dengarkanid-web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.10 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://172.20.60.217:3001
+- Environments: .env.local
+✓ Ready in 233ms
+
+Error fetching article: [TypeError: fetch failed] {
+  [cause]: AggregateError: 
+      at ignore-listed frames {
+    code: 'ECONNREFUSED',
+    [errors]: [ [Error], [Error] ]
+  }
+}
+Error fetching article: [TypeError: fetch failed] {
+  [cause]: AggregateError: 
+      at ignore-listed frames {
+    code: 'ECONNREFUSED',
+    [errors]: [ [Error], [Error] ]
+  }
+}
+ GET /artikel/panduan-praktis-cara-mengukur-brand-sentiment-dengan-data-bukan-asumsi 404 in 340ms (next.js: 244ms, application-code: 96ms)
+[?25h

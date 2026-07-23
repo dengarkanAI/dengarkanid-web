@@ -81,7 +81,41 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   }
 
   const attrs = article.attributes || article;
-  const contentHtml = attrs.content ? await marked(attrs.content) : "";
+  let contentHtml = "";
+  if (attrs.content) {
+    try {
+      if (typeof attrs.content === "string") {
+        contentHtml = await marked(attrs.content);
+      } else if (Array.isArray(attrs.content)) {
+        // Handle Strapi v5 Blocks Rich Text format
+        contentHtml = attrs.content.map((block: any) => {
+          if (block.type === 'paragraph') {
+            return `<p>${block.children?.map((c: any) => c.text || '').join('') || ''}</p>`;
+          }
+          if (block.type === 'heading') {
+            return `<h${block.level}>${block.children?.map((c: any) => c.text || '').join('') || ''}</h${block.level}>`;
+          }
+          if (block.type === 'image') {
+             return `<img src="${block.image?.url || ''}" alt="${block.image?.alternativeText || ''}" />`;
+          }
+          if (block.type === 'list') {
+             const items = block.children?.map((li: any) => `<li>${li.children?.map((c:any)=>c.text || '').join('') || ''}</li>`).join('') || '';
+             return block.format === 'ordered' ? `<ol>${items}</ol>` : `<ul>${items}</ul>`;
+          }
+          if (block.type === 'quote') {
+            return `<blockquote>${block.children?.map((c: any) => c.text || '').join('') || ''}</blockquote>`;
+          }
+          // Fallback for unknown block types
+          return `<p>${JSON.stringify(block)}</p>`;
+        }).join("");
+      } else {
+        contentHtml = `<pre>${JSON.stringify(attrs.content, null, 2)}</pre>`;
+      }
+    } catch (e) {
+      console.error("Markdown parsing error:", e);
+      contentHtml = `<p>Error loading article content.</p>`;
+    }
+  }
 
   // Prepare images
   let authorImg = "assets/headshot-3.jpg"; // Default
