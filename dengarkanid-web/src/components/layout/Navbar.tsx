@@ -21,6 +21,8 @@ function GoogleOneTapHandler({ onLogin }: { onLogin: (data: any) => void }) {
 
 export default function Navbar() {
   const pathname = usePathname() || '';
+  const isHome = pathname === '/';
+  const isDengarInsight = pathname.startsWith('/artikel') || pathname.startsWith('/glosari');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthChecked, setIsAuthChecked] = useState(false);
   const [showOneTap, setShowOneTap] = useState(false);
@@ -103,10 +105,10 @@ export default function Navbar() {
           </div>
 
           <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-            <Link href="/" className={pathname === '/' ? 'active' : ''}>Home</Link>
+            <Link href="/" className={isHome ? 'active' : ''}>Home</Link>
             <a href="#">Feature</a>
             <div className="nav-dropdown-wrapper">
-              <a href="#" className={`has-dropdown ${pathname.startsWith('/artikel') || pathname.startsWith('/glosari') ? 'active' : ''}`} id="dropdown-toggle">
+              <a href="#" className={`has-dropdown ${isDengarInsight ? 'active' : ''}`} id="dropdown-toggle">
                 DengarInsight <i className="ph ph-caret-down"></i>
               </a>
               <div className="nav-dropdown-menu">
