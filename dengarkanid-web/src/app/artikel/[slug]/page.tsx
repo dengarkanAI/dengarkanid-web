@@ -7,15 +7,19 @@ import { marked } from "marked";
 
 async function getArticle(slug: string) {
   try {
-    const encodedSlug = encodeURIComponent(slug);
-    let url = `${STRAPI_API_URL}/blogs?filters[$or][0][slug][$eq]=${encodedSlug}&filters[$or][1][documentId][$eq]=${encodedSlug}&populate=*`;
-    
+    const params = new URLSearchParams();
     if (/^\d+$/.test(slug)) {
-      url = `${STRAPI_API_URL}/blogs?filters[$or][0][slug][$eq]=${encodedSlug}&filters[$or][1][documentId][$eq]=${encodedSlug}&filters[$or][2][id][$eq]=${encodedSlug}&populate=*`;
+      params.append('filters[$or][0][slug][$eq]', slug);
+      params.append('filters[$or][1][id][$eq]', slug);
+    } else {
+      params.append('filters[slug][$eq]', slug);
     }
+    params.append('populate', '*');
+    
+    let url = `${STRAPI_API_URL}/blogs?${params.toString()}`;
 
     const res = await fetch(url, {
-      next: { revalidate: 60 }
+      cache: 'no-store'
     });
     if (!res.ok) return null;
     const json = await res.json();
