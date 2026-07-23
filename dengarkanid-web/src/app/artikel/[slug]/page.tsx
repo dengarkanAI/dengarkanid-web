@@ -179,7 +179,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               <button className="action-icon-btn" id="bookmark-btn-top">
                 <i className="ph ph-bookmark-simple" id="bookmark-icon-top"></i>
               </button>
-              <button className="action-icon-btn" onClick={() => { /* Client side copying needs to be moved to a client component if we want onClick to work, since this is a server component we can't use onClick directly. But for SEO purpose, we will keep it simple and clean. Removing onClick for Server Component compatibility. */ }}>
+              <button className="action-icon-btn">
                 <i className="ph ph-share-network"></i>
               </button>
             </div>
