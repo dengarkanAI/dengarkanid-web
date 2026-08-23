@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "div_kontens",
+  "info": {
+    "singularName": "div-konten",
+    "pluralName": "div-kontens",
+    "displayName": "01. === [ 📝 KONTEN UTAMA ] ===",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

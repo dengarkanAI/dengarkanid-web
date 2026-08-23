@@ -2,10 +2,11 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { STRAPI_API_URL, getStrapiImageUrl } from "@/utils/strapi";
+import { STRAPI_API_URL, getStrapiImageUrl, getGlobalSettings } from "@/utils/strapi";
 import { marked } from "marked";
+import { getDictionary, Locale } from '@/dictionaries';
 
-async function getArticle(slug: string) {
+async function getArticle(slug: string, locale: string) {
   try {
     const params = new URLSearchParams();
     if (/^\d+$/.test(slug)) {
@@ -15,6 +16,7 @@ async function getArticle(slug: string) {
       params.append('filters[slug][$eq]', slug);
     }
     params.append('populate', '*');
+    params.append('locale', locale);
     
     let url = `${STRAPI_API_URL}/blogs?${params.toString()}`;
 
@@ -30,9 +32,10 @@ async function getArticle(slug: string) {
   }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
-  const article = await getArticle(resolvedParams.slug);
+  const locale = (resolvedParams.locale as Locale) || 'id';
+  const article = await getArticle(resolvedParams.slug, locale);
   
   if (!article) {
     return {
@@ -46,11 +49,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const description = attrs.metaDescription || attrs.description || "";
   
   // Try to get metaImage first, then thumbnailImage
+  const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
   let imageUrl = "";
-  if (attrs.metaImage?.data?.attributes?.url) {
-    imageUrl = getStrapiImageUrl(attrs.metaImage.data.attributes.url);
-  } else if (attrs.thumbnailImage?.data?.attributes?.url) {
-    imageUrl = getStrapiImageUrl(attrs.thumbnailImage.data.attributes.url);
+  const metaImgRaw = getStrapiImageUrl(attrs.metaImage);
+  const thumbImgRaw = getStrapiImageUrl(attrs.thumbnailImage) || getStrapiImageUrl(attrs.gallery?.[0] || attrs.gallery?.data?.[0]);
+  if (metaImgRaw) {
+    imageUrl = `${STRAPI_BASE}${metaImgRaw}`;
+  } else if (thumbImgRaw) {
+    imageUrl = `${STRAPI_BASE}${thumbImgRaw}`;
   }
 
   return {
@@ -72,9 +78,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Page({ params }: { params: Promise<{ slug: string, locale: string }> }) {
   const resolvedParams = await params;
-  const article = await getArticle(resolvedParams.slug);
+  const locale = (resolvedParams.locale as Locale) || 'id';
+  const dict = getDictionary(locale);
+  const article = await getArticle(resolvedParams.slug, locale);
+  const globalSettings = await getGlobalSettings(locale);
 
   if (!article) {
     notFound();
@@ -118,14 +127,18 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   }
 
   // Prepare images
-  let authorImg = "assets/headshot-3.jpg"; // Default
-  if (attrs.authorAvatar?.data?.attributes?.url) {
-    authorImg = getStrapiImageUrl(attrs.authorAvatar.data.attributes.url);
+  const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+  
+  let authorImg = "/assets/headshot-3.jpg"; // Default
+  const authorImgRaw = getStrapiImageUrl(attrs.authorAvatar);
+  if (authorImgRaw) {
+    authorImg = `${STRAPI_BASE}${authorImgRaw}`;
   }
 
   let heroImg = "https://placehold.co/1200x600/312e81/ffffff?text=Article+Image";
-  if (attrs.thumbnailImage?.data?.attributes?.url) {
-    heroImg = getStrapiImageUrl(attrs.thumbnailImage.data.attributes.url);
+  const heroImgRaw = getStrapiImageUrl(attrs.thumbnailImage) || getStrapiImageUrl(attrs.gallery?.[0] || attrs.gallery?.data?.[0]);
+  if (heroImgRaw) {
+    heroImg = `${STRAPI_BASE}${heroImgRaw}`;
   }
 
   // JSON-LD Schema
@@ -154,7 +167,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Navbar />
+      <Navbar cms={globalSettings} />
 
       {/* Article Hero Header */}
       <section className="article-hero-header" style={{ paddingTop: '130px' }}>
@@ -193,7 +206,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </div>
 
       {/* Article Body Container */}
-      <section style={{ backgroundColor: '#FFFFFF', paddingBottom: '80px' }}>
+      <section style={{ backgroundColor: '#FFFFFF', padding: '64px 0 80px 0' }}>
         <div className="article-detail-container">
           <article className="article-body-medium" dangerouslySetInnerHTML={{ __html: contentHtml }}></article>
 
@@ -216,7 +229,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         </div>
       </section>
 
-      <Footer />
+      <Footer locale={locale} dict={dict.footer} cms={globalSettings} />
     </main>
   );
 }

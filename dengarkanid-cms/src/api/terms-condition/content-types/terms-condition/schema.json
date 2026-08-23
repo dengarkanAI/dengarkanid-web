@@ -1,14 +1,14 @@
 {
-  "kind": "collectionType",
-  "collectionName": "faqs",
+  "kind": "singleType",
+  "collectionName": "terms_conditions",
   "info": {
-    "singularName": "faq",
-    "pluralName": "faqs",
-    "displayName": "05. FAQ",
+    "singularName": "terms-condition",
+    "pluralName": "terms-conditions",
+    "displayName": "09. Syarat & Ketentuan",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -16,18 +16,16 @@
     }
   },
   "attributes": {
-    "question": {
+    "title": {
       "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
     },
-    "answer": {
-      "type": "text",
-      "required": true,
+    "content": {
+      "type": "richtext",
       "pluginOptions": {
         "i18n": {
           "localized": true

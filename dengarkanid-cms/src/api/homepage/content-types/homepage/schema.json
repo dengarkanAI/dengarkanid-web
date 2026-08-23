@@ -4,7 +4,7 @@
   "info": {
     "singularName": "homepage",
     "pluralName": "homepages",
-    "displayName": "Homepage",
+    "displayName": "02. Beranda",
     "description": ""
   },
   "options": {
@@ -13,19 +13,47 @@
   "attributes": {
     "heroTagline": {
       "type": "string",
-      "default": "AI SOCIAL LISTENING TOOL"
+      "default": "AI SOCIAL LISTENING TOOL",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "heroUSP1": {
       "type": "string",
-      "default": "Discover Customer Insights."
+      "default": "Discover Customer Insights.",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "heroUSP2": {
       "type": "string",
-      "default": "Analyze Trends Faster."
+      "default": "Analyze Trends Faster.",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "heroUSP3": {
       "type": "string",
-      "default": "Monitor Brand Health."
+      "default": "Monitor Brand Health.",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "heroDescription": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "heroMedia": {
       "type": "media",
@@ -39,11 +67,75 @@
     },
     "aboutUsTagline": {
       "type": "string",
-      "default": "Dengarkan Yang tak Terucapkan"
+      "default": "Dengarkan Yang tak Terucapkan",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "aboutUsDescription": {
       "type": "text",
-      "default": "Data tanpa konteks budaya hanyalah tumpukan angka. Kami memberi Anda kebenaran yang jujur, untuk #DengarkanDulu"
+      "default": "Data tanpa konteks budaya hanyalah tumpukan angka. Kami memberi Anda kebenaran yang jujur, untuk #DengarkanDulu",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "partnerTitle": {
+      "type": "string",
+      "default": "Used by Teams Across Multiple Industries",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "partnerLogos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "testimonialTitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "testimonialDescription": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "faqTitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "faqDescription": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
     }
   }
 }

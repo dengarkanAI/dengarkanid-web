@@ -5,6 +5,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { useParams } from 'next/navigation';
+import { getDictionary, Locale } from '@/dictionaries';
 
 const catLabelMap: Record<string, string> = {
   listening: 'Listening',
@@ -25,7 +27,13 @@ interface TermData {
 }
 
 export default function Glosari() {
+  const params = useParams();
+  const locale = (params.locale as Locale) || 'id';
+  const dict = getDictionary(locale);
+
   const [glossaryData, setGlossaryData] = useState<TermData[]>([]);
+  const [headerData, setHeaderData] = useState<any>(null);
+  const [globalSettings, setGlobalSettings] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCat, setActiveCat] = useState('all');
   const [loading, setLoading] = useState(true);
@@ -34,8 +42,23 @@ export default function Glosari() {
     async function loadGlossaryData() {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
-        const res = await fetch(`${apiUrl}/api/glosariums?pagination[limit]=100&sort=term:ASC`);
+        
+        const [res, headerRes, globalRes] = await Promise.all([
+          fetch(`${apiUrl}/api/glosariums?pagination[limit]=100&sort=term:ASC&locale=${locale}`),
+          fetch(`${apiUrl}/api/glosari-header?locale=${locale}`),
+          fetch(`${apiUrl}/api/global-setting?locale=${locale}`)
+        ]);
+
         const json = await res.json();
+        const headerJson = await headerRes.json();
+        const globalJson = await globalRes.json();
+        
+        if (headerJson.data) {
+          setHeaderData(headerJson.data.attributes || headerJson.data);
+        }
+        if (globalJson.data) {
+          setGlobalSettings(globalJson.data.attributes || globalJson.data);
+        }
 
         const mappedData: TermData[] = json.data.map((item: any) => {
           const attrs = item.attributes || item;
@@ -106,19 +129,19 @@ export default function Glosari() {
 
   return (
     <>
-      <Navbar />
+      <Navbar cms={globalSettings} />
 
       <section className="glosari-hero">
         <div className="glosari-hero-inner">
-          <div className="glosari-eyebrow"><span className="dot"></span> Kamus Istilah Digital</div>
-          <h1>Glosari <span className="highlight">Listening Tools</span></h1>
-          <p>Pahami setiap istilah dalam dunia social media listening, brand monitoring, dan digital analytics. Dari A sampai Z — semua ada di sini.</p>
+          <div className="glosari-eyebrow"><span className="dot"></span> {headerData?.badge || "Kamus Istilah Digital"}</div>
+          <h1>{headerData?.title || "Glosari"} <span className="highlight">{headerData?.titleHighlight || "Listening Tools"}</span></h1>
+          <p>{headerData?.description || "Pahami setiap istilah dalam dunia social media listening, brand monitoring, dan digital analytics. Dari A sampai Z — semua ada di sini."}</p>
           <div className="glosari-stats">
-            <div className="glosari-stat"><span className="num" id="total-terms">{loading ? '...' : glossaryData.length}</span><span className="lbl">Istilah</span></div>
+            <div className="glosari-stat"><span className="num" id="total-terms">{loading ? '...' : glossaryData.length}</span><span className="lbl">{headerData?.statTermsLabel || "Istilah"}</span></div>
             <div className="stat-div"></div>
-            <div className="glosari-stat"><span className="num">6</span><span className="lbl">Kategori</span></div>
+            <div className="glosari-stat"><span className="num">6</span><span className="lbl">{headerData?.statCategoriesLabel || "Kategori"}</span></div>
             <div className="stat-div"></div>
-            <div className="glosari-stat"><span className="num">EN/ID</span><span className="lbl">Dwibahasa</span></div>
+            <div className="glosari-stat"><span className="num">{headerData?.statLanguagesValue || "EN/ID"}</span><span className="lbl">{headerData?.statLanguagesLabel || "Dwibahasa"}</span></div>
           </div>
         </div>
       </section>
@@ -129,7 +152,7 @@ export default function Glosari() {
             <i className="ph ph-magnifying-glass"></i>
             <input
               type="text"
-              placeholder="Cari istilah: sentiment, reach, mention…"
+              placeholder={headerData?.searchPlaceholder || "Cari istilah: sentiment, reach, mention…"}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -154,7 +177,7 @@ export default function Glosari() {
         <aside className="glosari-sidebar">
           <p className="sidebar-title">Kategori</p>
           <ul className="sidebar-category-list">
-            <li><button className={`sidebar-cat-btn ${activeCat === 'all' ? 'active' : ''}`} onClick={() => setActiveCat('all')}><span className="sidebar-cat-dot" style={{background: 'linear-gradient(135deg,#F9DBFF,#AAECFF)'}}></span>Semua Istilah<span className="cat-count">{getCatCount('all')}</span></button></li>
+            <li><button className={`sidebar-cat-btn ${activeCat === 'all' ? 'active' : ''}`} onClick={() => setActiveCat('all')}><span className="sidebar-cat-dot" style={{background: 'linear-gradient(135deg,#F9DBFF,#AAECFF)'}}></span>{dict.categories?.allTerms || "Semua Istilah"}<span className="cat-count">{getCatCount('all')}</span></button></li>
             <li><button className={`sidebar-cat-btn ${activeCat === 'listening' ? 'active' : ''}`} onClick={() => setActiveCat('listening')}><span className="sidebar-cat-dot" style={{background: '#8B5CF6'}}></span>Listening<span className="cat-count">{getCatCount('listening')}</span></button></li>
             <li><button className={`sidebar-cat-btn ${activeCat === 'analytics' ? 'active' : ''}`} onClick={() => setActiveCat('analytics')}><span className="sidebar-cat-dot" style={{background: '#0F62FE'}}></span>Analytics<span className="cat-count">{getCatCount('analytics')}</span></button></li>
             <li><button className={`sidebar-cat-btn ${activeCat === 'sentiment' ? 'active' : ''}`} onClick={() => setActiveCat('sentiment')}><span className="sidebar-cat-dot" style={{background: '#10B981'}}></span>Sentiment<span className="cat-count">{getCatCount('sentiment')}</span></button></li>
@@ -209,13 +232,13 @@ export default function Glosari() {
           <h2>Siap Mulai Social Listening?</h2>
           <p>Gunakan semua istilah ini langsung dalam platform dengarkan.id dan monitor brand Anda secara real-time.</p>
           <div className="glosari-cta-btns">
-            <a href="#" className="btn-white"><i className="ph ph-rocket-launch"></i> Coba Gratis Sekarang</a>
-            <a href="/artikel" className="btn-ghost-white"><i className="ph ph-article"></i> Baca Artikel</a>
+            <a href="#" className="btn-white"><i className="ph ph-rocket-launch"></i> {dict.buttons?.tryFreeNow || "Coba Gratis Sekarang"}</a>
+            <a href="/artikel" className="btn-ghost-white"><i className="ph ph-article"></i> {dict.buttons?.readArticles || "Baca Artikel"}</a>
           </div>
         </div>
       </div>
 
-      <Footer />
+      <Footer locale={locale} dict={dict.footer} cms={globalSettings} />
     </>
   );
 }

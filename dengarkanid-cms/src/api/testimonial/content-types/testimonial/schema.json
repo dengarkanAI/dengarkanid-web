@@ -4,41 +4,73 @@
   "info": {
     "singularName": "testimonial",
     "pluralName": "testimonials",
-    "displayName": "Testimonial",
+    "displayName": "06. Testimonial",
     "description": "Customer testimonials shown in the homepage marquee section"
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "quote": {
       "type": "text",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "role": {
       "type": "string",
-      "required": false
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "avatar": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "cardColor": {
       "type": "enumeration",
-      "enum": ["red", "orange", "yellow", "green", "blue", "purple"],
+      "enum": [
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "purple"
+      ],
       "default": "blue",
       "required": true
     },
     "row": {
       "type": "enumeration",
-      "enum": ["top", "middle", "bottom"],
+      "enum": [
+        "top",
+        "middle",
+        "bottom"
+      ],
       "default": "top",
       "required": true
     },

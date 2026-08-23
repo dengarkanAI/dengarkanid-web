@@ -1,11 +1,10 @@
 {
-  "kind": "collectionType",
-  "collectionName": "feature_sections",
+  "kind": "singleType",
+  "collectionName": "report_pages",
   "info": {
-    "singularName": "feature-section",
-    "pluralName": "feature-sections",
-    "displayName": "09. Seksi Fitur",
-    "description": ""
+    "singularName": "report-page",
+    "pluralName": "report-pages",
+    "displayName": "04. Halaman Report"
   },
   "options": {
     "draftAndPublish": false
@@ -24,26 +23,29 @@
         }
       }
     },
-    "tagline": {
-      "type": "string",
+    "description": {
+      "type": "text",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
     },
-    "categoryIdentifier": {
-      "type": "string"
-    },
-    "carouselItems": {
-      "type": "component",
-      "repeatable": true,
-      "component": "feature.carousel-item",
+    "content": {
+      "type": "richtext",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
+    },
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

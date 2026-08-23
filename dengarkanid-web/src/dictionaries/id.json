@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "feature": "Fitur",
+    "artikel": "Artikel",
+    "glosari": "Glosarium",
+    "goToDashboard": "Ke Dasbor",
+    "signIn": "Masuk",
+    "startForFree": "Mulai Gratis"
+  },
+  "auth": {
+    "logout": "Keluar",
+    "welcomeTitle": "Selamat Datang, {name}!",
+    "welcomeDesc": "Anda telah berhasil masuk melalui Google. Uji coba gratis Anda kini aktif, dan Anda memiliki akses penuh ke dasbor kami. Mari mulai ubah percakapan menjadi wawasan yang dapat ditindaklanjuti (Actionable Intelligence)!",
+    "exploreFeatures": "Jelajahi Fitur Dulu"
+  },
+  "home": {
+    "aboutUsTagline": "Dengarkan Yang tak Terucapkan",
+    "aboutUsDescription": "Data tanpa konteks budaya hanyalah tumpukan angka. Kami memberi Anda kebenaran yang jujur, untuk #DengarkanDulu",
+    "ourBlog": "Blog Kami",
+    "noBlogs": "Belum ada blog tersedia."
+  },
+  "faq": {
+    "ourFaqs": "FAQ Kami",
+    "title": "FAQ",
+    "subtitle": "Sebagai agensi pemasaran digital terkemuka, kami berdedikasi untuk menyediakan sumber daya edukatif komprehensif dan menjawab pertanyaan yang sering diajukan untuk membantu klien kami.",
+    "contactUs": "Hubungi Kami",
+    "noFaqs": "Belum ada FAQ tersedia saat ini."
+  },
+  "testimonials": {
+    "title": "Apa kata mereka?",
+    "subtitle": "Jangan hanya percaya kata-kata kami—lihat apa yang pelanggan kami katakan tentang pengalaman mereka!"
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "subtitle": "Beritahu Kami Bagaimana Kami Bisa Membantu Anda",
+    "formName": "Nama Lengkap",
+    "formEmail": "Alamat Email",
+    "formPhone": "Nomor Telepon",
+    "formMessage": "Pesan",
+    "formMessagePlaceholder": "Tulis Pesan Anda Di Sini",
+    "btnSend": "Kirim Pesan",
+    "btnSending": "Mengirim...",
+    "modalTitle": "Terima Kasih!",
+    "modalDesc": "Data Anda telah berhasil kami terima. Tim kami akan segera merespons Anda.",
+    "modalQuote": "\"Kami akan <strong style='color: #00D5FF'>#dengarkan</strong> kebutuhanmu\"",
+    "modalClose": "Tutup"
+  },
+  "footer": {
+    "interestedTitle": "Apakah Anda Tertarik\nDengan Dengarkan?",
+    "contactSales": "Hubungi Sales",
+    "addressTitle": "Alamat",
+    "contactTitle": "Kontak",
+    "followUs": "Ikuti Kami",
+    "copyright": "© Dengarkan hak cipta dilindungi",
+    "terms": "Syarat & Ketentuan",
+    "privacy": "Kebijakan Privasi"
+  },
+  "features": {
+    "earsTag": "THE EARS",
+    "earsTitle": "Hear Every Conversation<br/>That Matters",
+    "earsDesc": "Pantau penyebutan merek, percakapan audiens, dan tren terkini di berbagai saluran digital saat itu juga.",
+    "brainTag": "THE BRAIN",
+    "brainTitle": "Think Smarter with<br/>AI-Powered Insights",
+    "brainDesc": "Akses dasbor terpusat dengan metrik utama, sentimen, keterlibatan, dan keseluruhan performa merek.",
+    "eyesTag": "THE EYES",
+    "eyesTitle": "See Every Move<br/>Before It Happens",
+    "eyesDesc": "Tetap terdepan dari kompetitor dengan memantau merek pesaing, membandingkan performa, dan mengidentifikasi peluang pasar.",
+    "mouthTag": "THE MOUTH",
+    "mouthTitle": "Speak the Language<br/>Your Audience Understands",
+    "mouthDesc": "Analisis nada dan emosi di balik setiap penyebutan untuk memahami bagaimana perasaan audiens terhadap merek Anda yang sebenarnya.",
+    "shieldTag": "THE SHIELD",
+    "shieldTitle": "Guard Your Brand<br/>Reputation 24/7",
+    "shieldDesc": "Jelajahi analitik mendetail dengan laporan yang dapat disesuaikan untuk mengukur performa dan mendukung keputusan strategis."
+  },
+  "buttons": {
+    "freeTrial": "Jadwalkan Demo",
+    "seeFeatures": "Lihat Fitur",
+    "subscribe": "Berlangganan",
+    "tryFreeNow": "Coba Gratis Sekarang",
+    "readArticles": "Baca Artikel"
+  },
+  "categories": {
+    "allArticles": "Semua Artikel",
+    "design": "Desain",
+    "tech": "Teknologi",
+    "business": "Bisnis",
+    "insight": "Insight",
+    "allTerms": "Semua Istilah"
+  }
+}

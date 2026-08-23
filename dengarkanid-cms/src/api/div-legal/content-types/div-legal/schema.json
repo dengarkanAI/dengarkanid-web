@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "div_legals",
+  "info": {
+    "singularName": "div-legal",
+    "pluralName": "div-legals",
+    "displayName": "05. === [ ⚖️ LEGAL & SETTING ] ===",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  }
+}

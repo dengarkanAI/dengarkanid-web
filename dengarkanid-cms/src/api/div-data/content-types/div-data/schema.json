@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "div_datas",
+  "info": {
+    "singularName": "div-data",
+    "pluralName": "div-datas",
+    "displayName": "07. === [ 🧩 KOMPONEN & DATA ] ===",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

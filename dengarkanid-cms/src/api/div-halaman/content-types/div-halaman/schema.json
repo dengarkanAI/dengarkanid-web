@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "div_halamans",
+  "info": {
+    "singularName": "div-halaman",
+    "pluralName": "div-halamans",
+    "displayName": "01. === [ 📄 HALAMAN UTAMA ] ===",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_settings",
+  "info": {
+    "singularName": "global-setting",
+    "pluralName": "global-settings",
+    "displayName": "06. Pengaturan Global",
+    "description": "Global website settings including Footer and Contact Us."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "footerInterestedTitle": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "footerContactSales": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "footerAddressTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "footerAddressText": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "footerContactTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "footerEmail": { "type": "string", "pluginOptions": { "i18n": { "localized": false } } },
+    "footerPhone": { "type": "string", "pluginOptions": { "i18n": { "localized": false } } },
+    "footerFollowUs": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "footerCopyright": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "favicon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seoTitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "seoDescription": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "footerTerms": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "footerPrivacy": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.social-link",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "linkedinUrl": { "type": "string", "pluginOptions": { "i18n": { "localized": false } } },
+    "facebookUrl": { "type": "string", "pluginOptions": { "i18n": { "localized": false } } },
+    "instagramUrl": { "type": "string", "pluginOptions": { "i18n": { "localized": false } } },
+    "threadsUrl": { "type": "string", "pluginOptions": { "i18n": { "localized": false } } },
+    "twitterUrl": { "type": "string", "pluginOptions": { "i18n": { "localized": false } } },
+    "tiktokUrl": { "type": "string", "pluginOptions": { "i18n": { "localized": false } } },
+    "contactTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactSubtitle": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormName": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormEmail": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormPhone": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormMessage": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormMessagePlaceholder": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactBtnSend": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactBtnSending": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactModalTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactModalDesc": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactModalQuote": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactModalClose": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "testimonialTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } }
+  }
+}

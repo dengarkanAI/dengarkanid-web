@@ -4,7 +4,7 @@
   "info": {
     "singularName": "blog",
     "pluralName": "blogs",
-    "displayName": "Blog",
+    "displayName": "02. Artikel (Blog)",
     "description": ""
   },
   "options": {
@@ -13,13 +13,28 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "authorName": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "authorAvatar": {
       "type": "media",
@@ -30,7 +45,12 @@
       ]
     },
     "date": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "thumbnailImage": {
       "type": "media",
@@ -41,7 +61,12 @@
       ]
     },
     "content": {
-      "type": "richtext"
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "gallery": {
       "type": "media",
@@ -51,16 +76,36 @@
         "images"
       ]
     },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Desain",
+        "Teknologi",
+        "Bisnis",
+        "Insight"
+      ],
+      "default": "Insight"
+    },
     "slug": {
       "type": "uid",
       "targetField": "title",
       "required": true
     },
     "metaTitle": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "metaDescription": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "metaImage": {
       "type": "media",
@@ -69,6 +114,11 @@
       "allowedTypes": [
         "images"
       ]
+    }
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
     }
   }
 }

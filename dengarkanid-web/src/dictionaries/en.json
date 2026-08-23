@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Home",
+    "feature": "Feature",
+    "artikel": "Article",
+    "glosari": "Glossary",
+    "goToDashboard": "Go to Dashboard",
+    "signIn": "Sign In",
+    "startForFree": "Start For Free"
+  },
+  "auth": {
+    "logout": "Logout",
+    "welcomeTitle": "Welcome, {name}!",
+    "welcomeDesc": "You've successfully signed in with Google. Your free trial is now active, and you have full access to our dashboard. Let's start transforming conversations into Actionable Intelligence!",
+    "exploreFeatures": "Explore Features First"
+  },
+  "home": {
+    "aboutUsTagline": "Listen to the Unspoken",
+    "aboutUsDescription": "Data without cultural context is just a pile of numbers. We bring you the honest truth, to #ListenFirst",
+    "ourBlog": "Our Blog",
+    "noBlogs": "No blogs available yet."
+  },
+  "faq": {
+    "ourFaqs": "Our FAQs",
+    "title": "FAQ",
+    "subtitle": "As a leading digital marketing agency, we are dedicated to providing comprehensive educational resources and answering frequently asked questions to help our clients.",
+    "contactUs": "Contact Us",
+    "noFaqs": "No FAQs available at this time."
+  },
+  "testimonials": {
+    "title": "What they say?",
+    "subtitle": "Don't just take our word for it—see what our customers have to say about their experience!"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Let Us Know How We Can Help You",
+    "formName": "Full Name",
+    "formEmail": "Email Address",
+    "formPhone": "Phone Number",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "Write Your Message Here",
+    "btnSend": "Send Message",
+    "btnSending": "Sending...",
+    "modalTitle": "Thank You!",
+    "modalDesc": "We have successfully received your information. Our team will respond to you shortly.",
+    "modalQuote": "\"We will <strong style='color: #00D5FF'>#listen</strong> to your needs\"",
+    "modalClose": "Close"
+  },
+  "footer": {
+    "interestedTitle": "Are You Interested\nIn Dengarkan?",
+    "contactSales": "Contact Sales",
+    "addressTitle": "Address",
+    "contactTitle": "Contact",
+    "followUs": "Follow Us",
+    "copyright": "© Dengarkan all rights reserved",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
+  },
+  "features": {
+    "earsTag": "THE EARS",
+    "earsTitle": "Hear Every Conversation<br/>That Matters",
+    "earsDesc": "Monitor brand mentions, audience conversations, and current trends across digital channels in real time.",
+    "brainTag": "THE BRAIN",
+    "brainTitle": "Think Smarter with<br/>AI-Powered Insights",
+    "brainDesc": "Access a centralized dashboard with key metrics, sentiment, engagement, and overall brand performance.",
+    "eyesTag": "THE EYES",
+    "eyesTitle": "See Every Move<br/>Before It Happens",
+    "eyesDesc": "Stay ahead of the competition by monitoring competitor brands, benchmarking performance, and identifying market opportunities.",
+    "mouthTag": "THE MOUTH",
+    "mouthTitle": "Speak the Language<br/>Your Audience Understands",
+    "mouthDesc": "Analyze the tone and emotion behind every mention to understand how your audience truly feels about your brand.",
+    "shieldTag": "THE SHIELD",
+    "shieldTitle": "Guard Your Brand<br/>Reputation 24/7",
+    "shieldDesc": "Explore detailed analytics with customizable reports to measure performance and support strategic decisions."
+  },
+  "buttons": {
+    "freeTrial": "Book Demo",
+    "seeFeatures": "See Features",
+    "subscribe": "Subscribe",
+    "tryFreeNow": "Try For Free Now",
+    "readArticles": "Read Articles"
+  },
+  "categories": {
+    "allArticles": "All Articles",
+    "design": "Design",
+    "tech": "Technology",
+    "business": "Business",
+    "insight": "Insight",
+    "allTerms": "All Terms"
+  }
+}
