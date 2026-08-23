@@ -101,12 +101,12 @@ export default async function Home({ params, searchParams }: { params: Promise<{
       attrs?.heroUSP3 || "Monitor Brand Health."
   ];
 
-  // Helper to highlight #Dengarkan with gradient
+  // Helper to highlight Dengarkan or DENGARKAN with gradient
   const renderDescription = () => {
-      const defaultDesc = `Understand what people are saying, how they feel, and what matters most. #Dengarkan helps you track market sentiment, discover trends, and gain real-time insights from billions of conversations.`;
+      const defaultDesc = `Pahami apa yang dikatakan orang, bagaimana perasaan mereka, dan apa yang paling penting. DENGARKAN membantu Anda memantau sentimen pasar, menemukan tren, dan memperoleh wawasan real-time dari miliaran percakapan.`;
       const desc = attrs?.heroDescription || defaultDesc;
       const gradientStyle = `background: linear-gradient(135deg, #C060FF 0%, #30C0FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; font-weight: bold;`;
-      return desc.replace(/#Dengarkan/gi, `<span style="${gradientStyle}">#Dengarkan</span>`);
+      return desc.replace(/(#Dengarkan|DENGARKAN|Dengarkan)/g, `<span style="${gradientStyle}">$1</span>`);
   };
 
   return (
