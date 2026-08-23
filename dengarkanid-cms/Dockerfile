@@ -42,6 +42,9 @@ WORKDIR /opt/app
 # Salin SELURUH hasil build (termasuk dist/ compiled JS + public/ + database/)
 COPY --from=build /opt/app ./
 
+# Backup uploads directory so it can be restored to the volume on startup
+RUN cp -R /opt/app/public/uploads /opt/app/public/uploads_backup
+
 # Pastikan .tmp writable untuk SQLite
 RUN mkdir -p .tmp && chown -R node:node /opt/app
 
@@ -51,4 +54,5 @@ EXPOSE 1337
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD wget --quiet --tries=1 --spider http://localhost:1337/_health || exit 1
 
-CMD ["npm", "run", "start"]
+# Copy backed-up uploads to the volume (without overwriting) before starting Strapi
+CMD cp -Rn /opt/app/public/uploads_backup/* /opt/app/public/uploads/ 2>/dev/null || true && npm run start
