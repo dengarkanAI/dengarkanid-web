@@ -8,9 +8,35 @@ export interface FeatureCarouselItem extends Struct.ComponentSchema {
     icon: 'images';
   };
   attributes: {
-    description: Schema.Attribute.RichText;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    subtitle: Schema.Attribute.String;
+    subtitle: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface SharedSocialLink extends Struct.ComponentSchema {
+  collectionName: 'components_shared_social_links';
+  info: {
+    description: 'Component for dynamic social media links and icons';
+    displayName: 'Social Link';
+  };
+  attributes: {
+    iconClass: Schema.Attribute.String;
+    iconMedia: Schema.Attribute.Media<'images'>;
+    platformName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'LinkedIn'>;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -18,6 +44,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'feature.carousel-item': FeatureCarouselItem;
+      'shared.social-link': SharedSocialLink;
     }
   }
 }

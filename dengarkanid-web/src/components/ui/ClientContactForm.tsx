@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { STRAPI_API_URL } from '@/utils/strapi';
 
-export default function ClientContactForm() {
+export default function ClientContactForm({ dict, cms }: { dict: any, cms?: any }) {
     const [leadForm, setLeadForm] = useState({
         name: '',
         email: '',
@@ -56,9 +56,8 @@ export default function ClientContactForm() {
             <div className="container contact-grid-new">
                 {/* Left Side: Copy and Contacts Info */}
                 <div className="contact-left-info">
-                    <h2>Talk to our<br/>support team</h2>
-                    <p className="desc">Feel free to reach out for help with your order or any questions you may have
-                        regarding your purchase.</p>
+                    <h2 dangerouslySetInnerHTML={{ __html: (cms?.contactTitle || dict.title).replace(/\n/g, '<br/>') }}></h2>
+                    <p className="desc">{cms?.contactSubtitle || dict.subtitle}</p>
 
                     <div className="contact-methods">
                         <div className="contact-method-item">
@@ -86,23 +85,23 @@ export default function ClientContactForm() {
                 <div className="contact-right-form">
                     <form className="contact-form-card" onSubmit={handleLeadSubmit}>
                         <div className="form-group">
-                            <label htmlFor="contact-name">Full Name</label>
+                            <label htmlFor="contact-name">{cms?.contactFormName || dict.formName}</label>
                             <input 
-                                type="text" id="contact-name" placeholder="Enter Full Name" required 
+                                type="text" id="contact-name" placeholder={cms?.contactFormName || dict.formName} required 
                                 value={leadForm.name} onChange={(e) => setLeadForm({...leadForm, name: e.target.value})}
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="contact-email">Email Address</label>
+                            <label htmlFor="contact-email">{cms?.contactFormEmail || dict.formEmail}</label>
                             <input 
-                                type="email" id="contact-email" placeholder="Enter Email Address" required 
+                                type="email" id="contact-email" placeholder={cms?.contactFormEmail || dict.formEmail} required 
                                 value={leadForm.email} onChange={(e) => setLeadForm({...leadForm, email: e.target.value})}
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="contact-phone">Phone Number</label>
+                            <label htmlFor="contact-phone">{cms?.contactFormPhone || dict.formPhone}</label>
                             <input 
-                                type="tel" id="contact-phone" placeholder="Enter Phone Number" required 
+                                type="tel" id="contact-phone" placeholder={cms?.contactFormPhone || dict.formPhone} required 
                                 value={leadForm.phone} onChange={(e) => setLeadForm({...leadForm, phone: e.target.value})}
                             />
                         </div>
@@ -141,15 +140,15 @@ export default function ClientContactForm() {
                             </>
                         )}
                         <div className="form-group">
-                            <label htmlFor="contact-message">Message</label>
+                            <label htmlFor="contact-message">{cms?.contactFormMessage || dict.formMessage}</label>
                             <textarea 
-                                id="contact-message" rows={4} placeholder="Write Your Message Here" required
+                                id="contact-message" rows={4} placeholder={cms?.contactFormMessagePlaceholder || dict.formMessagePlaceholder} required
                                 value={leadForm.message} onChange={(e) => setLeadForm({...leadForm, message: e.target.value})}
                             ></textarea>
                         </div>
                         
                         <button type="submit" className="btn-send-message" disabled={leadSubmitting}>
-                            {leadSubmitting ? 'Sending...' : <>Send Message &nbsp;&rarr;</>}
+                            {leadSubmitting ? (cms?.contactBtnSending || dict.btnSending) : <>{cms?.contactBtnSend || dict.btnSend} &nbsp;&rarr;</>}
                         </button>
                     </form>
                 </div>
@@ -183,17 +182,15 @@ export default function ClientContactForm() {
                                 filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.1))'
                             }}></i>
                         </div>
-                        <h3 style={{ color: '#fff', fontSize: '24px', marginBottom: '12px' }}>Terima Kasih!</h3>
+                        <h3 style={{ color: '#fff', fontSize: '24px', marginBottom: '12px' }}>{cms?.contactModalTitle || dict.modalTitle}</h3>
                         <p style={{ color: '#A0A0A0', lineHeight: 1.6, marginBottom: '24px' }}>
-                            Data Anda telah berhasil kami terima. Tim kami akan segera merespons Anda.
+                            {cms?.contactModalDesc || dict.modalDesc}
                         </p>
                         <div style={{
                             background: 'rgba(113, 49, 255, 0.1)', padding: '16px', borderRadius: '12px',
                             border: '1px dashed rgba(113, 49, 255, 0.3)', marginBottom: '24px'
                         }}>
-                            <p style={{ margin: 0, color: '#fff', fontWeight: 500, fontStyle: 'italic' }}>
-                                "Kami akan <strong style={{color: '#00D5FF'}}>#dengarkan</strong> kebutuhanmu"
-                            </p>
+                            <p style={{ margin: 0, color: '#fff', fontWeight: 500, fontStyle: 'italic' }} dangerouslySetInnerHTML={{ __html: cms?.contactModalQuote || dict.modalQuote }}></p>
                         </div>
                         <button style={{ 
                             width: '100%', padding: '14px', borderRadius: '12px', 
@@ -202,7 +199,7 @@ export default function ClientContactForm() {
                             cursor: 'pointer', boxSizing: 'border-box',
                             boxShadow: '0 4px 15px rgba(113, 49, 255, 0.3)'
                         }} onClick={() => setShowLeadModal(false)}>
-                            Tutup
+                            {cms?.contactModalClose || dict.modalClose}
                         </button>
                     </div>
                 </div>

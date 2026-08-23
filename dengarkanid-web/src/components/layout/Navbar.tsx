@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import { STRAPI_API_URL } from '@/utils/strapi';
+import { STRAPI_API_URL, getStrapiImageUrl } from '@/utils/strapi';
+import { getDictionary, Locale } from '@/dictionaries';
 
 function GoogleOneTapHandler({ onLogin }: { onLogin: (data: any) => void }) {
   useGoogleOneTapLogin({
@@ -19,10 +20,33 @@ function GoogleOneTapHandler({ onLogin }: { onLogin: (data: any) => void }) {
   return null;
 }
 
-export default function Navbar() {
+export default function Navbar({ cms }: { cms?: any }) {
   const pathname = usePathname() || '';
-  const isHome = pathname === '/';
-  const isDengarInsight = pathname.startsWith('/artikel') || pathname.startsWith('/glosari');
+  const router = useRouter();
+  
+  // Extract locale from pathname (e.g. /en/about -> en)
+  const segments = pathname.split('/').filter(Boolean);
+  const currentLocale = (segments[0] === 'en' ? 'en' : 'id') as Locale;
+  const dict = getDictionary(currentLocale);
+  
+  const logoUrl = cms?.logo ? getStrapiImageUrl(cms.logo) : "/logo-dengarkan-listening-tools.png";
+  const finalLogoUrl = logoUrl.startsWith('http') || logoUrl.startsWith('/') ? logoUrl : `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${logoUrl}`;
+
+  // Helper to remove locale from pathname to switch language
+  const getPathWithoutLocale = () => {
+    if (segments[0] === 'id' || segments[0] === 'en') {
+      return '/' + segments.slice(1).join('/');
+    }
+    return pathname;
+  };
+  
+  const switchLanguage = (newLocale: string) => {
+    const newPath = `/${newLocale}${getPathWithoutLocale()}`;
+    router.push(newPath);
+  };
+
+  const isHome = pathname === `/${currentLocale}` || pathname === '/';
+  const isDengarInsight = pathname.startsWith(`/${currentLocale}/artikel`) || pathname.startsWith(`/${currentLocale}/glosari`) || pathname.startsWith(`/${currentLocale}/report`);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthChecked, setIsAuthChecked] = useState(false);
   const [showOneTap, setShowOneTap] = useState(false);
@@ -99,26 +123,43 @@ export default function Navbar() {
       <header className="navbar">
         <div className="nav-container">
           <div className="logo">
-            <Link href="/">
-              <img src="/logo-dengarkan-listening-tools.png" alt="dengarkan.id" className="logo-img"/>
+            <Link href={`/${currentLocale}`}>
+              <img src={finalLogoUrl} alt="dengarkan.id" className="logo-img"/>
             </Link>
           </div>
 
           <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-            <Link href="/" className={isHome ? 'active' : ''}>Home</Link>
+            <Link href={`/${currentLocale}`} className={isHome ? 'active' : ''}>{dict.nav?.home || 'Home'}</Link>
             <a href="#">Feature</a>
             <div className="nav-dropdown-wrapper">
               <a href="#" className={`has-dropdown ${isDengarInsight ? 'active' : ''}`} id="dropdown-toggle">
-                DengarInsight <i className="ph ph-caret-down"></i>
+                Insight <i className="ph ph-caret-down"></i>
               </a>
               <div className="nav-dropdown-menu">
-                <Link href="/artikel" className="dropdown-item-simple">Artikel</Link>
-                <Link href="/glosari" className="dropdown-item-simple">Glosari</Link>
+                <Link href={`/${currentLocale}/artikel`} className="dropdown-item-simple">Artikel</Link>
+                <Link href={`/${currentLocale}/glosari`} className="dropdown-item-simple">Glosari</Link>
+                <Link href={`/${currentLocale}/report`} className="dropdown-item-simple">Report</Link>
               </div>
             </div>
           </nav>
 
           <div className={`nav-auth ${isMobileMenuOpen ? 'active' : ''}`}>
+            {/* Language Switcher */}
+            <div style={{ display: 'flex', alignItems: 'center', background: '#f4f4f5', padding: '4px', borderRadius: '24px' }}>
+              <button 
+                onClick={() => switchLanguage('id')}
+                style={{ border: 'none', background: currentLocale === 'id' ? '#fff' : 'transparent', padding: '4px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: currentLocale === 'id' ? 600 : 500, color: currentLocale === 'id' ? '#18181b' : '#71717a', cursor: 'pointer', transition: 'all 0.2s', boxShadow: currentLocale === 'id' ? '0 2px 4px rgba(0,0,0,0.05)' : 'none' }}
+              >
+                ID
+              </button>
+              <button 
+                onClick={() => switchLanguage('en')}
+                style={{ border: 'none', background: currentLocale === 'en' ? '#fff' : 'transparent', padding: '4px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: currentLocale === 'en' ? 600 : 500, color: currentLocale === 'en' ? '#18181b' : '#71717a', cursor: 'pointer', transition: 'all 0.2s', boxShadow: currentLocale === 'en' ? '0 2px 4px rgba(0,0,0,0.05)' : 'none' }}
+              >
+                EN
+              </button>
+            </div>
+
             {user ? (
               /* ── Logged-in: dropdown button ── */
               <div className="nav-user-dropdown" ref={userMenuRef} style={{position: 'relative'}}>

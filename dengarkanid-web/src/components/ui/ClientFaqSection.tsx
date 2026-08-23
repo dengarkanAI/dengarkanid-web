@@ -15,9 +15,11 @@ interface FaqItem {
 
 interface ClientFaqSectionProps {
     faqsData: FaqItem[];
+    dict: any;
+    cms?: any;
 }
 
-export default function ClientFaqSection({ faqsData }: ClientFaqSectionProps) {
+export default function ClientFaqSection({ faqsData, dict, cms }: ClientFaqSectionProps) {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
     return (
@@ -26,14 +28,12 @@ export default function ClientFaqSection({ faqsData }: ClientFaqSectionProps) {
                 <div className="faq-card-box">
                     <div className="faq-header text-center">
                         <div className="faq-work-tag justify-center" style={{display: 'flex', justifyContent: 'center'}}>
-                            <span className="bullet"></span> Our FAQs
+                            <span className="bullet"></span> {dict.ourFaqs}
                         </div>
-                        <h2>FAQ</h2>
-                        <p className="text-muted">As a leading digital marketing agency, we are dedicated to providing
-                            comprehensive educational resources and answering frequently asked questions to help our
-                            clients.</p>
+                        <h2 dangerouslySetInnerHTML={{ __html: (cms?.faqTitle || dict.title).replace(/\n/g, '<br/>') }}></h2>
+                        <p className="text-muted" dangerouslySetInnerHTML={{ __html: (cms?.faqDescription || dict.subtitle).replace(/\n/g, '<br/>') }}></p>
                         <div className="faq-header-actions">
-                            <a href="#contact" className="contact-link">Contact Us</a>
+                            <a href="#contact" className="contact-link">{dict.contactUs}</a>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@ export default function ClientFaqSection({ faqsData }: ClientFaqSectionProps) {
                             </div>
                         ))
                     ) : (
-                        <p className="text-center text-muted">No FAQs available at the moment.</p>
+                        <p className="text-center text-muted">{dict.noFaqs}</p>
                     )}
                     </div>
                 </div>

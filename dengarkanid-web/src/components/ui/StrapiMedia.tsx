@@ -44,6 +44,8 @@ export default function StrapiMedia({ imageObj, fallbackUrl, alt, className, id,
         h = imageObj.data.height;
     }
 
+    const isLocalUrl = url.startsWith('/') || url.includes('localhost') || url.includes('127.0.0.1');
+
     return (
         <Image 
             id={id} 
@@ -52,6 +54,7 @@ export default function StrapiMedia({ imageObj, fallbackUrl, alt, className, id,
             width={w} 
             height={h}
             className={className} 
+            unoptimized={isLocalUrl}
             style={{ width: '100%', height: 'auto', ...style }} 
         />
     );

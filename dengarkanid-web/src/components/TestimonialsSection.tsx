@@ -131,51 +131,37 @@ function TestiCard({ t, strapiUrl }: { t: Testimonial; strapiUrl: string }) {
   );
 }
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ testimonialsData, dict, cms, locale }: { testimonialsData?: any[], dict: any, cms?: any, locale?: string }) {
   const [topRow, setTopRow] = useState<Testimonial[]>([]);
   const [bottomRow, setBottomRow] = useState<Testimonial[]>([]);
   const [loaded, setLoaded] = useState(false);
 
-  const STRAPI = process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
-
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const res = await fetch(
-          `${STRAPI}/api/testimonials?populate=avatar&filters[isActive][$eq]=true&pagination[pageSize]=50&sort=createdAt:asc`
-        );
-        if (!res.ok) throw new Error('CMS not available');
-        const json = await res.json();
-        const items: Testimonial[] = (json.data || []).map((item: any) => ({
-          id: item.id,
-          ...item.attributes,
-          // Fallback if it's already flat (e.g. Strapi v5)
-          ...(item.attributes ? {} : item)
-        }));
-
-        if (items.length === 0) throw new Error('No testimonials in CMS');
-
-        setTopRow(items.filter((t) => t.row === 'top'));
-        setBottomRow(items.filter((t) => t.row === 'bottom' || t.row === 'middle'));
-        setLoaded(true);
-      } catch {
-        // Use fallback data
-        setTopRow(FALLBACK.top);
-        setBottomRow(FALLBACK.bottom);
-        setLoaded(true);
-      }
-    };
-    fetchTestimonials();
-  }, [STRAPI]);
+    if (testimonialsData && testimonialsData.length > 0) {
+      const items: Testimonial[] = testimonialsData.map((item: any) => ({
+        id: item.id,
+        ...item.attributes,
+        ...(item.attributes ? {} : item)
+      }));
+      setTopRow(items.filter((t) => t.row === 'top'));
+      setBottomRow(items.filter((t) => t.row === 'bottom' || t.row === 'middle'));
+    } else {
+      setTopRow(FALLBACK.top);
+      setBottomRow(FALLBACK.bottom);
+    }
+    setLoaded(true);
+  }, [testimonialsData]);
 
   if (!loaded) return null;
 
   return (
     <section className="testimonials-section-new">
       <div className="testimonials-header text-center">
-        <h2>What people are saying?</h2>
+        <div className="section-header center">
+          <h2 dangerouslySetInnerHTML={{ __html: (cms?.testimonialTitle || dict.title).replace(/\n/g, '<br/>') }}></h2>
+        </div>
         <p className="text-muted">
-          Don&apos;t just take our word for it—see what our customers have to say about their experience!
+          {dict.subtitle}
         </p>
       </div>
 
@@ -185,7 +171,7 @@ export default function TestimonialsSection() {
           <div className="marquee-track">
             {/* Render twice for seamless loop */}
             {[...topRow, ...topRow].map((t, i) => (
-              <TestiCard key={`top-${t.id}-${i}`} t={t} strapiUrl={STRAPI} />
+              <TestiCard key={`top-${t.id}-${i}`} t={t} strapiUrl={process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337'} />
             ))}
           </div>
         </div>
@@ -194,7 +180,7 @@ export default function TestimonialsSection() {
         <div className="marquee-row marquee-right">
           <div className="marquee-track">
             {[...bottomRow, ...bottomRow].map((t, i) => (
-              <TestiCard key={`bot-${t.id}-${i}`} t={t} strapiUrl={STRAPI} />
+              <TestiCard key={`bot-${t.id}-${i}`} t={t} strapiUrl={process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337'} />
             ))}
           </div>
         </div>

@@ -5,9 +5,11 @@ import React, { useState, useEffect } from 'react';
 interface ClientCtaButtonProps {
     className?: string;
     id?: string;
+    textFallback?: string;
+    textDashboard?: string;
 }
 
-export default function ClientCtaButton({ className, id = 'cta-btn' }: ClientCtaButtonProps) {
+export default function ClientCtaButton({ className, id = 'cta-btn', textFallback = 'Free Trial', textDashboard = 'Go to Dashboard' }: ClientCtaButtonProps) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [mounted, setMounted] = useState(false);
 
@@ -27,12 +29,12 @@ export default function ClientCtaButton({ className, id = 'cta-btn' }: ClientCta
 
     // SSR fallback to prevent hydration mismatch
     if (!mounted) {
-        return <a href="https://app.dengarkan.id/signup" className={`btn-primary dynamic-cta-btn ${className || ''}`.trim()} id={id}>Free Trial</a>;
+        return <a href="https://app.dengarkan.id/signup" className={`btn-primary dynamic-cta-btn ${className || ''}`.trim()} id={id}>{textFallback}</a>;
     }
 
     const finalClassName = `btn-primary dynamic-cta-btn ${className || ''}`.trim();
     if (isLoggedIn) {
-        return <a href="/admin/leads" className={finalClassName} id={id}>Go to Dashboard</a>;
+        return <a href="/admin/leads" className={finalClassName} id={id}>{textDashboard}</a>;
     }
-    return <a href="https://app.dengarkan.id/signup" className={finalClassName} id={id}>Free Trial</a>;
+    return <a href="https://app.dengarkan.id/signup" className={finalClassName} id={id}>{textFallback}</a>;
 }
