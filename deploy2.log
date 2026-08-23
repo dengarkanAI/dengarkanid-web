@@ -1,0 +1,237 @@
+﻿2026-08-23T03:39:41.2684986Z Current runner version: '2.336.0'
+2026-08-23T03:39:41.2719827Z ##[group]Runner Image Provisioner
+2026-08-23T03:39:41.2720955Z Hosted Compute Agent
+2026-08-23T03:39:41.2721687Z Version: 20260729.566
+2026-08-23T03:39:41.2722488Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+2026-08-23T03:39:41.2723457Z Build Date: 2026-07-29T19:17:02Z
+2026-08-23T03:39:41.2724395Z Worker ID: {9ce0e171-59ef-43f4-84e0-426ad7ba9e8d}
+2026-08-23T03:39:41.2725235Z Azure Region: northcentralus
+2026-08-23T03:39:41.2726218Z ##[endgroup]
+2026-08-23T03:39:41.2727766Z ##[group]Operating System
+2026-08-23T03:39:41.2728587Z Ubuntu
+2026-08-23T03:39:41.2729272Z 24.04.4
+2026-08-23T03:39:41.2729887Z LTS
+2026-08-23T03:39:41.2731023Z ##[endgroup]
+2026-08-23T03:39:41.2731665Z ##[group]Runner Image
+2026-08-23T03:39:41.2732500Z Image: ubuntu-24.04
+2026-08-23T03:39:41.2733230Z Version: 20260816.277.1
+2026-08-23T03:39:41.2734709Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260816.277/images/ubuntu/Ubuntu2404-Readme.md
+2026-08-23T03:39:41.2736647Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260816.277
+2026-08-23T03:39:41.2737762Z ##[endgroup]
+2026-08-23T03:39:41.2739148Z ##[group]GITHUB_TOKEN Permissions
+2026-08-23T03:39:41.2741490Z Contents: read
+2026-08-23T03:39:41.2742324Z Metadata: read
+2026-08-23T03:39:41.2743016Z Packages: read
+2026-08-23T03:39:41.2743720Z ##[endgroup]
+2026-08-23T03:39:41.2746549Z Secret source: Actions
+2026-08-23T03:39:41.2748031Z Prepare workflow directory
+2026-08-23T03:39:41.3298295Z Prepare all required actions
+2026-08-23T03:39:41.3368031Z Getting action download info
+2026-08-23T03:39:41.5233964Z Download action repository 'appleboy/ssh-action@v1' (SHA:0ff4204d59e8e51228ff73bce53f80d53301dee2)
+2026-08-23T03:39:41.9994906Z Complete job name: deploy
+2026-08-23T03:39:42.0983935Z ##[group]Run appleboy/ssh-action@v1
+2026-08-23T03:39:42.0985232Z with:
+2026-08-23T03:39:42.0986115Z   host: by.dealin.id
+2026-08-23T03:39:42.0986685Z   username: root
+2026-08-23T03:39:42.0990077Z   key: ***
+2026-08-23T03:39:42.1000868Z   script: cd /opt/web/www.dengarkan.id
+
+# Lowercase repo name (Docker requires lowercase)
+REPO_LOWER=$(echo 'dengarkanAI/dengarkanid-web' | tr '[:upper:]' '[:lower:]')
+
+# Login ke GHCR
+echo "***" | docker login ghcr.io -u dengarkanAI --password-stdin
+
+# Pull latest images
+docker pull ghcr.io/${REPO_LOWER}-cms:latest
+docker pull ghcr.io/${REPO_LOWER}-web:latest
+
+# Restart containers (override otomatis: pakai image dari GHCR, bukan build)
+docker compose up -d --remove-orphans
+
+# Fix permissions for Strapi uploads volume
+docker exec --user root dengarkan-cms chown -R node:node /opt/app/public/uploads || true
+
+# Logout dan bersihkan image lama
+docker logout ghcr.io
+docker image prune -f
+
+# Cek log jika container crash
+echo "--- STRAPI LOGS ---"
+docker logs dengarkan-cms --tail 200
+
+2026-08-23T03:39:42.1006992Z   port: 22
+2026-08-23T03:39:42.1007486Z   protocol: tcp
+2026-08-23T03:39:42.1007997Z   timeout: 30s
+2026-08-23T03:39:42.1008496Z   command_timeout: 10m
+2026-08-23T03:39:42.1009028Z   proxy_port: 22
+2026-08-23T03:39:42.1009543Z   proxy_protocol: tcp
+2026-08-23T03:39:42.1010073Z   proxy_timeout: 30s
+2026-08-23T03:39:42.1010596Z   curl_insecure: false
+2026-08-23T03:39:42.1011129Z   capture_stdout: false
+2026-08-23T03:39:42.1012475Z env:
+2026-08-23T03:39:42.1013005Z   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+2026-08-23T03:39:42.1013632Z ##[endgroup]
+2026-08-23T03:39:42.1097363Z ##[start-action display=Set GitHub Path;id=__appleboy_ssh-action.__run]
+2026-08-23T03:39:42.1153070Z ##[group]Run echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+2026-08-23T03:39:42.1154624Z [36;1mecho "$GITHUB_ACTION_PATH" >> $GITHUB_PATH[0m
+2026-08-23T03:39:42.1212347Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-23T03:39:42.1213111Z env:
+2026-08-23T03:39:42.1213653Z   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+2026-08-23T03:39:42.1214464Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/appleboy/ssh-action/v1
+2026-08-23T03:39:42.1215242Z ##[endgroup]
+2026-08-23T03:39:42.1464153Z ##[end-action id=__appleboy_ssh-action.__run;outcome=success;conclusion=success;duration_ms=36]
+2026-08-23T03:39:42.1481060Z ##[start-action display=Run entrypoint.sh;id=__appleboy_ssh-action.entrypoint]
+2026-08-23T03:39:42.1516194Z ##[group]Run entrypoint.sh
+2026-08-23T03:39:42.1517065Z [36;1mentrypoint.sh[0m
+2026-08-23T03:39:42.1574613Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-23T03:39:42.1575848Z env:
+2026-08-23T03:39:42.1576894Z   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+2026-08-23T03:39:42.1578127Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/appleboy/ssh-action/v1
+2026-08-23T03:39:42.1579326Z   INPUT_HOST: by.dealin.id
+2026-08-23T03:39:42.1580119Z   INPUT_PORT: 22
+2026-08-23T03:39:42.1580840Z   INPUT_PROTOCOL: tcp
+2026-08-23T03:39:42.1581638Z   INPUT_USERNAME: root
+2026-08-23T03:39:42.1582399Z   INPUT_PASSWORD: 
+2026-08-23T03:39:42.1583134Z   INPUT_PASSPHRASE: 
+2026-08-23T03:39:42.1588672Z   INPUT_KEY: ***
+2026-08-23T03:39:42.1589420Z   INPUT_KEY_PATH: 
+2026-08-23T03:39:42.1590194Z   INPUT_FINGERPRINT: 
+2026-08-23T03:39:42.1590981Z   INPUT_PROXY_HOST: 
+2026-08-23T03:39:42.1591757Z   INPUT_PROXY_PORT: 22
+2026-08-23T03:39:42.1592543Z   INPUT_PROXY_USERNAME: 
+2026-08-23T03:39:42.1593344Z   INPUT_PROXY_PASSWORD: 
+2026-08-23T03:39:42.1594154Z   INPUT_PROXY_PASSPHRASE: 
+2026-08-23T03:39:42.1594975Z   INPUT_PROXY_KEY: 
+2026-08-23T03:39:42.1595876Z   INPUT_PROXY_KEY_PATH: 
+2026-08-23T03:39:42.1596698Z   INPUT_PROXY_FINGERPRINT: 
+2026-08-23T03:39:42.1597545Z   INPUT_TIMEOUT: 30s
+2026-08-23T03:39:42.1598328Z   INPUT_PROXY_TIMEOUT: 30s
+2026-08-23T03:39:42.1599164Z   INPUT_COMMAND_TIMEOUT: 10m
+2026-08-23T03:39:42.1613517Z   INPUT_SCRIPT: cd /opt/web/www.dengarkan.id
+
+# Lowercase repo name (Docker requires lowercase)
+REPO_LOWER=$(echo 'dengarkanAI/dengarkanid-web' | tr '[:upper:]' '[:lower:]')
+
+# Login ke GHCR
+echo "***" | docker login ghcr.io -u dengarkanAI --password-stdin
+
+# Pull latest images
+docker pull ghcr.io/${REPO_LOWER}-cms:latest
+docker pull ghcr.io/${REPO_LOWER}-web:latest
+
+# Restart containers (override otomatis: pakai image dari GHCR, bukan build)
+docker compose up -d --remove-orphans
+
+# Fix permissions for Strapi uploads volume
+docker exec --user root dengarkan-cms chown -R node:node /opt/app/public/uploads || true
+
+# Logout dan bersihkan image lama
+docker logout ghcr.io
+docker image prune -f
+
+# Cek log jika container crash
+echo "--- STRAPI LOGS ---"
+docker logs dengarkan-cms --tail 200
+
+2026-08-23T03:39:42.1621257Z   INPUT_SCRIPT_FILE: 
+2026-08-23T03:39:42.1621994Z   INPUT_ENVS: 
+2026-08-23T03:39:42.1622730Z   INPUT_ENVS_FORMAT: 
+2026-08-23T03:39:42.1623486Z   INPUT_DEBUG: 
+2026-08-23T03:39:42.1624209Z   INPUT_ALL_ENVS: 
+2026-08-23T03:39:42.1624950Z   INPUT_REQUEST_PTY: 
+2026-08-23T03:39:42.1625868Z   INPUT_USE_INSECURE_CIPHER: 
+2026-08-23T03:39:42.1626727Z   INPUT_CIPHER: 
+2026-08-23T03:39:42.1627498Z   INPUT_PROXY_USE_INSECURE_CIPHER: 
+2026-08-23T03:39:42.1628397Z   INPUT_PROXY_CIPHER: 
+2026-08-23T03:39:42.1629170Z   INPUT_SYNC: 
+2026-08-23T03:39:42.1629903Z   INPUT_CAPTURE_STDOUT: false
+2026-08-23T03:39:42.1630767Z   INPUT_CURL_INSECURE: false
+2026-08-23T03:39:42.1631600Z   DRONE_SSH_VERSION: 
+2026-08-23T03:39:42.1632445Z ##[endgroup]
+2026-08-23T03:39:42.1874514Z Downloading drone-ssh-1.8.2-linux-amd64 from https://github.com/appleboy/drone-ssh/releases/download/v1.8.2
+2026-08-23T03:39:42.6618945Z ======= CLI Version Information =======
+2026-08-23T03:39:42.6639780Z Drone SSH version 1.8.2
+2026-08-23T03:39:42.6644005Z =======================================
+2026-08-23T03:39:47.8148440Z WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+2026-08-23T03:39:47.8149185Z Login Succeeded
+2026-08-23T03:39:47.8149634Z Configure a credential helper to remove this warning. See
+2026-08-23T03:39:47.8150477Z https://docs.docker.com/go/credential-store/
+2026-08-23T03:39:50.0468687Z latest: Pulling from dengarkanai/dengarkanid-web-cms
+2026-08-23T03:39:51.9569236Z 44136fa355b3: Already exists
+2026-08-23T03:39:51.9716050Z 36ec0e23d09c: Pulling fs layer
+2026-08-23T03:39:51.9718352Z 920ab22f9e5f: Pulling fs layer
+2026-08-23T03:39:51.9721673Z 4f4fb700ef54: Pulling fs layer
+2026-08-23T03:39:51.9729052Z 610d5ec14c5a: Pulling fs layer
+2026-08-23T03:39:51.9729932Z dd30294bfec5: Pulling fs layer
+2026-08-23T03:39:52.1646264Z a0646d9c25d0: Pulling fs layer
+2026-08-23T03:39:52.1646939Z 22ebe96c0a41: Pulling fs layer
+2026-08-23T03:39:52.1647350Z 4f4fb700ef54: Already exists
+2026-08-23T03:39:52.4566887Z 23b337aadd5f: Download complete
+2026-08-23T03:39:52.6579416Z a0646d9c25d0: Download complete
+2026-08-23T03:40:01.8625488Z 920ab22f9e5f: Download complete
+2026-08-23T03:40:07.7723848Z 610d5ec14c5a: Download complete
+2026-08-23T03:40:11.3698309Z 22ebe96c0a41: Download complete
+2026-08-23T03:40:11.6844813Z 920ab22f9e5f: Pull complete
+2026-08-23T03:40:11.7394197Z 4f4fb700ef54: Pull complete
+2026-08-23T03:40:12.0026363Z 610d5ec14c5a: Pull complete
+2026-08-23T03:40:18.2739187Z dd30294bfec5: Download complete
+2026-08-23T03:40:20.5587672Z 36ec0e23d09c: Download complete
+2026-08-23T03:42:10.3466093Z dd30294bfec5: Pull complete
+2026-08-23T03:42:10.5021442Z a0646d9c25d0: Pull complete
+2026-08-23T03:42:13.7717130Z 22ebe96c0a41: Pull complete
+2026-08-23T03:42:17.0648417Z 36ec0e23d09c: Pull complete
+2026-08-23T03:42:17.1036498Z Digest: sha256:991d631a0df1ff9c05019f1f29efd28a9b04d77b5f441710cf10aa992b81afb0
+2026-08-23T03:42:17.1037250Z Status: Downloaded newer image for ghcr.io/dengarkanai/dengarkanid-web-cms:latest
+2026-08-23T03:42:17.1352142Z ghcr.io/dengarkanai/dengarkanid-web-cms:latest
+2026-08-23T03:42:19.7099856Z latest: Pulling from dengarkanai/dengarkanid-web-web
+2026-08-23T03:42:21.7252206Z 44136fa355b3: Already exists
+2026-08-23T03:42:21.7288493Z 0026f964bae9: Pulling fs layer
+2026-08-23T03:42:21.7296937Z cd3df437e21f: Pulling fs layer
+2026-08-23T03:42:21.7319251Z 666450cbefe5: Pulling fs layer
+2026-08-23T03:42:21.7326631Z e31ac2413080: Pulling fs layer
+2026-08-23T03:42:21.7333817Z 6734242765e1: Pulling fs layer
+2026-08-23T03:42:21.7334211Z f70951c0a998: Pulling fs layer
+2026-08-23T03:42:22.3250071Z 0026f964bae9: Download complete
+2026-08-23T03:42:22.3257202Z 0dc0a42b2e31: Download complete
+2026-08-23T03:42:22.4267404Z cd3df437e21f: Download complete
+2026-08-23T03:42:22.4432707Z 666450cbefe5: Download complete
+2026-08-23T03:42:22.5161880Z cd3df437e21f: Pull complete
+2026-08-23T03:42:22.7896761Z 666450cbefe5: Pull complete
+2026-08-23T03:42:23.0620516Z 6734242765e1: Download complete
+2026-08-23T03:42:24.8319640Z f70951c0a998: Download complete
+2026-08-23T03:42:33.3395997Z e31ac2413080: Download complete
+2026-08-23T03:42:58.8484840Z e31ac2413080: Pull complete
+2026-08-23T03:42:59.8415416Z 6734242765e1: Pull complete
+2026-08-23T03:43:00.8330392Z f70951c0a998: Pull complete
+2026-08-23T03:43:00.9302983Z 0026f964bae9: Pull complete
+2026-08-23T03:43:00.9490742Z Digest: sha256:b2317ceeace1b505690a31316289c06b77c37ceb9a81ca7cdbbd0fd968dce36f
+2026-08-23T03:43:00.9492333Z Status: Downloaded newer image for ghcr.io/dengarkanai/dengarkanid-web-web:latest
+2026-08-23T03:43:00.9664160Z ghcr.io/dengarkanai/dengarkanid-web-web:latest
+2026-08-23T03:43:01.8689449Z  Container dengarkan-frontend Recreate 
+2026-08-23T03:43:01.8709037Z  Container dengarkan-cms Recreate 
+2026-08-23T03:43:02.9271480Z  Container dengarkan-frontend Recreated 
+2026-08-23T03:43:03.4723948Z  Container dengarkan-cms Recreated 
+2026-08-23T03:43:03.4974067Z  Container dengarkan-frontend Starting 
+2026-08-23T03:43:03.4974586Z  Container dengarkan-cms Starting 
+2026-08-23T03:43:04.0946833Z  Container dengarkan-frontend Started 
+2026-08-23T03:43:04.1555391Z  Container dengarkan-cms Started 
+2026-08-23T03:43:04.5709878Z Removing login credentials for ghcr.io
+2026-08-23T03:43:21.6537711Z Deleted Images:
+2026-08-23T03:43:21.6538416Z untagged: sha256:2445cc97da0d2781a99c8dc96057baed5b87afc82c7998c8f88d4f2e8d300826
+2026-08-23T03:43:21.6539066Z deleted: sha256:2445cc97da0d2781a99c8dc96057baed5b87afc82c7998c8f88d4f2e8d300826
+2026-08-23T03:43:21.6539980Z deleted: sha256:aa641b07369dd5713ef4fc71feeb15ec9cb36e30481b604817760f9b3834c520
+2026-08-23T03:43:21.6542999Z deleted: sha256:147e1e76c4ccdf80bc7e93d195c617414a6f29cc9f13bad6bd884691a545bf67
+2026-08-23T03:43:21.6543644Z untagged: sha256:c116afb09f039a0c9b16f8121eedb53aa201dfa02961610a0af739cb1328aaf2
+2026-08-23T03:43:21.6544216Z deleted: sha256:c116afb09f039a0c9b16f8121eedb53aa201dfa02961610a0af739cb1328aaf2
+2026-08-23T03:43:21.6544769Z deleted: sha256:b63cb027a0cc693d6110c5c8ce4bd0dfa807c15b1c4c909d029f3b46304d8bde
+2026-08-23T03:43:21.6545305Z deleted: sha256:610bdb86d1565011dbc59203ffd73692e09d285421f02c40e75ad0d5eab687f7
+2026-08-23T03:43:21.6546025Z Total reclaimed space: 470.8MB
+2026-08-23T03:43:21.6580863Z --- STRAPI LOGS ---
+2026-08-23T03:43:21.7201096Z > dengarkanid-cms@0.1.0 start
+2026-08-23T03:43:21.7202640Z > strapi start
+2026-08-23T03:43:21.7264743Z ===============================================
+2026-08-23T03:43:21.7358080Z ✅ Successfully executed commands to all hosts.
+2026-08-23T03:43:21.7358494Z ===============================================
+2026-08-23T03:43:21.7369095Z ##[end-action id=__appleboy_ssh-action.entrypoint;outcome=success;conclusion=success;duration_ms=219588]
+2026-08-23T03:43:21.7501238Z Cleaning up orphan processes

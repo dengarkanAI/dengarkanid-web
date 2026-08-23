@@ -1,0 +1,333 @@
+{
+  "id": 18,
+  "documentId": "z5j3e1crkvbvb3490zmtjszr",
+  "title": "THE BRAIN",
+  "tagline": "Analyze With Unmatched Precision",
+  "categoryIdentifier": "brain",
+  "createdAt": "2026-07-14T18:08:27.560Z",
+  "updatedAt": "2026-07-15T18:38:06.826Z",
+  "publishedAt": "2026-07-15T18:38:06.746Z",
+  "locale": "en",
+  "carouselItems": [
+    {
+      "id": 80,
+      "subtitle": "Automated Sentiment Analysis",
+      "description": "Automatically analyze and categorize audience sentiment.",
+      "image": {
+        "id": 62,
+        "documentId": "a80gvszflkqt82fdwnwru43u",
+        "name": "Automated Sentiment Analysis.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 946,
+        "height": 946,
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_Automated Sentiment Analysis.png",
+            "hash": "thumbnail_Automated_Sentiment_Analysis_218b11aaae",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 156,
+            "height": 156,
+            "size": 34.11,
+            "sizeInBytes": 34106,
+            "url": "/uploads/thumbnail_Automated_Sentiment_Analysis_218b11aaae.png"
+          },
+          "small": {
+            "name": "small_Automated Sentiment Analysis.png",
+            "hash": "small_Automated_Sentiment_Analysis_218b11aaae",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 500,
+            "height": 500,
+            "size": 257.3,
+            "sizeInBytes": 257302,
+            "url": "/uploads/small_Automated_Sentiment_Analysis_218b11aaae.png"
+          },
+          "medium": {
+            "name": "medium_Automated Sentiment Analysis.png",
+            "hash": "medium_Automated_Sentiment_Analysis_218b11aaae",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 750,
+            "height": 750,
+            "size": 540.36,
+            "sizeInBytes": 540359,
+            "url": "/uploads/medium_Automated_Sentiment_Analysis_218b11aaae.png"
+          }
+        },
+        "hash": "Automated_Sentiment_Analysis_218b11aaae",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 235.32,
+        "url": "/uploads/Automated_Sentiment_Analysis_218b11aaae.png",
+        "previewUrl": null,
+        "provider": "local",
+        "provider_metadata": null,
+        "createdAt": "2026-07-15T18:25:57.016Z",
+        "updatedAt": "2026-07-15T18:25:57.016Z",
+        "publishedAt": "2026-07-15T18:25:57.016Z"
+      }
+    },
+    {
+      "id": 81,
+      "subtitle": "Advanced Query Management",
+      "description": "Use powerful boolean operators to filter exactly what you need.",
+      "image": {
+        "id": 63,
+        "documentId": "pwxefo7esjdt54a23qbuxtks",
+        "name": "Advanced Query Management.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 946,
+        "height": 946,
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_Advanced Query Management.png",
+            "hash": "thumbnail_Advanced_Query_Management_d6ad03d3f1",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 156,
+            "height": 156,
+            "size": 11.39,
+            "sizeInBytes": 11393,
+            "url": "/uploads/thumbnail_Advanced_Query_Management_d6ad03d3f1.png"
+          },
+          "small": {
+            "name": "small_Advanced Query Management.png",
+            "hash": "small_Advanced_Query_Management_d6ad03d3f1",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 500,
+            "height": 500,
+            "size": 74.76,
+            "sizeInBytes": 74757,
+            "url": "/uploads/small_Advanced_Query_Management_d6ad03d3f1.png"
+          },
+          "medium": {
+            "name": "medium_Advanced Query Management.png",
+            "hash": "medium_Advanced_Query_Management_d6ad03d3f1",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 750,
+            "height": 750,
+            "size": 154.28,
+            "sizeInBytes": 154279,
+            "url": "/uploads/medium_Advanced_Query_Management_d6ad03d3f1.png"
+          }
+        },
+        "hash": "Advanced_Query_Management_d6ad03d3f1",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 61.83,
+        "url": "/uploads/Advanced_Query_Management_d6ad03d3f1.png",
+        "previewUrl": null,
+        "provider": "local",
+        "provider_metadata": null,
+        "createdAt": "2026-07-15T18:26:27.495Z",
+        "updatedAt": "2026-07-15T18:26:27.495Z",
+        "publishedAt": "2026-07-15T18:26:27.496Z"
+      }
+    },
+    {
+      "id": 82,
+      "subtitle": "Volume & Trend Analytics",
+      "description": "Visualize data volumes and track historical trends easily.",
+      "image": {
+        "id": 64,
+        "documentId": "wqiqcethyl7xnj93iek0j8y5",
+        "name": "Volume & Trend Analytics.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 946,
+        "height": 946,
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_Volume & Trend Analytics.png",
+            "hash": "thumbnail_Volume_and_Trend_Analytics_1163dcad57",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 156,
+            "height": 156,
+            "size": 13.44,
+            "sizeInBytes": 13435,
+            "url": "/uploads/thumbnail_Volume_and_Trend_Analytics_1163dcad57.png"
+          },
+          "small": {
+            "name": "small_Volume & Trend Analytics.png",
+            "hash": "small_Volume_and_Trend_Analytics_1163dcad57",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 500,
+            "height": 500,
+            "size": 91.35,
+            "sizeInBytes": 91345,
+            "url": "/uploads/small_Volume_and_Trend_Analytics_1163dcad57.png"
+          },
+          "medium": {
+            "name": "medium_Volume & Trend Analytics.png",
+            "hash": "medium_Volume_and_Trend_Analytics_1163dcad57",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 750,
+            "height": 750,
+            "size": 191.55,
+            "sizeInBytes": 191551,
+            "url": "/uploads/medium_Volume_and_Trend_Analytics_1163dcad57.png"
+          }
+        },
+        "hash": "Volume_and_Trend_Analytics_1163dcad57",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 79.64,
+        "url": "/uploads/Volume_and_Trend_Analytics_1163dcad57.png",
+        "previewUrl": null,
+        "provider": "local",
+        "provider_metadata": null,
+        "createdAt": "2026-07-15T18:26:49.158Z",
+        "updatedAt": "2026-07-15T18:26:49.158Z",
+        "publishedAt": "2026-07-15T18:26:49.158Z"
+      }
+    },
+    {
+      "id": 83,
+      "subtitle": "Account & Influencer Identification",
+      "description": "Discover key accounts and influencers driving the conversation.",
+      "image": {
+        "id": 65,
+        "documentId": "kx3i7e72xr9khv40i5ck2y9m",
+        "name": "Account & Influencer Identification.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 946,
+        "height": 946,
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_Account & Influencer Identification.png",
+            "hash": "thumbnail_Account_and_Influencer_Identification_8ce52833d6",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 156,
+            "height": 156,
+            "size": 12.19,
+            "sizeInBytes": 12187,
+            "url": "/uploads/thumbnail_Account_and_Influencer_Identification_8ce52833d6.png"
+          },
+          "small": {
+            "name": "small_Account & Influencer Identification.png",
+            "hash": "small_Account_and_Influencer_Identification_8ce52833d6",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 500,
+            "height": 500,
+            "size": 75.51,
+            "sizeInBytes": 75510,
+            "url": "/uploads/small_Account_and_Influencer_Identification_8ce52833d6.png"
+          },
+          "medium": {
+            "name": "medium_Account & Influencer Identification.png",
+            "hash": "medium_Account_and_Influencer_Identification_8ce52833d6",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 750,
+            "height": 750,
+            "size": 159.67,
+            "sizeInBytes": 159670,
+            "url": "/uploads/medium_Account_and_Influencer_Identification_8ce52833d6.png"
+          }
+        },
+        "hash": "Account_and_Influencer_Identification_8ce52833d6",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 73.71,
+        "url": "/uploads/Account_and_Influencer_Identification_8ce52833d6.png",
+        "previewUrl": null,
+        "provider": "local",
+        "provider_metadata": null,
+        "createdAt": "2026-07-15T18:27:04.303Z",
+        "updatedAt": "2026-07-15T18:27:04.303Z",
+        "publishedAt": "2026-07-15T18:27:04.304Z"
+      }
+    },
+    {
+      "id": 84,
+      "subtitle": "Word Cloud & Topic Mapping",
+      "description": "Understand the most discussed topics at a glance.",
+      "image": {
+        "id": 66,
+        "documentId": "yan0z0j2jiuc9rz91kshp6v7",
+        "name": "Word Cloud & Topic Mapping.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 946,
+        "height": 946,
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_Word Cloud & Topic Mapping.png",
+            "hash": "thumbnail_Word_Cloud_and_Topic_Mapping_c83b6e165b",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 156,
+            "height": 156,
+            "size": 16.21,
+            "sizeInBytes": 16207,
+            "url": "/uploads/thumbnail_Word_Cloud_and_Topic_Mapping_c83b6e165b.png"
+          },
+          "small": {
+            "name": "small_Word Cloud & Topic Mapping.png",
+            "hash": "small_Word_Cloud_and_Topic_Mapping_c83b6e165b",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 500,
+            "height": 500,
+            "size": 107.67,
+            "sizeInBytes": 107669,
+            "url": "/uploads/small_Word_Cloud_and_Topic_Mapping_c83b6e165b.png"
+          },
+          "medium": {
+            "name": "medium_Word Cloud & Topic Mapping.png",
+            "hash": "medium_Word_Cloud_and_Topic_Mapping_c83b6e165b",
+            "ext": ".png",
+            "mime": "image/png",
+            "path": null,
+            "width": 750,
+            "height": 750,
+            "size": 224.19,
+            "sizeInBytes": 224189,
+            "url": "/uploads/medium_Word_Cloud_and_Topic_Mapping_c83b6e165b.png"
+          }
+        },
+        "hash": "Word_Cloud_and_Topic_Mapping_c83b6e165b",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 89.78,
+        "url": "/uploads/Word_Cloud_and_Topic_Mapping_c83b6e165b.png",
+        "previewUrl": null,
+        "provider": "local",
+        "provider_metadata": null,
+        "createdAt": "2026-07-15T18:27:28.084Z",
+        "updatedAt": "2026-07-15T18:27:28.084Z",
+        "publishedAt": "2026-07-15T18:27:28.084Z"
+      }
+    }
+  ]
+}

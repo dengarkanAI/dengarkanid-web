@@ -50,6 +50,7 @@ export default {
         const requiredActions = [
           'api::glosarium.glosarium.find', 
           'api::glosarium.glosarium.findOne',
+
           'api::testimonial.testimonial.find',
           'api::testimonial.testimonial.findOne',
           'api::lead.lead.create',
@@ -59,7 +60,18 @@ export default {
           'api::blog.blog.findOne',
           'api::homepage.homepage.find',
           'api::feature-section.feature-section.find',
-          'api::feature-section.feature-section.findOne'
+          'api::feature-section.feature-section.findOne',
+          'api::glosari-header.glosari-header.find',
+          'api::global-setting.global-setting.find',
+          'api::global-setting.global-setting.findOne',
+          'api::privacy-policy.privacy-policy.find',
+          'api::privacy-policy.privacy-policy.findOne',
+          'api::terms-condition.terms-condition.find',
+          'api::terms-condition.terms-condition.findOne',
+          'api::report-page.report-page.find',
+          'api::report-page.report-page.findOne',
+          'api::report.report.find',
+          'api::report.report.findOne'
         ];
         
         const existingPermissions = await strapi.db.query('plugin::users-permissions.permission').findMany({
@@ -78,22 +90,7 @@ export default {
       }
 
       // 2. Migrate Glosarium Data if empty
-      const glosariumCount = await strapi.db.query('api::glosarium.glosarium').count();
-      if (glosariumCount === 0) {
-        console.log(`[BOOTSTRAP] Migrating ${data.length} glossary terms...`);
-        for (const item of data) {
-          await strapi.documents('api::glosarium.glosarium').create({
-            data: {
-              term: item.t,
-              englishTerm: item.e,
-              category: item.c as any,
-              definition: item.d,
-              relatedTerms: item.r ? item.r.join(',') : '',
-            },
-            status: 'published'
-          });
-        }
-      }
+      // (Removed mock data bootstrap to prevent duplicates with production data)
 
       // 3. Migrate Testimonials Data if empty
       const testiCount = await strapi.db.query('api::testimonial.testimonial').count();
@@ -246,6 +243,146 @@ export default {
           });
         }
       }
+    
+      // Sync Glosariums (Removed to prevent duplication and TLS errors)
+
+      // 8. Migrate Glosari Header Data if empty
+      const glosariHeaderCount = await strapi.db.query('api::glosari-header.glosari-header').count();
+      if (glosariHeaderCount === 0) {
+        console.log(`[BOOTSTRAP] Migrating Glosari Header default data...`);
+        const idData = {
+          badge: "Kamus Istilah Digital",
+          title: "Glosari",
+          titleHighlight: "Listening Tools",
+          description: "Pahami setiap istilah dalam dunia social media listening, brand monitoring, dan digital analytics. Dari A sampai Z — semua ada di sini.",
+          statTermsLabel: "Istilah",
+          statCategoriesLabel: "Kategori",
+          statLanguagesLabel: "Dwibahasa",
+          statLanguagesValue: "EN/ID",
+          searchPlaceholder: "Cari istilah: sentiment, reach, mention…"
+        };
+
+        const enData = {
+          badge: "Digital Glossary",
+          title: "Glossary of",
+          titleHighlight: "Listening Tools",
+          description: "Understand every term in the world of social media listening, brand monitoring, and digital analytics. From A to Z — everything is here.",
+          statTermsLabel: "Terms",
+          statCategoriesLabel: "Categories",
+          statLanguagesLabel: "Bilingual",
+          statLanguagesValue: "EN/ID",
+          searchPlaceholder: "Search term: sentiment, reach, mention…"
+        };
+
+        const sharedDocumentId = 'glosari_header_single_type';
+
+        // Create ID version first
+        await strapi.documents('api::glosari-header.glosari-header').create({
+          data: idData,
+          status: 'published',
+          locale: 'id'
+        });
+      }
+
+
+      // 9. Migrate Global Settings Data if empty
+      const globalSettingCount = await strapi.db.query('api::global-setting.global-setting').count();
+      if (globalSettingCount === 0) {
+        console.log(`[BOOTSTRAP] Migrating Global Settings default data...`);
+        const fs = require('fs');
+        const path = require('path');
+        const idDataRaw = JSON.parse(fs.readFileSync(path.join(__dirname, '../../../dengarkanid-web/src/dictionaries/id.json'), 'utf8'));
+        const enDataRaw = JSON.parse(fs.readFileSync(path.join(__dirname, '../../../dengarkanid-web/src/dictionaries/en.json'), 'utf8'));
+
+        const mapData = (dict: any) => ({
+          footerInterestedTitle: dict.footer.interestedTitle,
+          footerContactSales: dict.footer.contactSales,
+          footerAddressTitle: dict.footer.addressTitle,
+          footerAddressText: "Gedung Graha Pena Jawa Pos\nJl. Raya Kby. Lama No.12 Lt 9, RT.1/RW.1, Pulo, Kec. Kby. Baru, Kota Jakarta Selatan,\nDaerah Khusus Ibukota Jakarta 12210",
+          footerContactTitle: dict.footer.contactTitle,
+          footerEmail: "boleh@dengarkan.id",
+          footerPhone: "+62818-20-4646",
+          footerFollowUs: dict.footer.followUs,
+          footerCopyright: dict.footer.copyright,
+          footerTerms: dict.footer.terms,
+          footerPrivacy: dict.footer.privacy,
+          
+          linkedinUrl: "https://www.linkedin.com/company/dengarkan",
+          facebookUrl: "https://web.facebook.com/profile.php?id=61591381015840",
+          instagramUrl: "https://www.instagram.com/dengarkan__id",
+          threadsUrl: "https://www.threads.net/@dengarkan__id",
+          twitterUrl: "https://x.com/dengarkan_id",
+          tiktokUrl: "https://www.tiktok.com/@dengarkan_id",
+          
+          contactTitle: dict.contact.title,
+          contactSubtitle: dict.contact.subtitle,
+          contactFormName: dict.contact.formName,
+          contactFormEmail: dict.contact.formEmail,
+          contactFormPhone: dict.contact.formPhone,
+          contactFormMessage: dict.contact.formMessage,
+          contactFormMessagePlaceholder: dict.contact.formMessagePlaceholder,
+          contactBtnSend: dict.contact.btnSend,
+          contactBtnSending: dict.contact.btnSending,
+          contactModalTitle: dict.contact.modalTitle,
+          contactModalDesc: dict.contact.modalDesc,
+          contactModalQuote: dict.contact.modalQuote,
+          contactModalClose: dict.contact.modalClose,
+          testimonialTitle: dict.testimonials?.title || "Apa kata mereka?"
+        });
+
+        const doc = await strapi.documents('api::global-setting.global-setting').create({
+          data: mapData(idDataRaw),
+          status: 'published',
+          locale: 'id'
+        });
+
+        await strapi.documents('api::global-setting.global-setting').update({
+          documentId: doc.documentId,
+          data: mapData(enDataRaw),
+          status: 'published',
+          locale: 'en'
+        });
+      }
+
+      // 10. Migrate Privacy Policy Data if empty
+      const privacyCount = await strapi.db.query('api::privacy-policy.privacy-policy').count();
+      if (privacyCount === 0) {
+        console.log(`[BOOTSTRAP] Migrating Privacy Policy default data...`);
+        const idData = {
+          title: "Kebijakan Privasi",
+          content: "## Pengantar\n\nSelamat datang di Dengarkan.id. Kami menghargai privasi Anda dan berkomitmen untuk melindungi data pribadi Anda...\n\n## Informasi yang Kami Kumpulkan\nKami dapat mengumpulkan data...",
+        };
+        const enData = {
+          title: "Privacy Policy",
+          content: "## Introduction\n\nWelcome to Dengarkan.id. We respect your privacy and are committed to protecting your personal data...\n\n## Information We Collect\nWe may collect data...",
+        };
+        const doc = await strapi.documents('api::privacy-policy.privacy-policy').create({
+          data: idData,
+          status: 'published',
+          locale: 'id'
+        });
+      }
+
+      // 11. Migrate Terms Condition Data if empty
+      const termsCount = await strapi.db.query('api::terms-condition.terms-condition').count();
+      if (termsCount === 0) {
+        console.log(`[BOOTSTRAP] Migrating Terms Condition default data...`);
+        const idData = {
+          title: "Syarat & Ketentuan",
+          content: "## Ketentuan Penggunaan\n\nHarap baca syarat dan ketentuan ini dengan saksama sebelum menggunakan Dengarkan.id...\n\n## Batasan Tanggung Jawab\nKami tidak bertanggung jawab...",
+        };
+        const enData = {
+          title: "Terms & Conditions",
+          content: "## Terms of Use\n\nPlease read these terms and conditions carefully before using Dengarkan.id...\n\n## Limitation of Liability\nWe are not liable for...",
+        };
+        const doc = await strapi.documents('api::terms-condition.terms-condition').create({
+          data: idData,
+          status: 'published',
+          locale: 'id'
+        });
+      }
+
+
     } catch (err) {
       console.log('[BOOTSTRAP] Error in bootstrap:', err);
     }

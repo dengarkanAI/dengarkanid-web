@@ -1,0 +1,276 @@
+﻿2026-08-23T04:33:58.8480200Z Current runner version: '2.336.0'
+2026-08-23T04:33:58.8500847Z ##[group]Runner Image Provisioner
+2026-08-23T04:33:58.8501787Z Hosted Compute Agent
+2026-08-23T04:33:58.8502465Z Version: 20260729.566
+2026-08-23T04:33:58.8503194Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+2026-08-23T04:33:58.8504007Z Build Date: 2026-07-29T19:17:02Z
+2026-08-23T04:33:58.8504787Z Worker ID: {0e1727ac-64fe-4272-a61c-d0efc1f7bceb}
+2026-08-23T04:33:58.8505532Z Azure Region: westus3
+2026-08-23T04:33:58.8506239Z ##[endgroup]
+2026-08-23T04:33:58.8507917Z ##[group]Operating System
+2026-08-23T04:33:58.8508967Z Ubuntu
+2026-08-23T04:33:58.8509705Z 24.04.4
+2026-08-23T04:33:58.8510351Z LTS
+2026-08-23T04:33:58.8510933Z ##[endgroup]
+2026-08-23T04:33:58.8511528Z ##[group]Runner Image
+2026-08-23T04:33:58.8512194Z Image: ubuntu-24.04
+2026-08-23T04:33:58.8512863Z Version: 20260816.277.1
+2026-08-23T04:33:58.8514199Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260816.277/images/ubuntu/Ubuntu2404-Readme.md
+2026-08-23T04:33:58.8516075Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260816.277
+2026-08-23T04:33:58.8517340Z ##[endgroup]
+2026-08-23T04:33:58.8518598Z ##[group]GITHUB_TOKEN Permissions
+2026-08-23T04:33:58.8520903Z Contents: read
+2026-08-23T04:33:58.8521565Z Metadata: read
+2026-08-23T04:33:58.8522196Z Packages: read
+2026-08-23T04:33:58.8522766Z ##[endgroup]
+2026-08-23T04:33:58.8524851Z Secret source: Actions
+2026-08-23T04:33:58.8526131Z Prepare workflow directory
+2026-08-23T04:33:58.8799901Z Prepare all required actions
+2026-08-23T04:33:58.8844601Z Getting action download info
+2026-08-23T04:33:59.1750961Z Download action repository 'appleboy/ssh-action@v1' (SHA:0ff4204d59e8e51228ff73bce53f80d53301dee2)
+2026-08-23T04:34:00.0310277Z Complete job name: debug
+2026-08-23T04:34:00.1305146Z ##[group]Run appleboy/ssh-action@v1
+2026-08-23T04:34:00.1306953Z with:
+2026-08-23T04:34:00.1308038Z   host: by.dealin.id
+2026-08-23T04:34:00.1309211Z   username: root
+2026-08-23T04:34:00.1315620Z   key: ***
+2026-08-23T04:34:00.1317058Z   script: docker logs dengarkan-cms --tail 200
+
+2026-08-23T04:34:00.1318567Z   port: 22
+2026-08-23T04:34:00.1319711Z   protocol: tcp
+2026-08-23T04:34:00.1320793Z   timeout: 30s
+2026-08-23T04:34:00.1321962Z   command_timeout: 10m
+2026-08-23T04:34:00.1323162Z   proxy_port: 22
+2026-08-23T04:34:00.1324341Z   proxy_protocol: tcp
+2026-08-23T04:34:00.1325563Z   proxy_timeout: 30s
+2026-08-23T04:34:00.1327034Z   curl_insecure: false
+2026-08-23T04:34:00.1328304Z   capture_stdout: false
+2026-08-23T04:34:00.1330072Z ##[endgroup]
+2026-08-23T04:34:00.1404664Z ##[start-action display=Set GitHub Path;id=__appleboy_ssh-action.__run]
+2026-08-23T04:34:00.1471614Z ##[group]Run echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+2026-08-23T04:34:00.1473649Z [36;1mecho "$GITHUB_ACTION_PATH" >> $GITHUB_PATH[0m
+2026-08-23T04:34:00.1505258Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-23T04:34:00.1507020Z env:
+2026-08-23T04:34:00.1508591Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/appleboy/ssh-action/v1
+2026-08-23T04:34:00.1510365Z ##[endgroup]
+2026-08-23T04:34:00.1690230Z ##[end-action id=__appleboy_ssh-action.__run;outcome=success;conclusion=success;duration_ms=28]
+2026-08-23T04:34:00.1712019Z ##[start-action display=Run entrypoint.sh;id=__appleboy_ssh-action.entrypoint]
+2026-08-23T04:34:00.1756603Z ##[group]Run entrypoint.sh
+2026-08-23T04:34:00.1757960Z [36;1mentrypoint.sh[0m
+2026-08-23T04:34:00.1783148Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-23T04:34:00.1784792Z env:
+2026-08-23T04:34:00.1786273Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/appleboy/ssh-action/v1
+2026-08-23T04:34:00.1788327Z   INPUT_HOST: by.dealin.id
+2026-08-23T04:34:00.1789584Z   INPUT_PORT: 22
+2026-08-23T04:34:00.1790775Z   INPUT_PROTOCOL: tcp
+2026-08-23T04:34:00.1792029Z   INPUT_USERNAME: root
+2026-08-23T04:34:00.1793239Z   INPUT_PASSWORD: 
+2026-08-23T04:34:00.1794381Z   INPUT_PASSPHRASE: 
+2026-08-23T04:34:00.1801306Z   INPUT_KEY: ***
+2026-08-23T04:34:00.1802503Z   INPUT_KEY_PATH: 
+2026-08-23T04:34:00.1803927Z   INPUT_FINGERPRINT: 
+2026-08-23T04:34:00.1805158Z   INPUT_PROXY_HOST: 
+2026-08-23T04:34:00.1806573Z   INPUT_PROXY_PORT: 22
+2026-08-23T04:34:00.1807849Z   INPUT_PROXY_USERNAME: 
+2026-08-23T04:34:00.1809128Z   INPUT_PROXY_PASSWORD: 
+2026-08-23T04:34:00.1810378Z   INPUT_PROXY_PASSPHRASE: 
+2026-08-23T04:34:00.1811633Z   INPUT_PROXY_KEY: 
+2026-08-23T04:34:00.1812873Z   INPUT_PROXY_KEY_PATH: 
+2026-08-23T04:34:00.1814121Z   INPUT_PROXY_FINGERPRINT: 
+2026-08-23T04:34:00.1815386Z   INPUT_TIMEOUT: 30s
+2026-08-23T04:34:00.1816800Z   INPUT_PROXY_TIMEOUT: 30s
+2026-08-23T04:34:00.1818166Z   INPUT_COMMAND_TIMEOUT: 10m
+2026-08-23T04:34:00.1819596Z   INPUT_SCRIPT: docker logs dengarkan-cms --tail 200
+
+2026-08-23T04:34:00.1821446Z   INPUT_SCRIPT_FILE: 
+2026-08-23T04:34:00.1822683Z   INPUT_ENVS: 
+2026-08-23T04:34:00.1823874Z   INPUT_ENVS_FORMAT: 
+2026-08-23T04:34:00.1825015Z   INPUT_DEBUG: 
+2026-08-23T04:34:00.1826173Z   INPUT_ALL_ENVS: 
+2026-08-23T04:34:00.1827615Z   INPUT_REQUEST_PTY: 
+2026-08-23T04:34:00.1829064Z   INPUT_USE_INSECURE_CIPHER: 
+2026-08-23T04:34:00.1830336Z   INPUT_CIPHER: 
+2026-08-23T04:34:00.1831539Z   INPUT_PROXY_USE_INSECURE_CIPHER: 
+2026-08-23T04:34:00.1832933Z   INPUT_PROXY_CIPHER: 
+2026-08-23T04:34:00.1834135Z   INPUT_SYNC: 
+2026-08-23T04:34:00.1835340Z   INPUT_CAPTURE_STDOUT: false
+2026-08-23T04:34:00.1836885Z   INPUT_CURL_INSECURE: false
+2026-08-23T04:34:00.1838192Z   DRONE_SSH_VERSION: 
+2026-08-23T04:34:00.1839361Z ##[endgroup]
+2026-08-23T04:34:00.1964699Z Downloading drone-ssh-1.8.2-linux-amd64 from https://github.com/appleboy/drone-ssh/releases/download/v1.8.2
+2026-08-23T04:34:00.5221103Z ======= CLI Version Information =======
+2026-08-23T04:34:00.5242556Z Drone SSH version 1.8.2
+2026-08-23T04:34:00.5245365Z =======================================
+2026-08-23T04:34:04.5653360Z [2026-08-23 04:15:43.807] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5655311Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5656260Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5657102Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5657750Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5658363Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5658967Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5659727Z [2026-08-23 04:15:43.809] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5660283Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5660690Z > strapi start
+2026-08-23T04:34:04.5661700Z [2026-08-23 04:16:50.857] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5662865Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5663815Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5664531Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5665207Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5665962Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5666738Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5667404Z [2026-08-23 04:16:50.859] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5667908Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5668353Z > strapi start
+2026-08-23T04:34:04.5669667Z [2026-08-23 04:17:57.514] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5670879Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5671763Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5672508Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5673150Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5673839Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5674486Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5675153Z [2026-08-23 04:17:57.516] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5675667Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5676115Z > strapi start
+2026-08-23T04:34:04.5677295Z [2026-08-23 04:19:04.529] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5678441Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5679362Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5680087Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5680916Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5681595Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5682279Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5682925Z [2026-08-23 04:19:04.531] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5683398Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5683782Z > strapi start
+2026-08-23T04:34:04.5684677Z [2026-08-23 04:20:12.193] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5685700Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5686722Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5687433Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5688052Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5688641Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5689233Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5689869Z [2026-08-23 04:20:12.195] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5690348Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5690743Z > strapi start
+2026-08-23T04:34:04.5691569Z [2026-08-23 04:21:19.100] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5692648Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5693488Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5694149Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5694746Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5695485Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5696093Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5696883Z [2026-08-23 04:21:19.102] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5697369Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5697834Z > strapi start
+2026-08-23T04:34:04.5698753Z [2026-08-23 04:22:26.173] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5699931Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5700827Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5701595Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5702297Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5702980Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5703686Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5704334Z [2026-08-23 04:22:26.175] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5704862Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5705302Z > strapi start
+2026-08-23T04:34:04.5706246Z [2026-08-23 04:23:33.609] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5707544Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5708512Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5709227Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5709912Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5710563Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5711665Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5712344Z [2026-08-23 04:23:33.611] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5712885Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5713310Z > strapi start
+2026-08-23T04:34:04.5714265Z [2026-08-23 04:24:41.461] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5715430Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5716430Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5717201Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5717836Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5718500Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5719148Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5719842Z [2026-08-23 04:24:41.463] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5720311Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5720778Z > strapi start
+2026-08-23T04:34:04.5721700Z [2026-08-23 04:25:49.151] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5722911Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5723877Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5724608Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5725302Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5725997Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5726850Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5727563Z [2026-08-23 04:25:49.153] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5728080Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5728567Z > strapi start
+2026-08-23T04:34:04.5729473Z [2026-08-23 04:26:56.600] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5730628Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5731578Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5732324Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5732969Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5733605Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5734278Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5735012Z [2026-08-23 04:26:56.602] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5735518Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5735953Z > strapi start
+2026-08-23T04:34:04.5736985Z [2026-08-23 04:28:04.186] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5738200Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5739103Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5739824Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5740507Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5741176Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5741800Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.5742465Z [2026-08-23 04:28:04.188] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.5742981Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.5743499Z > strapi start
+2026-08-23T04:34:04.5744390Z [2026-08-23 04:29:11.264] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5745566Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.5746531Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.5747291Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.5747938Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.5748603Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.5749235Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.7379212Z [2026-08-23 04:29:11.266] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.7388268Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.7389434Z > strapi start
+2026-08-23T04:34:04.7391189Z [2026-08-23 04:30:19.343] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.7393049Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.7394334Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.7395320Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.7396645Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.7397514Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.7398421Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.7399248Z [2026-08-23 04:30:19.347] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.7399923Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.7400538Z > strapi start
+2026-08-23T04:34:04.7401800Z [2026-08-23 04:31:27.013] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.7403406Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.7404699Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.7406105Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.7407162Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.7408171Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.7409355Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.7410325Z [2026-08-23 04:31:27.016] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.7411048Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.7411658Z > strapi start
+2026-08-23T04:34:04.7413178Z [2026-08-23 04:32:34.018] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.7414749Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.7416150Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.7417170Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.7418259Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.7418979Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.7419860Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.7420565Z [2026-08-23 04:32:34.020] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.7421096Z > dengarkanid-cms@0.1.0 start
+2026-08-23T04:34:04.7421554Z > strapi start
+2026-08-23T04:34:04.7422768Z [2026-08-23 04:33:40.738] [31merror[39m: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.7423934Z Error: Error on attribute socialLinks in model global-setting(api::global-setting.global-setting): Metadata for "shared.social-link" not found
+2026-08-23T04:34:04.7424878Z     at Metadata.loadModels (/opt/node_modules/@strapi/database/dist/metadata/metadata.js:65:31)
+2026-08-23T04:34:04.7425777Z     at Database.init (/opt/node_modules/@strapi/database/dist/index.js:47:23)
+2026-08-23T04:34:04.7426887Z     at Strapi.bootstrap (/opt/node_modules/@strapi/core/dist/Strapi.js:343:23)
+2026-08-23T04:34:04.7427612Z     at Strapi.load (/opt/node_modules/@strapi/core/dist/Strapi.js:318:20)
+2026-08-23T04:34:04.7428686Z     at async Strapi.start (/opt/node_modules/@strapi/core/dist/Strapi.js:203:17)
+2026-08-23T04:34:04.7429474Z [2026-08-23 04:33:40.740] [32minfo[39m: Shutting down Strapi
+2026-08-23T04:34:04.7430070Z ===============================================
+2026-08-23T04:34:04.7430598Z ✅ Successfully executed commands to all hosts.
+2026-08-23T04:34:04.7431153Z ===============================================
+2026-08-23T04:34:04.7447362Z ##[end-action id=__appleboy_ssh-action.entrypoint;outcome=success;conclusion=success;duration_ms=4573]
+2026-08-23T04:34:04.7567430Z Cleaning up orphan processes

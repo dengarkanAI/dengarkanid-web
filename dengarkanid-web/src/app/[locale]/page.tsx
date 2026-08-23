@@ -292,7 +292,7 @@ export default async function Home({ params, searchParams }: { params: Promise<{
             </div>
         </section>
         {/* ABOUT US SECTION (Layer 1: Background Gradient via CSS) */}
-        <section className="tech-highlight-section scroll-fade">
+        <section id="features" className="tech-highlight-section scroll-fade">
             
             {/* Eterna-style Background Ambient Glows */}
             <div className="tech-bg-purple-glow"></div>

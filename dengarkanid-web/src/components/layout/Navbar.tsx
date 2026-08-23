@@ -130,7 +130,7 @@ export default function Navbar({ cms }: { cms?: any }) {
 
           <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
             <Link href={`/${currentLocale}`} className={isHome ? 'active' : ''}>{dict.nav?.home || 'Home'}</Link>
-            <a href="#">Feature</a>
+            <Link href={`/${currentLocale}#features`}>Feature</Link>
             <div className="nav-dropdown-wrapper">
               <a href="#" className={`has-dropdown ${isDengarInsight ? 'active' : ''}`} id="dropdown-toggle">
                 Insight <i className="ph ph-caret-down"></i>
@@ -218,8 +218,8 @@ export default function Navbar({ cms }: { cms?: any }) {
               </div>
             ) : (
               <>
-                <a href="https://dengarkan.id/auth/login" className="btn-secondary">Sign In</a>
-                <a href="https://dengarkan.id/auth/signup" className="btn-primary dynamic-cta-btn">Start For Free</a>
+                <a href="https://app.dengarkan.id/login" className="btn-secondary">{dict.nav?.signIn || 'Sign In'}</a>
+                <Link href={`/${currentLocale}#contact`} className="btn-primary dynamic-cta-btn">{dict.nav?.startForFree || 'Jadwalkan Demo'}</Link>
               </>
             )}
           </div>
