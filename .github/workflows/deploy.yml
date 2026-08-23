@@ -152,6 +152,9 @@ jobs:
             # Restart containers (override otomatis: pakai image dari GHCR, bukan build)
             docker compose up -d --remove-orphans
 
+            # Fix permissions for Strapi uploads volume
+            docker exec --user root dengarkan-cms chown -R node:node /opt/app/public/uploads || true
+
             # Logout dan bersihkan image lama
             docker logout ghcr.io
             docker image prune -f
