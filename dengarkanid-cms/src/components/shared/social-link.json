@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_shared_social_links",
+  "info": {
+    "displayName": "Social Link",
+    "description": "Component for dynamic social media links and icons"
+  },
+  "options": {},
+  "attributes": {
+    "platformName": {
+      "type": "string",
+      "required": true,
+      "default": "LinkedIn"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "iconClass": {
+      "type": "string",
+      "required": false,
+      "description": "Phosphor icon class (e.g. ph-linkedin-logo, ph-instagram-logo, ph-youtube-logo)"
+    },
+    "iconMedia": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "description": "Upload a custom icon image if not using Phosphor icon class"
+    }
+  }
+}
