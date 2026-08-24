@@ -53,6 +53,10 @@ export default function Navbar({ cms }: { cms?: any }) {
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState<{name: string, email: string} | null>(null);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showManualLoginModal, setShowManualLoginModal] = useState(false);
+  const [manualEmail, setManualEmail] = useState("");
+  const [manualName, setManualName] = useState("");
+  const [isManualSubmitting, setIsManualSubmitting] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -60,6 +64,8 @@ export default function Navbar({ cms }: { cms?: any }) {
     const existingLead = localStorage.getItem('dengarkan_lead');
     if (existingLead) {
       setUser(JSON.parse(existingLead));
+    } else {
+      setShowOneTap(true);
     }
     setIsAuthChecked(true);
   }, []);
@@ -105,6 +111,48 @@ export default function Navbar({ cms }: { cms?: any }) {
     setShowUserMenu(false);
     setShowOneTap(true);
     window.dispatchEvent(new Event('auth-status-changed'));
+  };
+
+  const handleManualLoginSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!manualEmail) return;
+    setIsManualSubmitting(true);
+    
+    const leadData = {
+      name: manualName || manualEmail.split('@')[0],
+      email: manualEmail,
+      company: 'Unknown',
+      jobTitle: 'Visitor',
+      category: 'Manual Login',
+      source: 'Landing Page Manual Auth'
+    };
+    
+    try {
+      const response = await fetch(`${STRAPI_API_URL}/leads`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: leadData }),
+      });
+      if (response.ok) {
+        localStorage.setItem('dengarkan_lead', JSON.stringify(leadData));
+        setUser(leadData);
+        setShowManualLoginModal(false);
+        setShowOneTap(false); // Hide One Tap if it was showing
+        setShowModal(true); // Show confirmation
+        window.dispatchEvent(new Event('auth-status-changed'));
+      }
+    } catch (error) {
+      console.error('Error submitting manual lead:', error);
+      // Fallback
+      localStorage.setItem('dengarkan_lead', JSON.stringify(leadData));
+      setUser(leadData);
+      setShowManualLoginModal(false);
+      setShowOneTap(false);
+      setShowModal(true);
+      window.dispatchEvent(new Event('auth-status-changed'));
+    } finally {
+      setIsManualSubmitting(false);
+    }
   };
 
   // Close dropdown when clicking outside
@@ -218,7 +266,7 @@ export default function Navbar({ cms }: { cms?: any }) {
               </div>
             ) : (
               <>
-                <a href="https://app.dengarkan.id/login" className="btn-secondary">{dict.nav?.signIn || 'Sign In'}</a>
+                <button onClick={() => setShowManualLoginModal(true)} className="btn-secondary">{dict.nav?.signIn || 'Sign In'}</button>
                 <Link href={`/${currentLocale}#contact`} className="btn-primary dynamic-cta-btn">{dict.nav?.startForFree || 'Jadwalkan Demo'}</Link>
               </>
             )}
@@ -249,14 +297,55 @@ export default function Navbar({ cms }: { cms?: any }) {
               <path d="M42.6666 23L27.9999 37.6667L21.3333 31" stroke="#10B981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
-          <h3 className="modal-title">Welcome Aboard, {user?.name || 'Google User'}!</h3>
+          <h3 className="modal-title">Welcome Aboard, {user?.name || 'User'}!</h3>
           <p className="modal-desc">
-            You've successfully signed in via Google. Your free trial is now active, and you have full access to our dashboard. Let's start transforming your conversations into actionable intelligence!
+            You've successfully signed in. Your free trial is now active, and you have full access to our dashboard. Let's start transforming your conversations into actionable intelligence!
           </p>
           <div className="modal-actions">
             <button className="btn-secondary" style={{width: '100%', marginBottom: '12px'}} onClick={() => setShowModal(false)}>Explore Features First</button>
             <a href="https://dengarkan.id/auth/signup" className="btn-primary" style={{width: '100%'}} onClick={() => setShowModal(false)}>Go to Dashboard</a>
           </div>
+        </div>
+      </div>
+
+      {/* Manual Email Login Modal */}
+      <div className={`confirm-modal-backdrop ${showManualLoginModal ? 'show' : ''}`}>
+        <div className="confirm-modal-content" style={{textAlign: 'left', padding: '24px'}}>
+          <button className="modal-close-btn" onClick={() => setShowManualLoginModal(false)}>&times;</button>
+          <h3 style={{fontSize: '20px', fontWeight: 700, margin: '0 0 8px'}}>Log In with Email</h3>
+          <p style={{fontSize: '14px', color: '#666', margin: '0 0 20px'}}>Please enter your email to sign in.</p>
+          
+          <form onSubmit={handleManualLoginSubmit} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+            <div>
+              <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: '#333'}}>Name (Optional)</label>
+              <input 
+                type="text" 
+                value={manualName} 
+                onChange={(e) => setManualName(e.target.value)} 
+                placeholder="John Doe" 
+                style={{width: '100%', padding: '10px 12px', border: '1px solid #e4e4e7', borderRadius: '8px', fontSize: '14px'}}
+              />
+            </div>
+            <div>
+              <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: '#333'}}>Email Address *</label>
+              <input 
+                type="email" 
+                value={manualEmail} 
+                onChange={(e) => setManualEmail(e.target.value)} 
+                placeholder="you@company.com" 
+                required
+                style={{width: '100%', padding: '10px 12px', border: '1px solid #e4e4e7', borderRadius: '8px', fontSize: '14px'}}
+              />
+            </div>
+            <button 
+              type="submit" 
+              className="btn-primary" 
+              disabled={isManualSubmitting || !manualEmail}
+              style={{marginTop: '8px', width: '100%', justifyContent: 'center', opacity: isManualSubmitting ? 0.7 : 1}}
+            >
+              {isManualSubmitting ? 'Signing in...' : 'Sign In'}
+            </button>
+          </form>
         </div>
       </div>
     </>
