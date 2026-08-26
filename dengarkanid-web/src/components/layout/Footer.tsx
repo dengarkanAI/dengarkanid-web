@@ -12,7 +12,7 @@ export default function Footer({ dict, cms, locale }: { dict: any, cms?: any, lo
             <div className="container footer-cta-row-inner">
                 <div className="footer-cta-left">
                     <h2 dangerouslySetInnerHTML={{ __html: (cms?.footerInterestedTitle || dict.interestedTitle).replace(/\n/g, '<br/>') }}></h2>
-                    <a href="#" className="btn-contact-sales">{cms?.footerContactSales || dict.contactSales} &nbsp;&rarr;</a>
+                    <Link href={`/${currentLocale}#contact`} className="btn-contact-sales">{cms?.footerContactSales || dict.contactSales} &nbsp;&rarr;</Link>
                 </div>
 
                 <div className="footer-cta-links">
