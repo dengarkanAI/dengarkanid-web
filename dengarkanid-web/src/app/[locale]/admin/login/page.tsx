@@ -18,7 +18,7 @@ export default function Page() {
 
   useEffect(() => {
     // If already logged in, redirect to leads dashboard
-    if (typeof window !== "undefined" && sessionStorage.getItem("jwt")) {
+    if (typeof window !== "undefined" && localStorage.getItem("jwt")) {
       router.push("/admin/leads");
     }
   }, [router]);
@@ -38,9 +38,9 @@ export default function Page() {
       const data = await res.json();
 
       if (res.ok && data.jwt) {
-        // Save JWT to Session Storage
-        sessionStorage.setItem("jwt", data.jwt);
-        sessionStorage.setItem("user", JSON.stringify(data.user));
+        // Save JWT to Local Storage
+        localStorage.setItem("jwt", data.jwt);
+        localStorage.setItem("user", JSON.stringify(data.user));
 
         setSuccess(true);
         setTimeout(() => {

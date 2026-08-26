@@ -38,8 +38,8 @@ export default function Page() {
   // Check auth on mount
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedToken = sessionStorage.getItem("jwt");
-      const userStr = sessionStorage.getItem("user");
+      const storedToken = localStorage.getItem("jwt");
+      const userStr = localStorage.getItem("user");
 
       if (!storedToken) {
         router.push("/admin/login");
@@ -76,8 +76,8 @@ export default function Page() {
       });
 
       if (res.status === 401 || res.status === 403) {
-        sessionStorage.removeItem("jwt");
-        sessionStorage.removeItem("user");
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("user");
         router.push("/admin/login");
         return;
       }
@@ -93,8 +93,8 @@ export default function Page() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("jwt");
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("user");
     router.push("/admin/login");
   };
 
