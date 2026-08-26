@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   
   const { getStrapiImageUrl } = await import("@/utils/strapi");
   const faviconRaw = getStrapiImageUrl(globalSettings?.favicon);
-  const faviconUrl = faviconRaw ? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${faviconRaw}` : '/favicon.ico';
+  const faviconUrl = faviconRaw ? `${process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337'}${faviconRaw}` : '/favicon.ico';
 
   return {
     metadataBase: new URL('https://dengarkan.id'),

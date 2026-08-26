@@ -34,7 +34,7 @@ export default function Footer({ dict, cms, locale }: { dict: any, cms?: any, lo
                                 cms.socialLinks.map((link: any, idx: number) => (
                                     <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="social-circle" title={link.platformName}>
                                         {link.iconMedia?.url ? (
-                                            <img src={`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${link.iconMedia.url}`} alt={link.platformName} style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
+                                            <img src={`${process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337'}${link.iconMedia.url}`} alt={link.platformName} style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
                                         ) : (
                                             <i className={`ph ${link.iconClass || 'ph-link'}`}></i>
                                         )}

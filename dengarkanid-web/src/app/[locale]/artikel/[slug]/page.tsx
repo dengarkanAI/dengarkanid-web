@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const description = attrs.metaDescription || attrs.description || "";
   
   // Try to get metaImage first, then thumbnailImage
-  const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+  const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
   let imageUrl = "";
   const metaImgRaw = getStrapiImageUrl(attrs.metaImage);
   const thumbImgRaw = getStrapiImageUrl(attrs.thumbnailImage) || getStrapiImageUrl(attrs.gallery?.[0] || attrs.gallery?.data?.[0]);
@@ -127,7 +127,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string,
   }
 
   // Prepare images
-  const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+  const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
   
   let authorImg = "/assets/headshot-3.jpg"; // Default
   const authorImgRaw = getStrapiImageUrl(attrs.authorAvatar);

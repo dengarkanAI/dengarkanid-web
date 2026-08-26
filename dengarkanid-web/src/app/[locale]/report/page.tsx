@@ -74,7 +74,7 @@ export default async function ReportPage({
     }
   }
 
-  const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+  const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
   
   // Process Archives
   const archives: Record<string, { total: number, months: Record<string, number> }> = {};

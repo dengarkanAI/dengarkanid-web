@@ -30,7 +30,7 @@ export default function Navbar({ cms }: { cms?: any }) {
   const dict = getDictionary(currentLocale);
   
   const logoUrl = cms?.logo ? getStrapiImageUrl(cms.logo) : "/logo-dengarkan-listening-tools.png";
-  const finalLogoUrl = logoUrl.startsWith('http') || logoUrl.startsWith('/') ? logoUrl : `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${logoUrl}`;
+  const finalLogoUrl = logoUrl.startsWith('http') || logoUrl.startsWith('/') ? logoUrl : `${process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337'}${logoUrl}`;
 
   // Helper to remove locale from pathname to switch language
   const getPathWithoutLocale = () => {
