@@ -26,13 +26,14 @@ export default async function Home({ params, searchParams }: { params: Promise<{
   const draftQueryFirst = isPreview ? '?status=draft' : '';
   const localeQuery = `&locale=${locale}`;
   const localeQueryFirst = `?locale=${locale}`;
-  const fetchOpts = (process.env.NODE_ENV === 'development' || isPreview) ? { cache: 'no-store' as RequestCache } : { next: { revalidate: 60 } };
+  const fetchOpts = { cache: 'no-store' as RequestCache };
 
   let heroData = null;
   let homeData = null;
   let featuresData = [];
   let faqsData = [];
   let blogsData = [];
+  let testimonialsData = [];
   let globalSettings = null;
 
   try {
@@ -88,6 +89,13 @@ export default async function Home({ params, searchParams }: { params: Promise<{
     if (!blogsData || blogsData.length === 0) {
       const fallback = await fetch(`${STRAPI_API_URL}/blogs?populate=*${draftQuery}&locale=en`, fetchOpts);
       if (fallback.ok) blogsData = (await fallback.json()).data;
+    }
+
+    const testiRes = await fetch(`${STRAPI_API_URL}/testimonials?populate=*${draftQuery}${localeQuery}`, fetchOpts);
+    if (testiRes.ok) testimonialsData = (await testiRes.json()).data;
+    if (!testimonialsData || testimonialsData.length === 0) {
+      const fallback = await fetch(`${STRAPI_API_URL}/testimonials?populate=*${draftQuery}&locale=en`, fetchOpts);
+      if (fallback.ok) testimonialsData = (await fallback.json()).data;
     }
   } catch (err) {
     console.error("Failed to fetch from Strapi", err);
@@ -382,7 +390,7 @@ export default async function Home({ params, searchParams }: { params: Promise<{
             defaultTitle={dict.features.shieldTitle}
             defaultDesc={dict.features.shieldDesc}
         />
-        <TestimonialsSection locale={locale} dict={{ ...dict.testimonials, title: attrs?.testimonialTitle || dict.testimonials.title, subtitle: attrs?.testimonialDescription || dict.testimonials.subtitle }} cms={globalSettings} />
+        <TestimonialsSection testimonialsData={testimonialsData} locale={locale} dict={{ ...dict.testimonials, title: attrs?.testimonialTitle || dict.testimonials.title, subtitle: attrs?.testimonialDescription || dict.testimonials.subtitle }} cms={globalSettings} />
         <ClientFaqSection faqsData={faqsData} dict={dict.faq} cms={attrs} />
 <section className="blog-section-new scroll-fade">
             <div className="container">

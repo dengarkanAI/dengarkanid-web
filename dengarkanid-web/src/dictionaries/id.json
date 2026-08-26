@@ -12,7 +12,13 @@
     "logout": "Keluar",
     "welcomeTitle": "Selamat Datang, {name}!",
     "welcomeDesc": "Anda telah berhasil masuk melalui Google. Uji coba gratis Anda kini aktif, dan Anda memiliki akses penuh ke dasbor kami. Mari mulai ubah percakapan menjadi wawasan yang dapat ditindaklanjuti (Actionable Intelligence)!",
-    "exploreFeatures": "Jelajahi Fitur Dulu"
+    "exploreFeatures": "Jelajahi Fitur Dulu",
+    "loginModalTitle": "Masuk dengan Email",
+    "loginModalDesc": "Silakan masukkan email Anda untuk masuk.",
+    "nameOptional": "Nama (Opsional)",
+    "emailAddress": "Alamat Email *",
+    "signingIn": "Masuk...",
+    "signInBtn": "Masuk"
   },
   "home": {
     "aboutUsTagline": "Dengarkan Yang tak Terucapkan",

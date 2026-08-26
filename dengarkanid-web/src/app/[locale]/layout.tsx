@@ -24,7 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   
   const seoTitle = globalSettings?.seoTitle || defaultTitle;
   const seoDesc = globalSettings?.seoDescription || defaultDesc;
-  const faviconUrl = globalSettings?.favicon?.url ? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${globalSettings.favicon.url}` : '/favicon.ico';
+  
+  const { getStrapiImageUrl } = await import("@/utils/strapi");
+  const faviconRaw = getStrapiImageUrl(globalSettings?.favicon);
+  const faviconUrl = faviconRaw ? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${faviconRaw}` : '/favicon.ico';
 
   return {
     metadataBase: new URL('https://dengarkan.id'),

@@ -12,7 +12,13 @@
     "logout": "Logout",
     "welcomeTitle": "Welcome, {name}!",
     "welcomeDesc": "You've successfully signed in with Google. Your free trial is now active, and you have full access to our dashboard. Let's start transforming conversations into Actionable Intelligence!",
-    "exploreFeatures": "Explore Features First"
+    "exploreFeatures": "Explore Features First",
+    "loginModalTitle": "Log In with Email",
+    "loginModalDesc": "Please enter your email to sign in.",
+    "nameOptional": "Name (Optional)",
+    "emailAddress": "Email Address *",
+    "signingIn": "Signing in...",
+    "signInBtn": "Sign In"
   },
   "home": {
     "aboutUsTagline": "Listen to the Unspoken",

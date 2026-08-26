@@ -19,8 +19,8 @@ export default function Page() {
     async function fetchBlogs() {
       try {
         const [res, globalRes] = await Promise.all([
-          fetch(`${STRAPI_API_URL}/blogs?locale=${locale}&populate=*`),
-          fetch(`${STRAPI_API_URL}/global-setting?locale=${locale}`)
+          fetch(`${STRAPI_API_URL}/blogs?locale=${locale}&populate=*`, { cache: 'no-store' }),
+          fetch(`${STRAPI_API_URL}/global-setting?locale=${locale}`, { cache: 'no-store' })
         ]);
         if (res.ok) {
           const data = await res.json();

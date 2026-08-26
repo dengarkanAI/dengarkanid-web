@@ -44,9 +44,9 @@ export default function Glosari() {
         const apiUrl = process.env.NEXT_PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
         
         const [res, headerRes, globalRes] = await Promise.all([
-          fetch(`${apiUrl}/api/glosariums?pagination[limit]=100&sort=term:ASC&locale=${locale}`),
-          fetch(`${apiUrl}/api/glosari-header?locale=${locale}`),
-          fetch(`${apiUrl}/api/global-setting?locale=${locale}`)
+          fetch(`${apiUrl}/api/glosariums?pagination[limit]=100&sort=term:ASC&locale=${locale}`, { cache: 'no-store' }),
+          fetch(`${apiUrl}/api/glosari-header?locale=${locale}`, { cache: 'no-store' }),
+          fetch(`${apiUrl}/api/global-setting?locale=${locale}`, { cache: 'no-store' })
         ]);
 
         const json = await res.json();

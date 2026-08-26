@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { getStrapiImageUrl } from '@/utils/strapi';
 
 interface Testimonial {
   id: number;
@@ -113,8 +114,9 @@ function TestiCard({ t, strapiUrl }: { t: Testimonial; strapiUrl: string }) {
     return `/assets/headshot-${avatarIndex}.jpg`;
   };
 
-  const avatarUrl = avatar?.url
-    ? `${strapiUrl}${avatar.url}`
+  const avatarRaw = getStrapiImageUrl(avatar);
+  const avatarUrl = avatarRaw
+    ? `${strapiUrl}${avatarRaw}`
     : getFallbackAvatar(t.id, name);
 
   return (

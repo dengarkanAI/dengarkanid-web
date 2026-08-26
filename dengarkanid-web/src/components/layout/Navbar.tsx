@@ -312,12 +312,12 @@ export default function Navbar({ cms }: { cms?: any }) {
       <div className={`confirm-modal-backdrop ${showManualLoginModal ? 'show' : ''}`}>
         <div className="confirm-modal-content" style={{textAlign: 'left', padding: '24px'}}>
           <button className="modal-close-btn" onClick={() => setShowManualLoginModal(false)}>&times;</button>
-          <h3 style={{fontSize: '20px', fontWeight: 700, margin: '0 0 8px'}}>Log In with Email</h3>
-          <p style={{fontSize: '14px', color: '#666', margin: '0 0 20px'}}>Please enter your email to sign in.</p>
+          <h3 style={{fontSize: '20px', fontWeight: 700, margin: '0 0 8px'}}>{dict.auth?.loginModalTitle || 'Log In with Email'}</h3>
+          <p style={{fontSize: '14px', color: '#666', margin: '0 0 20px'}}>{dict.auth?.loginModalDesc || 'Please enter your email to sign in.'}</p>
           
           <form onSubmit={handleManualLoginSubmit} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
             <div>
-              <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: '#333'}}>Name (Optional)</label>
+              <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: '#333'}}>{dict.auth?.nameOptional || 'Name (Optional)'}</label>
               <input 
                 type="text" 
                 value={manualName} 
@@ -327,7 +327,7 @@ export default function Navbar({ cms }: { cms?: any }) {
               />
             </div>
             <div>
-              <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: '#333'}}>Email Address *</label>
+              <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: '#333'}}>{dict.auth?.emailAddress || 'Email Address *'}</label>
               <input 
                 type="email" 
                 value={manualEmail} 
@@ -343,7 +343,7 @@ export default function Navbar({ cms }: { cms?: any }) {
               disabled={isManualSubmitting || !manualEmail}
               style={{marginTop: '8px', width: '100%', justifyContent: 'center', opacity: isManualSubmitting ? 0.7 : 1}}
             >
-              {isManualSubmitting ? 'Signing in...' : 'Sign In'}
+              {isManualSubmitting ? (dict.auth?.signingIn || 'Signing in...') : (dict.auth?.signInBtn || 'Sign In')}
             </button>
           </form>
         </div>
