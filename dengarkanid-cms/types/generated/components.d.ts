@@ -24,6 +24,19 @@ export interface FeatureCarouselItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedContactMethod extends Struct.ComponentSchema {
+  collectionName: 'components_shared_contact_methods';
+  info: {
+    description: 'Dynamic contact information (e.g. Email, Location, Phone)';
+    displayName: 'Contact Method';
+  };
+  attributes: {
+    iconClass: Schema.Attribute.String;
+    iconMedia: Schema.Attribute.Media<'images'>;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedSocialLink extends Struct.ComponentSchema {
   collectionName: 'components_shared_social_links';
   info: {
@@ -44,6 +57,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'feature.carousel-item': FeatureCarouselItem;
+      'shared.contact-method': SharedContactMethod;
       'shared.social-link': SharedSocialLink;
     }
   }

@@ -95,6 +95,23 @@
     "contactModalDesc": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
     "contactModalQuote": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
     "contactModalClose": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormCompany": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormCompanyPlaceholder": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormIndustry": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormIndustryPlaceholder": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormPosition": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormPositionPlaceholder": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactFormErrorMessage": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "contactMethods": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.contact-method",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
     "testimonialTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } }
   }
 }

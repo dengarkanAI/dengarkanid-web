@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { STRAPI_API_URL } from '@/utils/strapi';
+import { STRAPI_API_URL, getStrapiImageUrl } from '@/utils/strapi';
 
 export default function ClientContactForm({ dict, cms }: { dict: any, cms?: any }) {
     const [leadForm, setLeadForm] = useState({
@@ -45,7 +45,7 @@ export default function ClientContactForm({ dict, cms }: { dict: any, cms?: any 
             setLeadForm({ name: '', email: '', phone: '', company: '', industry: '', position: '', message: '' });
             setShowCompanyDetails(false);
         } catch (err) {
-            alert('Gagal mengirim pesan. Silakan coba lagi.');
+            alert(cms?.contactFormErrorMessage || 'Gagal mengirim pesan. Silakan coba lagi.');
         } finally {
             setLeadSubmitting(false);
         }
@@ -60,24 +60,41 @@ export default function ClientContactForm({ dict, cms }: { dict: any, cms?: any 
                     <p className="desc">{cms?.contactSubtitle || dict.subtitle}</p>
 
                     <div className="contact-methods">
-                        <div className="contact-method-item">
-                            <div className="method-icon-box">
-                                <i className="ph-bold ph-envelope-simple"></i>
-                            </div>
-                            <span>boleh@dengarkan.id</span>
-                        </div>
-                        <div className="contact-method-item">
-                            <div className="method-icon-box">
-                                <i className="ph-bold ph-map-pin"></i>
-                            </div>
-                            <span>Jakarta, Indonesia</span>
-                        </div>
-                        <div className="contact-method-item">
-                            <div className="method-icon-box">
-                                <i className="ph-bold ph-phone"></i>
-                            </div>
-                            <span>+62818-20-4646</span>
-                        </div>
+                        {cms?.contactMethods && cms.contactMethods.length > 0 ? (
+                            cms.contactMethods.map((method: any, idx: number) => (
+                                <div className="contact-method-item" key={idx}>
+                                    <div className="method-icon-box">
+                                        {method.iconMedia ? (
+                                            <img src={getStrapiImageUrl(method.iconMedia)} alt="contact icon" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
+                                        ) : (
+                                            <i className={method.iconClass}></i>
+                                        )}
+                                    </div>
+                                    <span>{method.value}</span>
+                                </div>
+                            ))
+                        ) : (
+                            <>
+                                <div className="contact-method-item">
+                                    <div className="method-icon-box">
+                                        <i className="ph-bold ph-envelope-simple"></i>
+                                    </div>
+                                    <span>boleh@dengarkan.id</span>
+                                </div>
+                                <div className="contact-method-item">
+                                    <div className="method-icon-box">
+                                        <i className="ph-bold ph-map-pin"></i>
+                                    </div>
+                                    <span>Jakarta, Indonesia</span>
+                                </div>
+                                <div className="contact-method-item">
+                                    <div className="method-icon-box">
+                                        <i className="ph-bold ph-phone"></i>
+                                    </div>
+                                    <span>+62818-20-4646</span>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
 
@@ -106,11 +123,11 @@ export default function ClientContactForm({ dict, cms }: { dict: any, cms?: any 
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="contact-company">Company Name</label>
+                            <label htmlFor="contact-company">{cms?.contactFormCompany || "Company Name"}</label>
                             <input 
                                 type="text" 
                                 id="contact-company" 
-                                placeholder="Enter Company Name" 
+                                placeholder={cms?.contactFormCompanyPlaceholder || "Enter Company Name"} 
                                 required 
                                 value={leadForm.company}
                                 onFocus={() => setShowCompanyDetails(true)}
@@ -124,16 +141,16 @@ export default function ClientContactForm({ dict, cms }: { dict: any, cms?: any 
                         {showCompanyDetails && (
                             <>
                                 <div className="form-group" style={{ animation: 'fadeIn 0.3s ease-in-out' }}>
-                                    <label htmlFor="contact-industry">Industry</label>
+                                    <label htmlFor="contact-industry">{cms?.contactFormIndustry || "Industry"}</label>
                                     <input 
-                                        type="text" id="contact-industry" placeholder="Enter Industry" required 
+                                        type="text" id="contact-industry" placeholder={cms?.contactFormIndustryPlaceholder || "Enter Industry"} required 
                                         value={leadForm.industry} onChange={(e) => setLeadForm({...leadForm, industry: e.target.value})}
                                     />
                                 </div>
                                 <div className="form-group" style={{ animation: 'fadeIn 0.3s ease-in-out' }}>
-                                    <label htmlFor="contact-position">Position</label>
+                                    <label htmlFor="contact-position">{cms?.contactFormPosition || "Position"}</label>
                                     <input 
-                                        type="text" id="contact-position" placeholder="Enter Position" required 
+                                        type="text" id="contact-position" placeholder={cms?.contactFormPositionPlaceholder || "Enter Position"} required 
                                         value={leadForm.position} onChange={(e) => setLeadForm({...leadForm, position: e.target.value})}
                                     />
                                 </div>

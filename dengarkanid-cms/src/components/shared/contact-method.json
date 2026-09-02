@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_shared_contact_methods",
+  "info": {
+    "displayName": "Contact Method",
+    "description": "Dynamic contact information (e.g. Email, Location, Phone)"
+  },
+  "options": {},
+  "attributes": {
+    "iconClass": {
+      "type": "string",
+      "required": false,
+      "description": "Class name for Phosphor icon, e.g., 'ph-bold ph-envelope-simple'"
+    },
+    "iconMedia": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "description": "Upload a custom icon image if not using Phosphor icon class"
+    },
+    "value": {
+      "type": "string",
+      "required": true,
+      "description": "Value to display, e.g., 'boleh@dengarkan.id'"
+    }
+  }
+}

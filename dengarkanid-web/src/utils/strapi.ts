@@ -27,7 +27,7 @@ export function getStrapiImageUrl(imageObj: any): string {
 
 export async function getGlobalSettings(locale: string) {
   try {
-    const res = await fetch(`${STRAPI_API_URL}/global-setting?locale=${locale}&populate[0]=favicon&populate[1]=socialLinks.iconMedia&populate[2]=logo`, {
+    const res = await fetch(`${STRAPI_API_URL}/global-setting?locale=${locale}&populate[0]=favicon&populate[1]=socialLinks.iconMedia&populate[2]=logo&populate[3]=contactMethods.iconMedia`, {
       cache: 'no-store'
     });
     if (!res.ok) return null;
